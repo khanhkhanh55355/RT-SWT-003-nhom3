@@ -1,0 +1,9 @@
+pandas
+openai
+python-dotenv
+sentence-transformers
+gherkin-official
+scipy
+numpy
+matplotlib
+seaborn
