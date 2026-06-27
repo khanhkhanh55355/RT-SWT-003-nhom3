@@ -1,5 +1,6 @@
 .env
 __pycache__/
 data/pilot_sample.csv
-results/pilot_*
+results/*_checkpoint.csv
 results/pilot_smoke/
+results/*.jsonl

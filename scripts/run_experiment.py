@@ -11,7 +11,7 @@ Features:
 - CLI flags: --simulate, --start-index, --batch-size, --dry-run
 
 Usage:
-  python run_full_experiment.py --dataset data/full_dataset.csv
+  python scripts/run_experiment.py --dataset data/raw/full_dataset.csv
 
 Before running: set OPENAI_API_KEY in environment or .env file (do NOT commit .env).
 """
@@ -385,7 +385,7 @@ Features:
 - CLI flags: --simulate, --start-index, --batch-size, --dry-run
 
 Usage:
-  python run_full_experiment.py --dataset data/full_dataset.csv
+  python scripts/run_experiment.py --dataset data/raw/full_dataset.csv
 
 Before running: set OPENAI_API_KEY in environment or .env file (do NOT commit .env).
 """
