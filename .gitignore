@@ -1,0 +1,5 @@
+.env
+__pycache__/
+data/pilot_sample.csv
+results/pilot_*
+results/pilot_smoke/
