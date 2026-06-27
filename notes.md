@@ -59,3 +59,10 @@ File gốc không có cột domain. Gán thủ công theo paper:
 
 ### Seed
 - Random seed = 42
+
+### Kết quả lọc thực tế
+- Digital Asset Management: 115 cặp hợp lệ
+- Brand Management: 97 cặp hợp lệ
+- Marketing Operations Platform: 90 cặp hợp lệ
+- Marketing Compliance: 46 cặp hợp lệ
+- **Tổng pool: 348 cặp** → đủ để sample 100
