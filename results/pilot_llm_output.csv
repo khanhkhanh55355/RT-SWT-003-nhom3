@@ -1,0 +1,104 @@
+"id","text","llm_output","response_id","status","cumulative_cost_usd"
+"1","Sample prompt content text 1","Scenario: Successful execution of sample prompt content text 1  
+Given the user has access to the system  
+When the user performs the specified action related to sample prompt content text 1  
+Then the system should execute the action successfully and provide the expected outcome","chatcmpl-DvBhtEgrfRGEsrBdanHOhhiiXDruO","success",0.01802
+"2","Sample prompt content text 2","Scenario: User accesses the sample prompt content text  
+Given the user is logged into the system  
+When the user navigates to the ""Sample Prompt Content"" section  
+Then the system displays the ""Sample prompt content text 2"" clearly and accurately","chatcmpl-DvBhut8xjLl6xeI5LVHDsS5PsWI7C","success",0.01802
+"3","Sample prompt content text 3","Scenario: User interacts with the sample prompt content text
+
+Given the user is on the application page displaying ""Sample prompt content text 3""  
+When the user views the content  
+Then the content ""Sample prompt content text 3"" should be displayed clearly and completely without any truncation or errors.","chatcmpl-DvBhvULPErnvRPhgk4qqMMIYCYmep","success",0.01802
+"4","Sample prompt content text 4","Scenario: User accesses the sample prompt content text
+
+Given the user is logged into the system  
+And the user is on the main dashboard  
+When the user navigates to the ""Sample Prompt Content"" section  
+Then the system displays the content text labeled as ""Sample prompt content text 4""  
+And the content is fully visible without errors or truncation.","chatcmpl-DvBhxsg9yXAnvplckWttuHsqjSm03","success",0.01802
+"5","Sample prompt content text 5","Scenario: Successfully process sample prompt content text 5  
+Given the system is operational and the user has access to the application  
+When the user inputs ""Sample prompt content text 5"" into the designated field and submits  
+Then the system should process the input and display the appropriate output without errors","chatcmpl-DvBhy03i9eJpDXgy0gsLSGmpCcKaT","success",0.01802
+"6","Sample prompt content text 6","Scenario: Successfully process sample prompt content text 6  
+Given the system is operational and the user has access to the application  
+When the user submits ""Sample prompt content text 6"" for processing  
+Then the system should process the text and return the expected output without errors","chatcmpl-DvBhz9wzGal4YzIqLvPjvgA3YvpAI","success",0.01802
+"7","Sample prompt content text 7","Scenario: Successfully process sample prompt content text 7  
+Given the system is operational and the user has access to the application  
+When the user submits ""Sample prompt content text 7"" for processing  
+Then the system should process the text and return the expected output without errors","chatcmpl-DvBiLBGHtRROavmA2kUmFU8ygsjNK","success",0.01802
+"8","Sample prompt content text 8","Scenario: User accesses the sample content text
+
+Given the user is logged into the system  
+And the user is on the content library page  
+And the sample content text 8 is available in the library  
+
+When the user selects ""Sample prompt content text 8"" from the list  
+
+Then the system displays the full content of ""Sample prompt content text 8""  
+And the user can view the content without any errors.","chatcmpl-DvBiMdmWSVZWtfzq18l82HZR6PF6c","success",0.01802
+"9","Sample prompt content text 9","Scenario: Successfully process sample prompt content text 9  
+Given the system is operational and the user has access to the application  
+When the user inputs ""Sample prompt content text 9"" into the designated field and submits  
+Then the system should process the input and display the appropriate output without errors","chatcmpl-DvBiO55SBlmWV3DokBfioSi3Igpbb","success",0.01802
+"10","Sample prompt content text 10","Scenario: Successfully complete the primary action for Sample prompt content text 10  
+Given the user has access to the system and is logged in  
+When the user performs the main action related to Sample prompt content text 10  
+Then the system should process the action and display the expected outcome successfully","chatcmpl-DvBikSA0xNZmFxdGXD1y4eRWByarJ","success",0.01802
+"11","Sample prompt content text 11","Scenario: Successfully process sample prompt content text 11  
+Given the system is operational and the user has access to the application  
+When the user inputs ""Sample prompt content text 11"" into the designated field and submits  
+Then the system should process the input and display the appropriate output without errors","chatcmpl-DvBkBwDHo4NNlCY53w1jpk3OLab5V","success",0.01802
+"12","Sample prompt content text 12","Scenario: Placeholder scenario for unclear user story  
+Given the user story content is unclear  
+When the user provides a specific and detailed user story  
+Then a proper BDD scenario can be generated","chatcmpl-DvBkCA6dtWuh0nOn6uQO3zUMvQueS","success",0.01802
+"13","Sample prompt content text 13","Scenario: [Unable to generate a scenario due to insufficient user story details]  
+Given [No clear precondition provided]  
+When [No specific action described]  
+Then [No concrete expected result defined]  
+
+Please provide a detailed user story for a proper BDD scenario.","chatcmpl-DvBkDUyzRtCZm9iq3lziazMuOlXuc","success",0.01802
+"14","Sample prompt content text 14","Scenario: [Unable to generate a scenario due to insufficient user story details]  
+Given [No clear precondition provided]  
+When [No specific action described]  
+Then [No expected result defined]  
+
+Please provide a detailed user story for a proper BDD scenario.","chatcmpl-DvBkF1iQIQohlzOYftE4D78TsGiQI","success",0.01802
+"15","Sample prompt content text 15","Scenario: Successfully complete the primary action for the user story  
+Given the user has access to the system  
+When the user performs the main action described in the user story  
+Then the expected outcome of the user story is achieved","chatcmpl-DvBkGU4Jr3ZNpVpLDWOOhuzfvJF7X","success",0.01802
+"16","Sample prompt content text 16","Scenario: User accesses the sample prompt content text
+
+Given the user is logged into the system  
+And the user is on the main dashboard  
+When the user navigates to the ""Sample Prompt Content"" section  
+Then the system displays the content text labeled as ""16""  
+And the content text is fully visible and readable without errors.","chatcmpl-DvBkH3TVdIT5NsqFF5bGoeoAvbaTB","success",0.01802
+"17","Sample prompt content text 17","Scenario: [No scenario can be generated]  
+Given [The user story content is unclear and lacks specific details]  
+When [No actionable steps can be derived]  
+Then [No expected result can be determined]  
+
+Please provide a clear and detailed user story for a proper BDD scenario.","chatcmpl-DvBkIaJ1iYHuHNbUebMjvk5JLilrp","success",0.01802
+"18","Sample prompt content text 18","Scenario: User views sample prompt content text  
+Given the user is logged into the system  
+And the user is on the content page  
+When the user selects the ""Sample prompt content text 18"" from the list  
+Then the system displays the full content of ""Sample prompt content text 18""  
+And the content is accurate and formatted correctly.","chatcmpl-DvBkK10mqL8156fcBnthiSTUirdSD","success",0.01802
+"19","Sample prompt content text 19","Scenario: User interacts with the sample prompt content text
+
+Given the user has access to the system  
+And the user is on the relevant page displaying the sample prompt content text  
+When the user views the sample prompt content text  
+Then the sample prompt content text should be displayed clearly and completely without any truncation or errors","chatcmpl-DvBkLTZk4JVDpnSU5YqpxWehe27iI","success",0.01802
+"20","Sample prompt content text 20","Scenario: Placeholder scenario for unclear user story  
+Given the user story content is unclear  
+When the user provides a clear and specific user story  
+Then a proper BDD scenario will be generated","chatcmpl-DvBkMWPcRXmXpTDtO8rXm5sZBYsMn","success",0.01802
