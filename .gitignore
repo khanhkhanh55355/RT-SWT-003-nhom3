@@ -1,6 +1,33 @@
+# API keys & secrets - TUYỆT ĐỐI không commit
+.env
+*.env
+
+secrets.json
+api_key.txt
+config.py
+
+# Python cache
+
+_pycache
+*.pyc
+
+*.pyo
+.venv/
+venv/
+
+.ipynb_checkpoints/
+
+# OS files
+
+.DS_Store
+desktop.ini
+Thumbs.db
+
+# Large files (thêm nếu data > 100MB)
+# data/raw/
+
 .env
 __pycache__/
-data/pilot_sample.csv
 results/*_checkpoint.csv
 results/pilot_smoke/
 results/*.jsonl

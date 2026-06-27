@@ -1,0 +1,21 @@
+ID,domain,User Story
+385,Marketing Operations Platform,"PB - As a User, I want to re-order pages within the same parent/root via Nav - FE UI component"
+210,Brand Management,"PB - As a User, I want to see a new landing page"
+335,Marketing Operations Platform,"PB - As a User, I want to create a Drag & Drop Page (as a standalone Page) from Nav"
+208,Brand Management,"PB - As a User, I want to only select & see the combo of Widget and Block (bounding box experience) in Page Builder"
+254,Brand Management,"As a User, I want to access Reply action for New Replies in Daily Digest Email"
+238,Brand Management,As a user I want to see 'Bulk Review' in bulk review page header (page name)
+13,Digital Asset Management,"As a user, I want to be able to see the GIF or Lottie File converted MP4 on the Markup Screen in Approvals so that I can markup the animation to get feedback and new revisions worked on"
+353,Marketing Operations Platform,"PB - As a User, I want to see a new landing page"
+136,Digital Asset Management,"As a User, I want to open current location for single / same folder Move"
+109,Digital Asset Management,"As an Internal User, I want to have MCP(development use only) settings to enable/disable features per Epic for Drag & Drop Page MVP "
+141,Digital Asset Management,"As a User, I want Surface Question/Answer/Rating back end data in weekly report / script"
+106,Digital Asset Management,"As a User, I want to switch Page Categories when viewing a Page if there are multiple Page Categories"
+347,Marketing Operations Platform,"PB - As a User, I want to add Widgets directly to a Section"
+234,Brand Management,"BP - As a User, I want to single select resources from Resource Lookup with unchangeable filter based on file type in Page Builder"
+499,Marketing Compliance,As a user I want to run a stats report for database tool and see files from multi upload field represented each on their own row (excluding in Duplicable sections)
+11,Digital Asset Management,"As a user, I want to be able to preview the GIF or Lottie File converted MP4 on the Review Request screen in Approvals so that I can preview what the animation is when approving"
+280,Marketing Operations Platform,"As a user, I want to see the database name and record name in the header"
+298,Marketing Operations Platform,"PB - (Misc) As a User, I want to be informed why the Page cannot be saved in Page Builder if it's beyond the set Page limit in MCP"
+112,Digital Asset Management,"As a User, I want to configure both Block and Video Widget properties"
+19,Digital Asset Management,"As a Database Manager, I want to allow end users to Add More child records ('Add More') - Handle maximum child records"
