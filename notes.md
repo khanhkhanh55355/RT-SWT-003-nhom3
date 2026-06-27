@@ -2,8 +2,8 @@
 
 ## Nhóm
 
-- **Tên nhóm:** _(điền)_
-- **Seed pilot sample:** _(điền seed khi tạo `data/pilot_sample.csv`, ~10–20% N)_
+- **Tên nhóm:** RT-SWT-003-Nhóm 3
+- **Seed pilot sample:** 42
 
 ## Quyết định kỹ thuật
 
@@ -16,7 +16,7 @@
 
 ## Pilot [MỚI T6]
 
-- [X] Tạo `data/pilot_sample.csv` (10–20% N, ghi seed ở trên)
+- [x] Tạo `data/pilot_sample.csv` (10–20% N, ghi seed ở trên)
 - [ ] Annotate `data/pilot_ground_truth.csv` + IAA
 - [ ] Chạy `scripts/test_api.py` (gate E3)
 - [ ] Chạy experiment pilot → `results/pilot_llm_output.csv`
@@ -66,3 +66,15 @@ File gốc không có cột domain. Gán thủ công theo paper:
 - Marketing Operations Platform: 90 cặp hợp lệ
 - Marketing Compliance: 46 cặp hợp lệ
 - **Tổng pool: 348 cặp** → đủ để sample 100
+
+### Kết quả sampling
+
+**Working dataset (N=100):** data/sampled_100.csv
+- Digital Asset Management: 33 cặp
+- Brand Management: 28 cặp
+- Marketing Operations Platform: 26 cặp
+- Marketing Compliance: 13 cặp
+
+**Pilot (N=20):** data/pilot_sample.csv + data/pilot_ground_truth.csv
+- Random seed: 42
+- Sample từ sampled_100.csv, không stratified thêm
