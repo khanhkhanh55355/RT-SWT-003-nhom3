@@ -16,7 +16,7 @@
 
 ## Pilot [MỚI T6]
 
-- [ ] Tạo `data/pilot_sample.csv` (10–20% N, ghi seed ở trên)
+- [X] Tạo `data/pilot_sample.csv` (10–20% N, ghi seed ở trên)
 - [ ] Annotate `data/pilot_ground_truth.csv` + IAA
 - [ ] Chạy `scripts/test_api.py` (gate E3)
 - [ ] Chạy experiment pilot → `results/pilot_llm_output.csv`
@@ -35,3 +35,27 @@
 | Ngày | Mô tả lỗi | Cách xử lý |
 |------|-----------|------------|
 | | | |
+
+## Data Preparation Log [DG — Hồ Ngọc Bảo Trân]
+
+**Ngày:** 2026-06-27
+
+### Kiểm tra file gốc (Requirements.xlsx)
+- Tổng số cặp: 500
+- Các cột: ID, User Story, Requirements, Manual Scenario
+- Null values: 0
+
+### Kết quả kiểm tra tiêu chí lọc
+- Connextra format: 351 / 500
+- Gherkin hợp lệ (Given/When/Then): 496 / 500
+- **Cả hai tiêu chí đạt: 348 / 500** ← pool để sample
+
+### Vấn đề: Không có cột domain
+File gốc không có cột domain. Gán thủ công theo paper:
+- ID 1–150 → Digital Asset Management
+- ID 151–275 → Brand Management
+- ID 276–425 → Marketing Operations Platform
+- ID 426–500 → Marketing Compliance
+
+### Seed
+- Random seed = 42
