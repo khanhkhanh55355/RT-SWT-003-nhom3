@@ -1,3 +1,159 @@
-id,ground_truth,annotator,iaa_score
-1,,,
-2,,,
+ID,domain,User Story,Manual Scenario
+385,Marketing Operations Platform,"PB - As a User, I want to re-order pages within the same parent/root via Nav - FE UI component","Scenario: Reordering Pages and Sub-Pages via Drag-and-Drop in Navigation Panel
+Given a user is in editing mode within the Page Builder
+When the user drags a page that contains sub-pages to a new position in the Navigation Panel
+Then the page, along with all its sub-pages, should move together to the new position
+And after the move, the sub-pages should be collapsed under the parent page in the Navigation Panel
+And the updated page order and hierarchy should be saved and persist across editing and viewing modes until changed again by the user"
+210,Brand Management,"PB - As a User, I want to see a new landing page","Scenario: User views a new landing page with empty Sections  
+    Given the user is in Page Builder  
+    When the user creates a new landing page  
+    Then the page should display empty Sections  
+    And there should be no Blocks inside the Sections  "
+335,Marketing Operations Platform,"PB - As a User, I want to create a Drag & Drop Page (as a standalone Page) from Nav","Scenario: Creating a Drag & Drop Page from Navigation in Page Builder
+Given the user is in the Page Builder under ‘All Pages’ or a specific Page Category
+When they want to create a Drag & Drop Page
+Then they should see the creation button at the bottom of the Nav Panel
+And Given the user clicks the creation button
+Then they should be able to start creating a Drag & Drop Page
+And Given the user is interacting with a standalone or parent page
+When they click the kebab menu icon (⋮) and select the ‘Page’ action
+Then they should also be able to create a Drag & Drop Page"
+208,Brand Management,"PB - As a User, I want to only select & see the combo of Widget and Block (bounding box experience) in Page Builder","Scenario: User selects a Widget and Block as a whole in Page Builder
+    Given the user is in Create/Edit mode in Page Builder
+    And the user has added a Widget inside a Block
+    When the user selects the Widget
+    Then the entire bounding box of the Widget and Block should be highlighted
+    And the selection experience should match the previous Block bounding box behavior
+    And the user should only be able to navigate up to the Section"
+254,Brand Management,"As a User, I want to access Reply action for New Replies in Daily Digest Email","Scenario: User can access and reply to new comments from the Daily Digest Email  
+    Given the user receives a Daily Digest Email with new replies  
+    When the user clicks on the ""Reply"" action as per the design  
+    Then the user should be redirected to the Reply page in a new tab  
+    And the applicable comment should be highlighted and ready to reply to  
+    And the text box should be active and ready for the user to type a response"
+238,Brand Management,As a user I want to see 'Bulk Review' in bulk review page header (page name),"Scenario: Show correct page name in Bulk Review header  
+    Given the user navigates to the Bulk Review page  
+    When the page loads  
+    Then the page header should display the title ""Bulk Review""  "
+13,Digital Asset Management,"As a user, I want to be able to see the GIF or Lottie File converted MP4 on the Markup Screen in Approvals so that I can markup the animation to get feedback and new revisions worked on","Scenario:  Verify the GIF and Lottie file preview on Version/Revision screen
+  Given I am an admin 
+  When I upload Lottie and GIF file
+  And navigate to the Version/Revision screen
+  Then The file should have been converted to MP4
+  And The controls should be hidden
+  And The MP4 should autoplay"
+353,Marketing Operations Platform,"PB - As a User, I want to see a new landing page","Scenario: Viewing Empty Sections Without Blocks
+Given the user is in Page Builder
+And the Page is in Create or Edit mode
+When the user adds a new Section
+Then the Section should be visible as an empty container
+And it should not contain any Blocks by default
+And the user should have the option to drag Widgets into the empty Section"
+136,Digital Asset Management,"As a User, I want to open current location for single / same folder Move","Scenario: Loading the Correct Folder Location in V3 Folder Tree When Moving Resources
+Given the user is moving a resource
+When the user moves a single resource
+Then the current location should be loaded as opened in the V3 folder tree branch
+And if the user lacks permission to items earlier in that tree, the top-level view should open instead
+When the user performs a bulk move of resources from the same folder
+Then the current location should be loaded as opened in the V3 folder tree branch"
+109,Digital Asset Management,"As an Internal User, I want to have MCP(development use only) settings to enable/disable features per Epic for Drag & Drop Page MVP ","Scenario: Internal User configures MCP settings for Drag & Drop Page features  
+    Given the user is in the Development Use section of MCP settings  
+    When the user views the Platform Settings  
+    Then the following MCP settings should be available under ""Development Use only"" for the Drag & Drop Page MVP:  
+      | Setting Name                                       | Description                                  |  
+      | ""Drag & Drop Pages: Widgets combining Block""       | Enables/Disables widgets combining block feature |  
+      | ""Drag & Drop Pages: Image Resizing""                 | Enables/Disables image resizing feature         |  
+      | ""Drag & Drop Pages: Page Templates""                 | Enables/Disables page templates feature         |  
+      | ""Drag & Drop Pages - Page Category""                 | Enables/Disables page category feature          |  
+
+    When the user enables or disables any of the above settings  
+    Then the relevant features should be activated or deactivated based on the settings chosen  
+"
+141,Digital Asset Management,"As a User, I want Surface Question/Answer/Rating back end data in weekly report / script","Scenario: Update Weekly Report Name and Remove Dev Server Reports
+Given the system generates the weekly_closed_captions_activation_report
+When the report is updated
+Then the report name should be changed to weekly_asset_intelligence_report
+And any entries related to the following Dev Server reports should be removed:
+dcfprod
+rtsprod
+dev018
+dev015
+dpctest
+dcftest
+dev016
+dev003
+dev027
+dev026
+rtstest
+macsprod"
+106,Digital Asset Management,"As a User, I want to switch Page Categories when viewing a Page if there are multiple Page Categories","Scenario: User can switch Page Categories via the dropdown  
+    Given the user is viewing a Page  
+    And multiple Page Categories exist  
+    And the user has permission to view pages under these categories  
+    When the user opens the Page Category dropdown in the navigation  
+    Then the available Page Categories, including ""All Pages,"" should be displayed  
+    When the user selects a different Page Category from the dropdown  
+    Then the Pages under the selected category should be loaded in the navigation panel  "
+347,Marketing Operations Platform,"PB - As a User, I want to add Widgets directly to a Section","Scenario: Dragging Widgets from Navigation Panel to a Section in Page Builder
+Given the user is in Create or Edit mode in Page Builder
+And the Navigation Panel is open
+When the user drags a Widget from the Navigation Panel to a Section
+Then the Widget should be added to the selected Section successfully
+
+
+
+
+
+
+"
+234,Brand Management,"BP - As a User, I want to single select resources from Resource Lookup with unchangeable filter based on file type in Page Builder","Scenario: User selects a resource with a locked file type filter in Page Builder  
+    Given the user opens the Resource Lookup in Page Builder  
+    When the user views the filtering options  
+    Then the ""File Format"" filter should be locked  
+    And it should only allow selecting ""Image"" file types  
+    And the filtered results should be displayed by default based on the target page area  
+    When the user selects an image resource  
+    Then it should be added to the designated area in Page Builder  "
+499,Marketing Compliance,As a user I want to run a stats report for database tool and see files from multi upload field represented each on their own row (excluding in Duplicable sections),"Scenario: Display Multiple Files in Separate Rows for a Multi-Upload Field
+Given a Multi-Upload field contains multiple files
+When the user views the uploaded files
+Then each file should be represented on its own row
+And the file names should be expanded into separate rows for clear visibility"
+11,Digital Asset Management,"As a user, I want to be able to preview the GIF or Lottie File converted MP4 on the Review Request screen in Approvals so that I can preview what the animation is when approving","Scenario: Verify the GIF and Lottie file preview on the edit screen
+  Given I am an admin 
+  When I upload Lottie and GIF file
+  And I click on edit/new version 
+  Then The file should have converted to MP4
+  And The controls should be hidden
+  And The MP4 should autoplay"
+280,Marketing Operations Platform,"As a user, I want to see the database name and record name in the header","Scenario: Update Overlay Component to Use ib-ui Overlay and Display Database & Record Information
+Given the user is viewing a record in an overlay
+When the ib-ui Overlay component is used
+Then the typography and button styles should be updated according to the new design
+And the overlay header should display the database name
+And the database name should be clickable
+And the overlay header should display the record name
+And if the database name or record name is too long, it should be truncated with a tooltip displaying the full value"
+298,Marketing Operations Platform,"PB - (Misc) As a User, I want to be informed why the Page cannot be saved in Page Builder if it's beyond the set Page limit in MCP","Scenario: Display Warning Snackbar When D&D Page Limit is Reached in Page Builder
+Given the user is in Page Builder
+And the Drag & Drop (D&D) page limit set in MCP has been reached
+When the user clicks on the ""Save"" button in the top bar
+Then a warning snackbar should be displayed with the message:
+“Page limit of {&number set as page limit in MCP} reached.”"
+112,Digital Asset Management,"As a User, I want to configure both Block and Video Widget properties","Scenario: User configures settings for Block and Video Widgets  
+    Given the user is in the Page Builder  
+    When the user selects a Block Widget or a Video Widget  
+    Then the widget settings panel should open in the navigation panel  
+    And the settings should include previously defined Block and Video Widget properties  
+    When the user modifies any settings in the panel  
+    Then the changes should be applied to the selected widget in real time  
+    And the settings should persist when the page is saved  "
+19,Digital Asset Management,"As a Database Manager, I want to allow end users to Add More child records ('Add More') - Handle maximum child records","Scenario: 'Allow User to Add More' setting with 30 records
+      Given I am in the Configure Auto-Created Records overlay
+      When I add 30 records 
+      And 1 of those records has 'Allow User to skip…’ enabled
+      Then I can enable 'Allow User to Add More'
+      When I disable 'Allow User to skip…’ on the last record
+      Then 'Allow User to Add More' is disabled
+      And if I hover over the setting I see the text 'The max 30 {{Records}} has been added here. Remove any of the above to allow users to add more.'"
