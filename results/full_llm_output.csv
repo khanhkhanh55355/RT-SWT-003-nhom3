@@ -1,0 +1,1865 @@
+"id","text","Requirements","Manual Scenario","domain","llm_output","response_id","status","cumulative_cost_usd"
+"109","As an Internal User, I want to have MCP(development use only) settings to enable/disable features per Epic for Drag & Drop Page MVP ","1. Add a MCP setting “Drag & Drop Pages: Widgets combining Block“ under Development Use only for Epic
+2. Add a MCP setting “Drag & Drop Pages: Image Resizing“ under Development Use only
+3. Add a MCP setting “Drag & Drop Pages: Page Templates“ under Development Use only
+4. Add a MCP setting “Drag & Drop Pages - Page Category (development use only)“ under Development Use only section under Platform Settings
+","Scenario: Internal User configures MCP settings for Drag & Drop Page features  
+    Given the user is in the Development Use section of MCP settings  
+    When the user views the Platform Settings  
+    Then the following MCP settings should be available under ""Development Use only"" for the Drag & Drop Page MVP:  
+      | Setting Name                                       | Description                                  |  
+      | ""Drag & Drop Pages: Widgets combining Block""       | Enables/Disables widgets combining block feature |  
+      | ""Drag & Drop Pages: Image Resizing""                 | Enables/Disables image resizing feature         |  
+      | ""Drag & Drop Pages: Page Templates""                 | Enables/Disables page templates feature         |  
+      | ""Drag & Drop Pages - Page Category""                 | Enables/Disables page category feature          |  
+
+    When the user enables or disables any of the above settings  
+    Then the relevant features should be activated or deactivated based on the settings chosen  
+","Digital Asset Management","Scenario: Enable/Disable Features per Epic for Drag & Drop Page MVP
+
+Given I am an Internal User with access to the MCP (development use only) settings  
+And I am on the MCP settings page for the Drag & Drop Page MVP  
+And there are features listed under specific Epics  
+
+When I toggle the enable/disable switch for a feature under an Epic  
+Then the system should update the feature's status to enabled or disabled accordingly  
+And the change should be reflected in the MCP settings interface  
+And the updated feature status should be applied to the Drag & Drop Page MVP functionality.","chatcmpl-E1u1oXStb1YDehg6AYTzzICGfBWmi","success",0.12314749999999998
+"5","As a user, I want to be able to upload a Lottie File and have it automatically converted into a MP4 file so that I can view it in the previewer.","1. Lottie Files uploaded to the platform should be converted to MP4s so that they can be viewed in the previewer. 
+2. We need to convert uploaded Lottie to MP4s, which can then be viewed in the previewer.
+3. When a user uploads a Lottie File, the Lottie should be converted into an MP4 using the library recommended: https://intelligencebank.atlassian.net/browse/IB-36794 
+4. The conversion should be done with the highest quality available, to ensure that the resulting MP4s have the same quality as the original Lottie Files.
+5. The MP4 needs to be stored along side the original Lottie as we will use the MP4 in other places like Approvals","Scenario: Verify the preview of the uploaded Lottie file
+  Given I am an admin 
+  When I upload Lottie file
+  And I preview the Lottie file
+  Then I am able to see it as a MP4
+  And I can see the same quality is there for MP4 like the original file","Digital Asset Management","Scenario: Convert Lottie File to MP4 for Preview  
+
+Given the user is on the file upload page  
+And the user has a valid Lottie file ready for upload  
+When the user uploads the Lottie file  
+Then the system should automatically convert the Lottie file into an MP4 file  
+And the MP4 file should be displayed in the previewer for the user to view.","chatcmpl-E1u1rg4g9mwtEZbUe3HUDTvtwOjXC","success",0.12314749999999998
+"50","As a user, I want all options to be included in V3 importer","We need to integrate Asset Intelligence settings into the backend V3 importer, including Image Tagging, Video Tagging as well as Closed Captions, and do the groundwork for future Facial Recognition. This enhancement will ensure that imported assets have the option to include Asset Intelligence features when importing.","Scenario: Configure Asset Intelligence settings during import
+  Given I am configuring a V3 import
+  And I have assets ready for import
+  
+  When I access the import settings
+  Then I should see Asset Intelligence options:
+    | Feature            | Status    |
+    | Image Tagging     | Available |
+    | Video Tagging     | Available |
+    | Closed Captions   | Available |
+    | Facial Recognition| Prepared  |
+  
+  When I enable ""Image Tagging"" and ""Video Tagging""
+  And I start the import process
+  Then the system should:
+    | Action                     | Status                |
+    | Process image tags         | For imported images   |
+    | Process video tags         | For imported videos   |
+    | Generate closed captions   | For video content     |
+    | Prepare facial recognition | Infrastructure ready  |
+  
+  When the import completes
+  Then imported assets should have:
+    | Feature            | Result                    |
+    | Image Tags         | Generated if enabled      |
+    | Video Tags         | Generated if enabled      |
+    | Closed Captions    | Generated if enabled      |
+    | Facial Recognition | Ready for future use      |","Digital Asset Management","Scenario: Ensure all options are included in the V3 importer  
+Given I am a user accessing the V3 importer  
+When I upload a file or initiate the import process  
+Then I should see all available options included in the V3 importer interface  
+And I should be able to select and configure all options without any being missing.","chatcmpl-E1u1s0iqdR3H2ZUwAKd07tF078vgf","success",0.12314749999999998
+"87","As a User, I want to remove stickers option from left menu","1. Hide Stickers option from left menu ","Scenario: Hiding the Stickers Option from the Left Menu
+Given the user is in the Img.ly editor
+When the editor loads
+Then the Stickers option is not visible in the left menu","Digital Asset Management","Scenario: Remove stickers option from the left menu  
+Given the user is logged into the application  
+And the left menu is displayed  
+When the user navigates to the left menu  
+Then the ""Stickers"" option should no longer be visible in the left menu","chatcmpl-E1u1uqj1ODzwi4ckM1ezoV91zzv3b","success",0.12314749999999998
+"11","As a user, I want to be able to preview the GIF or Lottie File converted MP4 on the Review Request screen in Approvals so that I can preview what the animation is when approving","1. Users should see the preview of the GIF or Lottie File converted MP4 on the Review Request Tab of the Approvals Screen. This should help users to preview the animation while approving
+2. As a user on the Review Request Tab
+3. The preview should show the GIF or Lottie File converted MP4.
+4. Approvals uses PDFTron
+5. The controls should be hidden
+6. The MP4 should autoplay","Scenario: Verify the GIF and Lottie file preview on the edit screen
+  Given I am an admin 
+  When I upload Lottie and GIF file
+  And I click on edit/new version 
+  Then The file should have converted to MP4
+  And The controls should be hidden
+  And The MP4 should autoplay","Digital Asset Management","Scenario: Preview converted MP4 of GIF or Lottie File on the Review Request screen
+
+Given the user is on the Review Request screen in the Approvals section  
+And the request contains a converted MP4 file from a GIF or Lottie File  
+When the user clicks on the preview button or thumbnail of the MP4 file  
+Then the MP4 file should play in a preview window or embedded player  
+And the user should be able to view the animation before approving the request.","chatcmpl-E1u1vhpd5Meog6zbsKwarscIjipop","success",0.12314749999999998
+"55","As a User, I want to report on Resource downloaded (Original) separately than added in Smart Page for Resource Module (Usage)","1. Be able to track Resource Usage Reporting- Resource download action that happens in Smart Pages for previously uploaded Resource (Original size type of Resource, aka “Best“ quality) via Resource Lookup
+","Scenario: Tracking Resource Download Actions in Smart Pages via Resource Lookup
+Given the user has access to the reporting module
+And a resource has been previously uploaded
+When the user downloads the resource in its original size (""Best"" quality) via Resource Lookup in a Smart Page
+Then the system should log the resource download action in the Resource Usage Report
+
+And the report should include:
+
+The Smart Page where the download occurred
+The specific resource name retrieved via Resource Lookup
+The action type as ""Resource Download (Original)""
+The timestamp of the download","Digital Asset Management","Scenario: Report on Resources Downloaded Separately from Resources Added in Smart Page
+
+Given the user has access to the Resource Module in the system  
+And the user has downloaded resources and added resources to the Smart Page  
+When the user generates a report for resource usage  
+Then the report should display the resources downloaded (Original) separately from the resources added in the Smart Page (Usage)  
+And the data should be clearly categorized and accurate.","chatcmpl-E1u1xcDhqca108duUrAY3kUkJD4IJ","success",0.12314749999999998
+"89","As a User, I want Master Templates overlay, Fetch and return Master Templates via API ","1. When user is on the *Master Template* selection overlay, relevant results will display for user to select from
+2. This will be done via API 
+3. Permissions will also factor into what can be seen by a user - that will be handled here","Scenario: Displaying Relevant Master Templates Based on API and Permissions
+Given the user is on the Master Template selection overlay
+When the overlay loads
+Then relevant master template results are retrieved via an API call
+And only templates the user has permission to view are displayed
+And the user can select from the available templates","Digital Asset Management","Scenario: Fetch and return Master Templates via API
+
+Given the API endpoint for Master Templates is available and the user has valid API credentials  
+When the user sends a GET request to the Master Templates API endpoint with valid authentication  
+Then the API should return a list of available Master Templates with their details in JSON format  
+
+Scenario: Overlay Master Templates on a document  
+
+Given the user has access to a document and a list of Master Templates  
+When the user selects a Master Template and applies it to the document  
+Then the selected Master Template should overlay on the document, updating its appearance or structure accordingly","chatcmpl-E1u1yVY46AsrRT1KfxvHrAD1uVMkq","success",0.12314749999999998
+"79","As a User, I want MCP Setting for Single User Record Editor Restriction","1. New development setting added to “*Development Use Only”* section of MCP:
+2. Setting name: *Databases - Single User Record Edit Restriction*
+3. Location: Can be added to bottom of the list","Scenario: Adding a New Development Setting for Single User Record Edit Restriction
+Given the user has access to the MCP (Master Control Panel)
+When the user navigates to the ""Development Use Only"" section
+Then a new setting named ""Databases - Single User Record Edit Restriction"" is available
+And it is located at the bottom of the list","Digital Asset Management","Scenario: Restrict Single User Record Editing Based on MCP Setting  
+Given the MCP setting for Single User Record Editor Restriction is enabled  
+When a user attempts to edit a record assigned to another user  
+Then the system should prevent the user from editing the record and display an appropriate error message indicating restricted access.","chatcmpl-E1u1zPJawSNpaY62XmxjW66RGtgkq","success",0.12314749999999998
+"57","As a User, I want to see Block ""ratio"" simply changed to ""width""","1. Be able to see the current Block’s “Ratio“ configurations on Side Panel *changed to “Width“ as the title* as per design 
+2. Be able to see the description label “BLOCK RATIO“ in between the “Width“ title and the slider as per design ","Scenario: Displaying Updated ""Width"" Configuration in the Side Panel
+Given the user has selected a block in the Simple Page Builder
+When the user views the Side Panel
+Then the block’s “Ratio” configuration title should be updated to “Width” as per the design
+
+And a description label “BLOCK RATIO” should be displayed between the “Width” title and the slider, following the design specifications","Digital Asset Management","Scenario: Update Block Label from ""ratio"" to ""width""  
+Given I am on the page where the block labeled ""ratio"" is displayed  
+When I view the block label  
+Then I should see the label ""ratio"" changed to ""width"" instead","chatcmpl-E1u21cAN0iYkCYwOSB0Hopk37sXCv","success",0.12314749999999998
+"12","As a user, I want to be able to preview the GIF or Lottie File converted MP4 on the Versions/Revisions Screen so that I can preview what the animation is before adding a version/revision","1. Users should see the preview of the GIF or Lottie File converted MP4 on the Version OR Revision Tab of the Approvals Screen. This should help users to preview the animation while approving
+2. As a user on the Version or Revision Tab
+3. The preview should show the GIF or Lottie File converted MP4.
+4. Approvals uses PDFTron
+5. The controls should be hidden
+6. The MP4 should autoplay","Scenario: Verify the GIF and Lottie file preview on the Markup Screen in Approvals
+  Given I am an admin 
+  When I upload Lottie and the GIF file
+  And navigate to the Markup Screen in Approvals
+  Then The file should have converted to MP4
+  And The controls should be hidden
+  And The MP4 should autoplay","Digital Asset Management","Scenario: Preview converted MP4 of GIF or Lottie File on Versions/Revisions Screen  
+Given the user is on the Versions/Revisions Screen  
+And a GIF or Lottie File has been converted to an MP4 format  
+When the user clicks on the preview button for the MP4 file  
+Then the MP4 animation should play in a preview window or section  
+And the user should be able to see the animation before adding a version/revision.","chatcmpl-E1u22qAwQXpOfZyn5VNlkcdppJRen","success",0.12314749999999998
+"136","As a User, I want to open current location for single / same folder Move","1. When a user moves single resource we load the current location as opened in the V3 folder tree branch
+2. If current user lacks permission to items earlier in that tree, then the top level view (current state) will open instead
+3. When a user bulk moves resources from the same folder, we load the current location as opened in the V3 folder tree branch","Scenario: Loading the Correct Folder Location in V3 Folder Tree When Moving Resources
+Given the user is moving a resource
+When the user moves a single resource
+Then the current location should be loaded as opened in the V3 folder tree branch
+And if the user lacks permission to items earlier in that tree, the top-level view should open instead
+When the user performs a bulk move of resources from the same folder
+Then the current location should be loaded as opened in the V3 folder tree branch","Digital Asset Management","Scenario: Open current location for single/same folder move  
+Given the user is on the file management interface  
+And the user has selected a file or folder to move  
+And the destination folder is the same as the current folder  
+When the user initiates the move action  
+Then the system should recognize that the source and destination are the same  
+And the system should display a message indicating that the file or folder is already in the current location  
+And no move action should be performed.","chatcmpl-E1u23EBI4a9mwO2XmPurAGAFh58uY","success",0.12314749999999998
+"46","As a User, I want to see Button Widget's background colour config designs in line with entire Side Panel","1. Be able to see the Button Widget’s settings on Button background & text colours
+2. Be able to see the consistent selected, default and hovered state effects","Scenario: View and verify button visual states
+ Given I am configuring a Button Widget
+ And I am on the button style settings
+ 
+ Then I should see color configuration options:
+   | Setting              | Options                    |
+   | Background Color     | Color picker with presets  |
+   | Text Color          | Color picker with presets  |
+ 
+ When I preview the button
+ Then I should see the button states:
+   | State     | Visual Effect                |
+   | Default   | Base colors                  |
+   | Hover     | Slight color lightening      |
+   | Selected  | Highlighted border           |
+ 
+ When I change the background color
+ And I change the text color
+ Then the button preview should update automatically
+ And all states should maintain consistent effects","Digital Asset Management","Scenario: Display Button Widget's background colour consistent with the Side Panel design
+
+Given the Side Panel has a specific background colour design applied  
+And the Button Widget is part of the Side Panel interface  
+When the User views the Button Widget within the Side Panel  
+Then the Button Widget's background colour should match the design of the Side Panel  
+And the Button Widget should visually align with the overall Side Panel theme.","chatcmpl-E1u25ZGPn9VKGkZAL4KFBzQLqR4Jf","success",0.12314749999999998
+"112","As a User, I want to configure both Block and Video Widget properties","1. Be able to see and configure the new widget settings from Nav (combining previously defined Block and Widget's settings) for each widgets:","Scenario: User configures settings for Block and Video Widgets  
+    Given the user is in the Page Builder  
+    When the user selects a Block Widget or a Video Widget  
+    Then the widget settings panel should open in the navigation panel  
+    And the settings should include previously defined Block and Video Widget properties  
+    When the user modifies any settings in the panel  
+    Then the changes should be applied to the selected widget in real time  
+    And the settings should persist when the page is saved  ","Digital Asset Management","Scenario: Configure properties for Block and Video Widgets  
+Given the user is logged into the application and is on the widget configuration page  
+When the user selects the Block Widget  
+And the user updates the Block Widget properties (e.g., title, background color, size)  
+And the user saves the changes  
+Then the Block Widget properties should be updated and displayed correctly on the preview  
+
+Given the user is still on the widget configuration page  
+When the user selects the Video Widget  
+And the user updates the Video Widget properties (e.g., video URL, autoplay, resolution)  
+And the user saves the changes  
+Then the Video Widget properties should be updated and displayed correctly on the preview","chatcmpl-E1u26Le0Kc7q6c8VqFgvcjpPLWYaR","success",0.12314749999999998
+"149","As a User, I want to  end my Session automatically when I leave the page by default","1. Be able to end the session automatically by default for the user when close the markup overlay","Scenario: Automatically End Session When Markup Overlay is Closed
+Given the user has an active session in the markup overlay
+When the user closes the markup overlay
+Then the system should automatically end the user session by default
+
+
+
+
+
+
+","Digital Asset Management","Scenario: Automatically end session when the user leaves the page  
+Given the user is logged into their account  
+And the user is on a specific page of the application  
+When the user navigates away from the page or closes the browser tab  
+Then the user's session should automatically end  
+And the user should be logged out of their account  
+And any sensitive data should no longer be accessible.","chatcmpl-E1u28lFfF6Hu6VBe0OvoCEOmgbqxG","success",0.12314749999999998
+"24","As a user, I want to Filter within my selected Resources on my Bulk Edit page (Left Panel Resource selection updates)","We consolidate the above into new options, with handling still accounted for on the single views
+ie: instead of ‘Virus Detected’ and ‘Duplicate’ and ‘Field Errors’ we just have a generic ‘Errors’ filter for Bulk Edit, different from Bulk Upload. This means we will only have below options:
+Processing Completed 
+Upload Processing
+Errors","Scenario: Verifying Filter Option
+      Given user is on bulk edit page with selected resources
+      When user clicks on the filter dropdown
+      Then user can see the dropdown option: ""Processing Completed"", ""Upload Processing"", ""Errors""
+      When user clicks on error option
+      Then the list of selected resources should be filtered to display only those with errors
+      And displaying X of Y label should update to show the number of resources displayed after filtering","Digital Asset Management","Scenario: Filter resources within the selected Resources on the Bulk Edit page
+
+Given I am on the Bulk Edit page  
+And I have selected specific resources in the left panel  
+And the left panel displays the selected resources  
+When I apply a filter to the selected resources in the left panel  
+Then the left panel updates to show only the resources that match the applied filter  
+And the unfiltered resources are hidden from the left panel display.","chatcmpl-E1u29cqCvzBDTlaFevlpJ8PiN3QCT","success",0.12314749999999998
+"1","As a user, I want to enable image tagging from the Asset Intelligence section in the MCP settings","1. A new MCP setting is to be created under the Asset Intelligence section for Image Tagging (Azure). We may try any tie some of the existing Imagga settings later but for now we’ll keep seperate. 
+2. Under Enable Video / Audio Tagging: there needs to be a new setting called Enable Image Tagging 
+3. All Image Tagging Capabilities and categories will be dependant on this setting 
+4. If this setting is enabled, then the platform should ignore any Imagga functionality and use Azure only
+5. Underneath the setting Azure Video Processing Limit (per billing cycle):  there needs to be a new setting called Azure Image Processing Limit (Images) (per billing cycle):
+6. While we’re here, change  Azure Video Processing Limit (per billing cycle): to  Azure Video Processing Limit (minutes) (per billing cycle):
+7. Any Azure functionality and tickets worked on in this project should be tied to the Enable Image Tagging setting","Scenario:  Verify the MCP setting
+Given I am an admin 
+When I go to MCP setting
+Then I can see a new MCP setting called ""Enable Image Tagging:"" is available under Asset Intelligence section -> Enable video / Audio Tagging
+And I can see a new setting under asset intelligence as ""Azure Image Processing Limit (Images) (per billing cycle):""
+And I can see Azure Video Processing Limit (per billing cycle): is changed to Azure Video Processing Limit (minutes) (per billing cycle):","Digital Asset Management","Scenario: Enable image tagging from the Asset Intelligence section in MCP settings  
+Given the user is logged into the MCP platform and navigates to the settings page  
+And the user is on the Asset Intelligence section within the settings  
+When the user enables the ""Image Tagging"" option by toggling the switch  
+Then the ""Image Tagging"" feature is successfully activated  
+And a confirmation message is displayed indicating that the setting has been saved successfully.","chatcmpl-E1u2BZI5w8JFtwS5VnRqk00ToPWhS","success",0.12314749999999998
+"99","As a User, I want to Publish Resource Grouped Requests handled in Group Review Page","1. *Overall* page design and behaviour matches Grouped Download handling with some minor exceptions
+2. *Bulk Download* will not yet display here
+3. Response fields may differ than Grouped Download on Bulk and Single level, such as:
+4. *Hide Decline* may be enabled for Record File Approvals (not applicable for Grouped Download)
+5. *Approve with Comments* may be enabled for Record File Approvals (not applicable for Grouped Download)
+6.  Requests may be *staged* (not applicable for Grouped Download)
+7. Logic here to follow Bulk Review for now - ie, requests may be progressed to different stages from one another in the Grouped Request","Scenario: User reviews and processes grouped requests in the Group Review Page  
+    Given the user is on the Group Review Page  
+    When grouped requests are displayed  
+    Then the overall page design and behavior should match Grouped Download handling  
+    But Bulk Download should not be displayed  
+    When reviewing a Record File Approval request  
+    Then ""Hide Decline"" may be enabled  
+    And ""Approve with Comments"" may be enabled  
+    When processing grouped requests  
+    Then requests may be staged  
+    And requests may progress to different stages independently, following Bulk Review logic  ","Digital Asset Management","Scenario: Publish Resource Grouped Requests from the Group Review Page  
+Given the user is logged into the system and navigates to the Group Review Page  
+And there are grouped requests available for review  
+When the user selects one or more grouped requests  
+And clicks on the ""Publish"" button  
+Then the selected grouped requests should be successfully published  
+And a confirmation message should be displayed indicating the successful publication.","chatcmpl-E1u2DyhBvnfYOlS4SBB69ccbHBSDO","success",0.12314749999999998
+"36","As a user, I want to review my document against compliance rules before submitting it to the system so that I can address issues early in the process.","1. Capture and extract content from the active Word document
+2. Send document content and filter values to Review API
+3. Implement ""Fix Issue"" functionality that navigates to the relevant section in Word
+","Scenario: User reviews document against compliance rules before submission
+  Given the user has an active Word document open
+  When the user initiates a compliance review
+  Then the system should capture and extract the content from the active Word document
+  And send the extracted content along with any selected filter values to the Review API
+  And display the compliance issues returned by the API
+
+  When the user clicks ""Fix Issue"" on a listed compliance issue
+  Then the system should navigate to the corresponding section in the Word document","Digital Asset Management","Scenario: Review document against compliance rules before submission
+
+Given the user has logged into the system  
+And the user has uploaded a document to the system  
+And the compliance rules are defined and available in the system  
+
+When the user selects the option to review the document against compliance rules  
+Then the system analyzes the document based on the compliance rules  
+And the system displays a report highlighting any compliance issues or confirming compliance  
+And the user can view detailed descriptions of the issues, if any, and suggested resolutions.","chatcmpl-E1u2F6JrrPWH5fHZVouyM3vyDgmFb","success",0.12314749999999998
+"141","As a User, I want Surface Question/Answer/Rating back end data in weekly report / script","1. Update the weekly closed_captions_activation_report_ to include 
+2. Name update: weekly_asset_intelligence_report
+Remove the Dev Server report ones e.g. dcfprod, rtsprod, dev018, dev015, dpctest, dcftest, dev016, dev003, dev027, dev026, rtstest, macsprod ","Scenario: Update Weekly Report Name and Remove Dev Server Reports
+Given the system generates the weekly_closed_captions_activation_report
+When the report is updated
+Then the report name should be changed to weekly_asset_intelligence_report
+And any entries related to the following Dev Server reports should be removed:
+dcfprod
+rtsprod
+dev018
+dev015
+dpctest
+dcftest
+dev016
+dev003
+dev027
+dev026
+rtstest
+macsprod","Digital Asset Management","Scenario: Generate a weekly report for Surface Question/Answer/Rating backend data
+
+Given the backend system has stored Question/Answer/Rating data  
+And the user has access to the reporting tool  
+And the system is configured to generate weekly reports  
+
+When the user requests the weekly report for Surface Question/Answer/Rating data  
+Then the system retrieves the relevant data from the backend  
+And the system compiles the data into a structured weekly report  
+And the report is made available to the user in the reporting tool or sent via the configured delivery method (e.g., email).","chatcmpl-E1u2GNTzr4BNkWO2hC1gfdAMB2Xdt","success",0.12314749999999998
+"63","As a User, I want to see different effects on Sections/Blocks so I can know different states of them","1. Be able to see hovering border effect as per design 
+2. Be able to see selecting border effect as per design 
+3. Be able to see default state effect as per design 
+","Scenario: Display Border Effects for Different States
+Given the user is in Simple Page Builder
+When they hover over an element (e.g., Section, Block, or Widget)
+Then a hovering border effect should appear as per design
+
+When the user clicks to select an element
+Then a selecting border effect should be displayed as per design
+
+When no interaction is happening
+Then the element should display its default state effect as per design
+
+
+
+
+
+
+","Digital Asset Management","Scenario: Display different effects on Sections/Blocks to indicate their states  
+Given I am on the webpage with multiple Sections/Blocks  
+When I hover over a Section/Block  
+Then I should see a visual effect (e.g., highlight, shadow, or color change) indicating it is in focus  
+
+Scenario: Indicate active state of a Section/Block  
+Given I am on the webpage with multiple Sections/Blocks  
+When I click on a Section/Block  
+Then the clicked Section/Block should display a distinct visual effect (e.g., border, background color change) indicating it is active  
+
+Scenario: Indicate disabled state of a Section/Block  
+Given there are Sections/Blocks on the webpage, and some are disabled  
+When I view the disabled Sections/Blocks  
+Then they should appear visually distinct (e.g., grayed out, faded) to indicate they are not interactive  
+
+Scenario: Indicate error state of a Section/Block  
+Given there are Sections/Blocks on the webpage  
+When a Section/Block encounters an error  
+Then it should display a visual effect (e.g., red border, error icon) to indicate an error state  
+
+Scenario: Indicate success state of a Section/Block  
+Given there are Sections/Blocks on the webpage  
+When a Section/Block completes a successful action  
+Then it should display a visual effect (e.g., green border, checkmark icon) to indicate a success state","chatcmpl-E1u2JMnyXWQdZM03GyiDP80Hz8bWs","success",0.12314749999999998
+"126","As a User, I want to add MCP Feature Flag for Collaborators in Approvals project","1. Add a new MCP setting in development section:
+2. Setting name: *Collaborator in approvals (BETA)*
+3. Can be listed at bottom of development section 
+4. All project work to be tied to this setting ","Scenario: Add and Display MCP Setting for ‘Collaborator in Approvals (BETA)’
+Given the user navigates to the development section in settings
+When the MCP setting Collaborator in Approvals (BETA) is added
+Then the setting should be listed at the bottom of the development section
+And all project work related to Collaborators in Approvals should be tied to this setting","Digital Asset Management","Scenario: Add MCP Feature Flag for Collaborators in Approvals project  
+Given the user is logged into the Approvals project with appropriate permissions  
+And the MCP Feature Flag functionality is available in the system  
+When the user navigates to the Feature Flags section in the project settings  
+And the user creates a new feature flag named ""MCP Collaborators""  
+And the user enables the feature flag for specific collaborators  
+Then the MCP Feature Flag is successfully added and visible in the Feature Flags list  
+And the feature flag is enabled only for the selected collaborators.","chatcmpl-E1u2LmSyY5P1ftuHf2X1g8RIDGTP7","success",0.12314749999999998
+"148","As a User, I want new Auth Screens + Success Page - Add in Menu / Login Bar","1.The tiger team consensus is to show a logo, but not the log-in or nav menu. So this would be like the CPSL links","Scenario: Display Logo Without Login or Navigation Menu
+Given the user accesses the specified page
+When the page loads
+Then the logo should be displayed
+And the login option should not be shown
+And the navigation menu should not be displayed","Digital Asset Management","Scenario: User accesses the new authentication screens and success page via the menu or login bar  
+Given the user is on the website's homepage  
+When the user clicks on the ""Login"" option in the menu or login bar  
+Then the user is redirected to the new authentication screen  
+
+Scenario: User successfully logs in and views the success page  
+Given the user is on the new authentication screen  
+When the user enters valid login credentials and submits the form  
+Then the user is redirected to the success page with a confirmation message  
+
+Scenario: User sees the new authentication screens in the menu or login bar  
+Given the user is on any page of the website  
+When the user opens the menu or interacts with the login bar  
+Then the new authentication options are displayed  
+
+Scenario: User encounters an error with invalid login credentials  
+Given the user is on the new authentication screen  
+When the user enters invalid login credentials and submits the form  
+Then an error message is displayed, and the user remains on the authentication screen","chatcmpl-E1u2NYfp3BydjTy9bxQMncx57FIhD","success",0.12314749999999998
+"13","As a user, I want to be able to see the GIF or Lottie File converted MP4 on the Markup Screen in Approvals so that I can markup the animation to get feedback and new revisions worked on","1. Users should see the preview of the GIF or Lottie File converted MP4 on the MArkup Tab of the Approvals Screen. This should help users to preview the animation while markup/approving
+2. As a user on the Markup Request Tab
+3. The preview should show the GIF or Lottie File converted MP4
+4. Approvals uses PDFTron
+5. It should use the converted original video 
+6. All functionality here should be the same as if it was a MP4 file
+7. The controls from PDFtron should be visible
+8. Users should be able to markup as if it was an Mp4","Scenario:  Verify the GIF and Lottie file preview on Version/Revision screen
+  Given I am an admin 
+  When I upload Lottie and GIF file
+  And navigate to the Version/Revision screen
+  Then The file should have been converted to MP4
+  And The controls should be hidden
+  And The MP4 should autoplay","Digital Asset Management","Scenario: Display converted MP4 on Markup Screen for feedback and revisions
+
+Given a user has uploaded a GIF or Lottie File for conversion  
+And the system has successfully converted the file into an MP4 format  
+And the user is on the Approvals Markup Screen  
+
+When the user selects the converted MP4 file for review  
+
+Then the MP4 file should be displayed on the Markup Screen  
+And the user should be able to play, pause, and navigate through the animation  
+And the user should be able to add markups or comments on the animation  
+And the markups or comments should be saved for feedback and revision purposes.","chatcmpl-E1u2PBBlxiJNlpGIxpJkqsv4pijsr","success",0.12314749999999998
+"41","As a User, I want to be able to view my Record's Request status in the same section that's available for other V3 Approval types","1. Within the new Record Publish Approval review page, there should be a “Request Status” section which includes the same information as appears for other request types. 
+2. This should include (though is not limited to):
+- Request Status
+- Approval(s) Still Required
+- Waiting on","Scenario: User views Request Status for Record Publish Approval in the V3 Approval Review Page
+  Given a user has submitted a Record for Publish Approval
+  And the Record appears in the V3 Approval Review page
+  When the user navigates to the Record's review detail page
+  Then the page should display a “Request Status” section
+  And the section should include:
+    | Field                   |
+    | Request Status         |
+    | Approval(s) Still Required |
+    | Waiting on             |
+  And the information should be consistent with other V3 Approval types","Digital Asset Management","Scenario: View Record's Request status in the same section as other V3 Approval types  
+Given the user is logged into the system  
+And the user has navigated to the ""Approvals"" section  
+And the user has submitted a Record's Request  
+When the user views the ""Approvals"" section  
+Then the Record's Request status is displayed in the same section as other V3 Approval types  
+And the status is clearly labeled and updated accurately.","chatcmpl-E1u2Rh4AkGnwPMzev1IJKHHcg8hRV","success",0.12314749999999998
+"84","As a User, I want Confirmation dialog on Template Resource deletion that will warn that generated jobs will also be deleted as well","1. When user clicks to delete Template Resource, a variant of the below pop-up displays calling out that Jobs will be deleted along with the Template
+","Scenario: Deleting a Template Resource with Associated Jobs
+Given a user has selected a Template Resource that has associated Jobs
+When they click Delete
+Then a confirmation pop-up appears
+And the pop-up explicitly states that all associated Jobs will be deleted along with the Template
+And the user must confirm or cancel the deletion action","Digital Asset Management","Scenario: Display confirmation dialog when deleting a Template Resource
+
+Given a user is logged into the system  
+And the user navigates to the Template Resource management page  
+And the user selects a Template Resource that has generated jobs associated with it  
+And the user clicks the ""Delete"" button for the selected Template Resource  
+
+When the confirmation dialog appears  
+
+Then the dialog should display a warning message stating ""Deleting this Template Resource will also delete all associated generated jobs. Are you sure you want to proceed?""  
+And the dialog should provide two options: ""Confirm"" and ""Cancel""  
+And the user should be able to choose either option to proceed or cancel the deletion.","chatcmpl-E1u2S1EtukJ6IaaPeVxCsvwHaXjOC","success",0.12314749999999998
+"125","As a config user, I want to see/enable a new Setting in Admin > Template for Workflows for Collaborators in Approvals [Resource Feedback]","1. Once MCP setting is enabled, new setting displays for Resource Feedback Workflow Templates
+2. This applies for existing and new templates","Scenario: Display New Setting for Resource Feedback Workflow Templates When MCP is Enabled
+Given the MCP setting is enabled
+When a user views the settings for Resource Feedback Workflow Templates
+Then a new setting should be displayed
+And the new setting should be available for both existing and new templates","Digital Asset Management","Scenario: Enable a new Setting in Admin > Template for Workflows for Collaborators in Approvals [Resource Feedback]  
+
+Given I am logged in as a config user  
+And I navigate to the Admin section  
+And I access the Template for Workflows page  
+And the ""Resource Feedback"" setting is visible but currently disabled  
+
+When I enable the ""Resource Feedback"" setting  
+And I save the changes  
+
+Then the ""Resource Feedback"" setting should be enabled successfully  
+And a confirmation message should be displayed indicating the changes were saved  
+And the setting should remain enabled upon refreshing the page.","chatcmpl-E1u2TsP3ezksV30R3OHQk2P0CmnJX","success",0.12314749999999998
+"145","As a user, I want to be able to be able to go the next record and previous record while in the record page","1. If the record is first in the list the previous button should not show
+2. If the record is last in the list the next button should not show
+3. Show next/previous only on hover","Scenario: Display Next/Previous Buttons Based on Record Position and Hover State
+Given the user is viewing a list of records
+When the user selects the first record in the list
+Then the Previous button should not be displayed
+And the Next button should be displayed only on hover
+When the user selects the last record in the list
+Then the Next button should not be displayed
+And the Previous button should be displayed only on hover
+When the user selects any middle record in the list
+Then both Previous and Next buttons should be displayed only on hover","Digital Asset Management","Scenario: Navigate to the next and previous records from the record page  
+Given the user is on the record page of a specific record  
+When the user clicks the ""Next"" button  
+Then the user is navigated to the next record in the sequence  
+
+Scenario: Navigate to the previous record from the record page  
+Given the user is on the record page of a specific record  
+When the user clicks the ""Previous"" button  
+Then the user is navigated to the previous record in the sequence  
+
+Scenario: Disable navigation buttons when there are no more records  
+Given the user is on the first record in the sequence  
+When the user views the ""Previous"" button  
+Then the ""Previous"" button is disabled  
+
+Given the user is on the last record in the sequence  
+When the user views the ""Next"" button  
+Then the ""Next"" button is disabled","chatcmpl-E1u2VIG03pIQVLCuFVB55DJ8zG6dP","success",0.12314749999999998
+"32","As a user, I want to be able to click Submit Selected & Continue (Bulk)","1.Submit & continue button submits the selected requests
+2. Page remains open, requests remain on left page
+3. When submit is clicked, disable handling for actions/buttons kicks in 
+4.vBlue Info Snackbar shows on submit: 
+5. Content: “Submitting Response(s)”  
+6. Green Snackbar handling on successful submit of 1+ items
+7. Content: “{{X}} Responses submitted” 
+8. {{X}} = number of successful responses, excluding any that failed validation","Scenario: Submit multiple responses while staying on the page
+  Given I am on the Grouped Review page
+  And I have selected 3 requests:
+    | Request ID | Status   |
+    | REQ-001   | Pending  |
+    | REQ-002   | Pending  |
+  And I have entered valid responses for ""REQ-001"" and ""REQ-002""
+  And I have entered an invalid response for ""REQ-003""
+  
+  When I click the ""Submit & Continue"" button
+  Then the ""Submit & Continue"" button should be disabled
+  And the ""Apply to Selected"" button should be disabled
+  And a blue info snackbar should appear with message ""Submitting Response(s)""
+  
+  When the submission process completes
+  Then a green snackbar should appear with message ""2 Responses submitted""
+  And the submission buttons should be re-enabled
+  And the requests should remain visible in the left panel
+  And requests ""REQ-001"" and ""REQ-002"" should show status ""Approved""
+  And request ""REQ-003"" should show validation errors
+  And I should remain on the Grouped Review page","Digital Asset Management","Scenario: Submit Selected & Continue (Bulk) functionality  
+
+Given I am on the page with a list of selectable items  
+And I have selected multiple items from the list  
+And the ""Submit Selected & Continue (Bulk)"" button is visible and enabled  
+
+When I click the ""Submit Selected & Continue (Bulk)"" button  
+
+Then the selected items should be submitted for processing  
+And I should be redirected to the next step or page in the workflow  
+And a confirmation message should be displayed indicating the successful submission of the selected items.","chatcmpl-E1u2XfSyfZT2LBDFoJpef7S62Fk6o","success",0.12314749999999998
+"54","As a User, I want to report Resource Download (Original) action in Usage Reporting for Custom Page Module","1. Be able to track the Smart Page usage reporting for resource download action (Original size type of Resource, aka “Best“ quality)
+","Scenario: Tracking Smart Page Resource Download Actions
+Given the user has access to the reporting module
+When a user downloads a resource in its original size (""Best"" quality) from a Smart Page
+Then the system should log the resource download action in the report
+
+And the report should include details such as:
+
+The Smart Page where the download occurred
+The specific resource name
+The action type as ""Resource Download (Original)""
+The timestamp of the download","Digital Asset Management","Scenario: Report Resource Download (Original) action in Usage Reporting for Custom Page Module  
+Given the user is logged into the system and is on a custom page module  
+And the custom page module contains a downloadable resource  
+When the user downloads the resource in its original format  
+Then the system logs the ""Resource Download (Original)"" action in the usage reporting module  
+And the usage report reflects the details of the download, including the resource name, user ID, timestamp, and custom page module ID.","chatcmpl-E1u2YRZmaiNC5v89xokdsg8LOvC5S","success",0.12314749999999998
+"144","As a user, I want to set a Custom limit to number of files allowed within a Multiple Upload Field - Updated handling for existing files that exceed new limit","1.For existing records, if the new max is set to less than previously, there may be records that contain multi uploads fields that have more than the allowed max
+2.This will only be re-validated on edit of record if user tries to add more files","Scenario: Revalidate Multi-Upload Field Only When Adding More Files
+Given an existing record contains a multi-upload field with more files than the newly set maximum limit
+When the max file limit is reduced in the system settings
+Then the existing record should not be automatically revalidated
+But if the user edits the record and tries to add more files
+Then the system should revalidate the file limit
+And prevent the user from adding new files if the total would exceed the new maximum limit","Digital Asset Management","Scenario: Setting a custom limit for the number of files in a multiple upload field and handling existing files exceeding the new limit  
+Given a user has access to a multiple upload field with existing uploaded files  
+And the current number of uploaded files exceeds the new custom limit the user wants to set  
+When the user sets a new custom limit for the number of files allowed in the upload field  
+Then the system should display a warning or notification about the existing files exceeding the new limit  
+And the system should allow the user to either remove excess files or confirm the new limit while keeping the existing files  
+And the new custom limit should be enforced for any future uploads.","chatcmpl-E1u2Zai8A78wwu7aPaHlD7RV83XEL","success",0.12314749999999998
+"106","As a User, I want to switch Page Categories when viewing a Page if there are multiple Page Categories","1. Be able to see multiple Page Categories in the dropdown to switch from Nav, if there are more than one Page Categories exist and the user has permission to view those pages are under the Page Categories
+2. Be able to select and to switch to another Page Category (incl. 'All Pages') via the drop-down menu as per design, then load Pages under from Nav
+","Scenario: User can switch Page Categories via the dropdown  
+    Given the user is viewing a Page  
+    And multiple Page Categories exist  
+    And the user has permission to view pages under these categories  
+    When the user opens the Page Category dropdown in the navigation  
+    Then the available Page Categories, including ""All Pages,"" should be displayed  
+    When the user selects a different Page Category from the dropdown  
+    Then the Pages under the selected category should be loaded in the navigation panel  ","Digital Asset Management","Scenario: Switching Page Categories when viewing a Page with multiple categories  
+Given I am viewing a Page that has multiple Page Categories  
+When I select a different Page Category from the available options  
+Then the content of the Page updates to display information relevant to the selected Page Category","chatcmpl-E1u2bnT5JQswO9nMIVNdqR1AEXMSY","success",0.12314749999999998
+"19","As a Database Manager, I want to allow end users to Add More child records ('Add More') - Handle maximum child records","1. Configure Auto-Created Records overlay in the form builder, a setting called Allow User to Add More {Recordcustomnameplural} was added
+2. While 30 is maximum total number of child records, we will keep this field ‘Allow User to Add More {Recordcustomnameplural}’ enabled / clickable even if 30 exist in config, since end users can potentially remove non-mandatory ones (which would then let them add more)
+3. If however 30 exist in config and ALL 30 are disabled for ‘Allow User to skip…’ then we de-select + disable this field. This is because in this scenario end user cannot add more.  
+4. Disabled state hover updates to:
+The max 30 {{Records}} has been added here. Remove any of the above to allow users to add more.
+{{Records}} here = child custom record plural name","Scenario: 'Allow User to Add More' setting with 30 records
+      Given I am in the Configure Auto-Created Records overlay
+      When I add 30 records 
+      And 1 of those records has 'Allow User to skip…’ enabled
+      Then I can enable 'Allow User to Add More'
+      When I disable 'Allow User to skip…’ on the last record
+      Then 'Allow User to Add More' is disabled
+      And if I hover over the setting I see the text 'The max 30 {{Records}} has been added here. Remove any of the above to allow users to add more.'","Digital Asset Management","Scenario: Adding child records up to the maximum allowed limit
+
+Given the database allows a maximum of 10 child records per parent record  
+And the user is on the parent record page  
+And the parent record currently has 8 child records  
+
+When the user clicks the ""Add More"" button  
+And the user adds 2 more child records  
+
+Then the system successfully saves the 2 new child records  
+And the total number of child records becomes 10  
+And the ""Add More"" button is disabled to prevent adding more child records.","chatcmpl-E1u2c5ipYejvycgTmPPTN9hGrJPNm","success",0.12314749999999998
+"40","As a Product user, I want to be able to turn the Record Publish Approval feature on / off during development (MCP)","Rename the existing MCP setting name from Databases - Record Publish Approval Rewrite POC (devevelopment use only to Approvals - Record Publish Approval Rewrite (development use only)","Scenario: Product user toggles Record Publish Approval feature during development
+  Given the user is a Product user with access to MCP settings
+  When the user navigates to the MCP development settings section
+  And the user sees the setting labeled ""Approvals - Record Publish Approval Rewrite (development use only)""
+  Then the user should be able to enable or disable the Record Publish Approval feature
+  And the system should respect the setting by turning the feature on or off accordingly","Digital Asset Management","Scenario: Toggle the Record Publish Approval feature during development  
+
+Given the Record Publish Approval feature is available in the system  
+And I am logged in as a Product user with the necessary permissions  
+And the feature is currently turned off  
+
+When I navigate to the settings page for the Record Publish Approval feature  
+And I toggle the switch to turn the feature on  
+
+Then the Record Publish Approval feature should be enabled  
+And I should see a confirmation message indicating the feature is now active  
+And the system should reflect the updated status of the feature  
+
+---
+
+Scenario: Turn off the Record Publish Approval feature during development  
+
+Given the Record Publish Approval feature is currently turned on  
+And I am logged in as a Product user with the necessary permissions  
+
+When I navigate to the settings page for the Record Publish Approval feature  
+And I toggle the switch to turn the feature off  
+
+Then the Record Publish Approval feature should be disabled  
+And I should see a confirmation message indicating the feature is now inactive  
+And the system should reflect the updated status of the feature","chatcmpl-E1u2dFXC33b8bYZTtbszAXQ0Klo8u","success",0.12314749999999998
+"234","BP - As a User, I want to single select resources from Resource Lookup with unchangeable filter based on file type in Page Builder","1. Be able to see and select resources into Page Builder via Resource Lookup with unchangeable filter applied with results by default, depending on the target page area:
+2. Page/Section/Block background: Filtering Options > General Options > File Format will be *locked* with only *Image* enabled
+3. Image Widgets: Filtering Options > General Options > File Format will be *locked* with only *Image* enabled
+
+","Scenario: User selects a resource with a locked file type filter in Page Builder  
+    Given the user opens the Resource Lookup in Page Builder  
+    When the user views the filtering options  
+    Then the ""File Format"" filter should be locked  
+    And it should only allow selecting ""Image"" file types  
+    And the filtered results should be displayed by default based on the target page area  
+    When the user selects an image resource  
+    Then it should be added to the designated area in Page Builder  ","Brand Management","Scenario: Single select resources from Resource Lookup with an unchangeable filter based on file type in Page Builder
+
+Given I am on the Page Builder interface  
+And the Resource Lookup is available with a predefined, unchangeable filter based on file type  
+When I open the Resource Lookup  
+And I select a single resource from the filtered list  
+Then the selected resource is displayed in the Page Builder  
+And I cannot modify the predefined filter for file type.","chatcmpl-E1u2gZ1EWPLdywPhVG2J97TwfBcIm","success",0.12314749999999998
+"201","PB - As a User, I want to apply/load a selected Smart Page template in Page Builder","1. Be able to click on one of the Templates and proceed to Page Builder as per design
+2.Current “template“ and “thumbnails” design are dummy/mock ones, hence the selected “Templates“ *will be loaded as an empty Smart Page*
+3. Once the real templates are final we will import them with the task:, and the real templates will be loaded accurately","Scenario: User selects and loads a Smart Page template in Page Builder
+    Given the user is in the Smart Page template selection popup  
+    When the user clicks on one of the available templates  
+    Then the user should be redirected to Page Builder with the selected template loaded as an empty Smart Page  
+    And the current templates and thumbnails are mock templates  
+    When the real templates are finalized  
+    Then the real templates should be imported and displayed in the Smart Page Builder accurately","Brand Management","Scenario: Apply a selected Smart Page template in Page Builder  
+Given I am logged into the application and have navigated to the Page Builder  
+And I can see a list of available Smart Page templates  
+When I select a specific Smart Page template from the list  
+And I click on the ""Apply Template"" button  
+Then the selected Smart Page template should be loaded into the Page Builder  
+And the page layout and components should update to match the selected template  
+And I should see a confirmation message indicating the template has been successfully applied.","chatcmpl-E1u2iVqdNbyBEU4YJpBRJk7AiSHKZ","success",0.12314749999999998
+"272","PB - As a Dev, I want to have a dev only MCP setting to control the feature of Simple Page Builder","1. Be able to see the dev-use only MCP setting that located at WITHIN Development Use Only Area
+2. Be able to enable / disable the use of simple page builder and the new type: Simple Page for development use only
+3. Unable to view the Simple Page option from page creation popup, thereby no access to Simple Page Builder if disable MCP setting","Scenario: Developer enables or disables Simple Page Builder via MCP setting
+  Given the developer is in the Development Use Only area of the settings
+  When the developer enables the MCP setting for Simple Page Builder
+  Then the Simple Page option should be visible in the page creation popup
+  And the developer should be able to access and use Simple Page Builder
+  When the developer disables the MCP setting for Simple Page Builder
+  Then the Simple Page option should be hidden in the page creation popup
+  And the developer should not be able to access Simple Page Builder","Brand Management","Scenario: Enable Dev-Only MCP Setting for Simple Page Builder  
+
+Given I am a developer with access to the development environment  
+And the dev-only MCP setting for the Simple Page Builder feature is available but currently disabled  
+When I enable the dev-only MCP setting for the Simple Page Builder feature  
+Then the Simple Page Builder feature should be activated only in the development environment  
+And the feature should remain inaccessible in production or other non-development environments.","chatcmpl-E1u2kkK7Mzx9uirWep42RMiTyhE6e","success",0.12314749999999998
+"179","As a user, I want to see clearly identify that a section is part of a duplicable section","1.Indent duplicable sections","Scenario: Indent Duplicable Sections
+Given a form with duplicable sections
+When a new duplicable section is added
+Then the section should be indented properly to visually differentiate it from the main sections
+
+
+
+
+
+
+","Brand Management","Scenario: Highlight duplicable section for user clarity  
+Given a webpage with sections that can be duplicated  
+When the user views a section that is marked as duplicable  
+Then the section should have a clear visual indicator (e.g., an icon, label, or border) to signify it is duplicable  
+And the user should be able to easily distinguish it from non-duplicable sections.","chatcmpl-E1u2mF8paYXvYmHngoE8tCiHMTvBd","success",0.12314749999999998
+"260","PB - (Misc) As a User, I want to adjust Text colour simultaneously when interacting within the Text Widget's colour popup","1. Be able to have a Text Colour icon within Text Widget tool bar as per design
+2. Be able to click on Text Colour icon and adjust Text Colour simultaneously when using the colour swatch popup as per design
+3. Be able to (*can do either a OR b*)
+4. click on *any other area* to dismiss the colour swatch popup, *OR*
+5. click on the Text Colour icon again (see screenshot) to dismiss the colour swatch popup 
+","Scenario: User adjusts text colour in the Text Widget  
+    Given the user is editing text within the Text Widget  
+    When the user clicks on the Text Colour icon in the toolbar  
+    Then the colour swatch popup should appear as per design  
+    When the user selects a colour from the swatch  
+    Then the text colour should update simultaneously in real-time  
+    And the user should be able to dismiss the colour swatch popup by either:  
+      * Clicking on any other area  
+      * Clicking on the Text Colour icon again  ","Brand Management","Scenario: Adjusting Text Colour Simultaneously in the Text Widget's Colour Popup  
+Given the user is on a page with a Text Widget  
+And the user has opened the colour popup for the Text Widget  
+When the user selects a new colour from the colour popup  
+Then the text colour in the Text Widget should update simultaneously to reflect the selected colour","chatcmpl-E1u2nhKiF400oXozKYiPOUrfGMXXb","success",0.12314749999999998
+"262","PB - As a User, I want to add a Section to a Simple Page","1. Be able to add a Section to a Simple Page from Side Panel
+2. Be able to only contain Block (up to 12)
+3. Be able to have customised background Image / Colour by configuring from Side Panel 
+4. Be able to customise direction: vertical / horizontal in order to drag more Blocks into by configuring from Side Panel","Scenario: User adds a Section to a Simple Page  
+    Given the user is in the Simple Page Builder  
+    When the user adds a new Section from the Side Panel  
+    Then the Section should be added to the Simple Page  
+    When the user attempts to add Blocks to the Section  
+    Then the Section should allow up to 12 Blocks  
+    When the user configures the Section’s background with an Image or Colour from the Side Panel  
+    Then the Section should reflect the selected background settings  
+    When the user sets the direction of the Section to vertical or horizontal  
+    Then the Section should adjust its layout accordingly to allow dragging more Blocks  ","Brand Management","Scenario: Adding a Section to a Simple Page  
+Given I am logged into the application and viewing a Simple Page in edit mode  
+When I click on the ""Add Section"" button  
+Then a new section is added to the Simple Page and is displayed for editing","chatcmpl-E1u2okmQ2453JVfsVcNtT3IEUYhH5","success",0.12314749999999998
+"238","As a user I want to see 'Bulk Review' in bulk review page header (page name)","1. When Bulk Review page is opened, as done in, name of page is simply ‘Bulk Review’","Scenario: Show correct page name in Bulk Review header  
+    Given the user navigates to the Bulk Review page  
+    When the page loads  
+    Then the page header should display the title ""Bulk Review""  ","Brand Management","Scenario: Display 'Bulk Review' in the bulk review page header  
+
+Given I am on the bulk review page  
+When the page loads successfully  
+Then I should see 'Bulk Review' displayed in the page header","chatcmpl-E1u2qorB8F2VqraRETi8wN3MmYDbk","success",0.12314749999999998
+"203","PB - (Misc) As a User, I want to further have an option to hide / unhide the download button for Images / Video","1. Be able to hide / un-hide download button for Image / Video Widgets added into Page via the hide/unhide button as per design
+2. By default, Download button is unhidden","Scenario: User hides and unhides the download button for Image/Video Widgets
+    Given an Image or Video Widget is added to the page
+    And the download button is visible by default  
+    When the user clicks the hide button for the download button  
+    Then the download button should be hidden for that Image or Video Widget  
+    When the user clicks the unhide button for the download button  
+    Then the download button should become visible again for that Image or Video Widget","Brand Management","Scenario: Hide/Unhide the download button for Images/Videos
+
+Given the user is logged into the application  
+And the user is on a page with images/videos  
+And the user sees the download button for images/videos  
+
+When the user selects the option to hide the download button  
+Then the download button for images/videos should no longer be visible  
+
+When the user selects the option to unhide the download button  
+Then the download button for images/videos should become visible again.","chatcmpl-E1u2rtqRqWiVzp6lV7o6XbM0czzyl","success",0.12314749999999998
+"162","As a user, I want to see footer actions like cancel, save as draft, next and submit (Staged Database)","1. When MCP is ON
+2.Footer for staged database","Scenario: Display Footer for Staged Database When MCP is ON
+Given the MCP setting is enabled
+And the user is viewing a staged database
+When the user navigates to the bottom of the page
+Then the footer should be displayed for the staged database","Brand Management","Scenario: Display footer actions for staged database
+
+Given I am on a page with a staged database form  
+When I scroll to the bottom of the page  
+Then I should see footer actions including ""Cancel,"" ""Save as Draft,"" ""Next,"" and ""Submit""","chatcmpl-E1u2syfPxaoZv7pZKOeunMa6eZB1i","success",0.12314749999999998
+"152","As a User, I want to click a button on the Markup screen to manually end my Session","1. Be able to click on a button from Markup screen to end the session 
+2. Fixed location: Under Markup Comment Panel > Heading
+Designs
+3. After clicking, be able to see the button & message gone/disappeared ","Scenario: End Session via Button in Markup Screen
+Given the user is on the Markup screen
+And the End Session button is located under Markup Comment Panel > Heading
+When the user clicks the End Session button
+Then the session should be ended
+And the End Session button and message should disappear from the screen","Brand Management","Scenario: Manually ending a session from the Markup screen  
+Given the user is on the Markup screen  
+And the session is currently active  
+When the user clicks the ""End Session"" button  
+Then the session should be terminated  
+And the user should see a confirmation message stating ""Session has been successfully ended""  
+And the user should be redirected to the main dashboard screen.","chatcmpl-E1u2tyOjgVmPFeVfoGDqFBbVJD8BB","success",0.12314749999999998
+"192","PB - As a User, I want to see Drag & Drop Page thumbnails as preview in Custom Page v2 index page","1. Be able to preview pages as thumbnails for Drag & Drop Pages in v2 index page for both List and thumb layout views","Scenario: User can see page thumbnails as previews for Drag & Drop Pages  
+    Given the user is on the Custom Page v2 index page  
+    When the user switches to List layout view  
+    Then the Drag & Drop Pages should be displayed as thumbnails in the list view  
+    When the user switches to the Thumb layout view  
+    Then the Drag & Drop Pages should be displayed as thumbnails in the thumb view  
+    And the thumbnails should correctly represent a preview of each Drag & Drop Page  
+    And the thumbnails should be displayed for all Drag & Drop Pages available to the user  ","Brand Management","Scenario: Display Drag & Drop Page Thumbnails as Preview in Custom Page v2 Index Page  
+Given I am on the Custom Page v2 index page  
+And there are pages with drag & drop thumbnails available  
+When I view the list of pages on the index page  
+Then I should see a preview of the drag & drop page thumbnails for each page displayed in the list","chatcmpl-E1u2uBWh8miXgBSFzWgyx3eka8YjE","success",0.12314749999999998
+"254","As a User, I want to access Reply action for New Replies in Daily Digest Email","1. Be able to see and click on ""Reply"" as per design
+2. Be able to re-direct to the Reply page in new tab
+3. Be able to have applicable comment highlighted ready to reply to & text-box will be active as well","Scenario: User can access and reply to new comments from the Daily Digest Email  
+    Given the user receives a Daily Digest Email with new replies  
+    When the user clicks on the ""Reply"" action as per the design  
+    Then the user should be redirected to the Reply page in a new tab  
+    And the applicable comment should be highlighted and ready to reply to  
+    And the text box should be active and ready for the user to type a response","Brand Management","Scenario: Access Reply Action for New Replies in Daily Digest Email  
+Given the user has received a Daily Digest Email containing new replies  
+When the user opens the Daily Digest Email  
+And clicks on the ""Reply"" action for a specific new reply  
+Then the user is redirected to the reply interface for that specific reply  
+And the reply interface allows the user to compose and send a response.","chatcmpl-E1u2wk05VVVzvdMWrVvI57SGoGECP","success",0.12314749999999998
+"208","PB - As a User, I want to only select & see the combo of Widget and Block (bounding box experience) in Page Builder","1. Be able to select Widget and Block as a whole, and the bounding box will be highlighted as the same experience as old Block's bounding box
+2. Be able to only navigate Up back to the Section
+","Scenario: User selects a Widget and Block as a whole in Page Builder
+    Given the user is in Create/Edit mode in Page Builder
+    And the user has added a Widget inside a Block
+    When the user selects the Widget
+    Then the entire bounding box of the Widget and Block should be highlighted
+    And the selection experience should match the previous Block bounding box behavior
+    And the user should only be able to navigate up to the Section","Brand Management","Scenario: User selects and views a combo of Widget and Block in Page Builder
+
+Given the user is on the Page Builder interface  
+And the user has access to Widgets and Blocks  
+And the bounding box experience is enabled  
+
+When the user selects a specific Widget and Block combo  
+Then only the selected Widget and Block combo is highlighted and displayed in the bounding box  
+And all other Widgets and Blocks are visually de-emphasized  
+And the user can interact only with the selected Widget and Block combo.","chatcmpl-E1u2xr1gRBInG0VXLxcI20GIHn0ua","success",0.12314749999999998
+"187","PB - As a User, I want to configure both Block and Button Widget properties","1. Be able to see and configure the new widget settings from Nav (combining previously defined Block and Widget's settings) for each widgets:
+","Scenario: User configures settings for Block and Button Widgets  
+    Given the user is in the Page Builder  
+    And a Block Widget or a Button Widget is placed within a Section  
+    When the user selects the Block Widget or Button Widget  
+    Then the widget settings panel should open in the navigation panel  
+    And the settings should include previously defined Block and Button Widget properties  
+    When the user modifies any settings in the panel  
+    Then the changes should be applied to the selected widget in real time  
+    And the settings should persist when the page is saved  
+","Brand Management","Scenario: Configure properties for Block and Button Widgets  
+Given the user is logged into the application and is on the widget configuration page  
+When the user selects the Block Widget  
+And the user modifies the Block Widget properties (e.g., size, color, border)  
+And the user saves the changes  
+Then the Block Widget properties should be updated and displayed accordingly  
+
+Given the user is still on the widget configuration page  
+When the user selects the Button Widget  
+And the user modifies the Button Widget properties (e.g., text, color, action)  
+And the user saves the changes  
+Then the Button Widget properties should be updated and displayed accordingly","chatcmpl-E1u2y7nQ5CaugE6tCsAi3K0yUDHOQ","success",0.12314749999999998
+"205","PB - As a User, I want to add a new Widget ""Spacer""","1. Be able to see and drag a new type of Widget ""Spacer"" as per design in a Section from Nav
+2. Be able to see and configure settings for Spacer in order: Colour (by default, #FFFFFF) Padding (by default, 0pt for all directions) Ratio (by default, it follows the existing behaviour: 12 for an empty Section)
+3. Be able to further drag a Section in this Widget (just to cater to previous behaviour of dragging a Section to a Block)
+","Scenario: User adds and configures a Spacer Widget in a Section
+    Given the user is in Create/Edit mode in Page Builder
+    And the user can see the ""Spacer"" Widget in the Nav panel
+    When the user drags the ""Spacer"" Widget from the Nav panel to a Section
+    Then the Spacer Widget should be added to the Section
+    And the Spacer Widget should have default settings:
+      | Property | Default Value  |
+      | Colour   | #FFFFFF        |
+      | Padding  | 0pt (all sides) |
+      | Ratio    | 12 (for empty Section) |
+    When the user opens the Spacer Widget settings
+    Then the user should be able to modify the Colour, Padding, and Ratio properties
+    When the user drags a Section into the Spacer Widget
+    Then the Section should be successfully nested inside the Spacer Widget","Brand Management","Scenario: Adding a new ""Spacer"" widget to the dashboard  
+Given I am logged into the application and on the dashboard editing page  
+When I click on the ""Add Widget"" button  
+And I select the ""Spacer"" widget from the widget options  
+And I configure the ""Spacer"" widget settings (if applicable)  
+And I click the ""Save"" or ""Add"" button  
+Then the ""Spacer"" widget is added to the dashboard  
+And the dashboard updates to display the ""Spacer"" widget in the selected position.","chatcmpl-E1u30RDM92UwD2VzL3XyBy79js1jL","success",0.12314749999999998
+"156","As a User, I want to set up Session Based Digest Email in My Account Alerts (Markup) for Comment Status Updates, Edited Comments, Deleted Comments, and New Revisions","1. Be able to see and choose ‘Session’ via *My Account* > *Alerts (Markup)* in the *Digest Frequency* drop-down menu for:
+2. Updates to Comment status
+3. Edited Comments
+","Scenario: Select ‘Session’ Option in Digest Frequency Drop-Down for Markup Alerts
+Given the user navigates to My Account > Alerts (Markup)
+When the user opens the Digest Frequency drop-down menu
+Then the ‘Session’ option should be available for selection
+And the user should be able to choose ‘Session’ for the following alert types:
+Updates to Comment Status
+Edited Comments
+
+
+
+
+
+","Brand Management","Scenario: User sets up Session Based Digest Email for Comment Status Updates, Edited Comments, Deleted Comments, and New Revisions
+
+Given the user is logged into their account  
+And the user navigates to the ""My Account Alerts"" section  
+And the user sees the option to configure ""Session Based Digest Email""  
+And the user sees the alert categories: ""Comment Status Updates,"" ""Edited Comments,"" ""Deleted Comments,"" and ""New Revisions""  
+
+When the user selects ""Session Based Digest Email""  
+And the user enables alerts for ""Comment Status Updates,"" ""Edited Comments,"" ""Deleted Comments,"" and ""New Revisions""  
+And the user saves the changes  
+
+Then the system confirms that the ""Session Based Digest Email"" has been successfully set up  
+And the user receives a confirmation message or email summarizing their selected alert preferences  
+And the user will receive session-based digest emails for the selected alert categories.","chatcmpl-E1u32UqJdwJpesJaAqqn67jI8rxnD","success",0.12314749999999998
+"183","PB - As a User, I want to have previous 'Block' background colour setting embedded in Text Widget toolbar after combining these two","1. Be able to have have previous 'Block' background colour setting embedded in Text Widget toolbar as per  
+2. Be able to click on the background colour setting in text widget toolbar and open the colour swatch popover then set the colour for Text Widget background","Scenario: User sets background color for the Text Widget  
+    Given the user is in the Page Builder  
+    And a Text Widget is placed within a Block  
+    And the previous 'Block' background color setting is embedded in the Text Widget toolbar  
+    When the user clicks on the background color setting in the toolbar  
+    Then a color swatch popover should open  
+    When the user selects a color from the swatch  
+    Then the selected color should be applied as the background color for the Text Widget  
+    And the applied background color should persist when the page is saved","Brand Management","Scenario: Retain previous 'Block' background colour setting in Text Widget toolbar after combining
+
+Given a user has set a specific background colour for a 'Block'  
+And the user combines the 'Block' with a Text Widget  
+When the user opens the Text Widget toolbar after combining  
+Then the previous 'Block' background colour setting is embedded and displayed in the Text Widget toolbar","chatcmpl-E1u34RBSJMV5Y8ZcXvotzpxjNYEnS","success",0.12314749999999998
+"164","As an internal User, I want to set Drag & Drop Page limit via Custom Page limit in MCP","1. Remove Drag & Drop limit from the Restrictions tab in MCP","Scenario: Remove Drag & Drop Limit from the Restrictions Tab in MCP
+Given the admin navigates to MCP > Restrictions Tab
+When the admin attempts to use the Drag & Drop functionality
+Then there should be no limit imposed on Drag & Drop actions
+And the admin should be able to drag and drop items without restriction","Brand Management","Scenario: Setting Drag & Drop Page Limit via Custom Page Limit in MCP
+
+Given I am logged in as an internal user in the MCP system  
+And I have access to the settings for Drag & Drop Page limits  
+When I navigate to the Custom Page Limit configuration section  
+And I set a new value for the Drag & Drop Page limit  
+And I save the changes  
+Then the system should update the Drag & Drop Page limit to the new value  
+And the updated limit should be reflected in the Drag & Drop functionality.","chatcmpl-E1u35TodiYCJW13ZxlVEflQdOv032","success",0.12314749999999998
+"268","PB - As a User, I want to add a Widget to Block","1. Be able to drag one widget from the widget toolbar to one target existing Block
+2. Be able to edit on the added widget from default size according to different widget types: Image, Text, Colour Palette
+3. Be able to disappear if the widget dragged outside any Blocks","Scenario: User adds a widget to a Block
+    Given the user is on the Simple Page Builder
+    And the user has an existing Block in the Section
+    When the user drags a widget (Image, Text, Colour Palette) from the widget toolbar
+    Then the widget should be added to the target Block
+    When the user edits the widget
+    Then the widget should adjust its size according to the widget type (Image, Text, Colour Palette)
+    When the user drags the widget outside of any Block
+    Then the widget should disappear","Brand Management","Scenario: Add a Widget to a Block  
+Given I am on the Block editing page  
+And the Block is empty or has space for additional Widgets  
+When I select a Widget from the Widget library  
+And I drag and drop the Widget into the Block  
+Then the Widget should be added to the Block  
+And I should see the Widget displayed within the Block  
+And the system should save the updated Block configuration.","chatcmpl-E1u36fCATKjR1hd4XjmhxtqZb1bmB","success",0.12314749999999998
+"252","PB - As a User, I want to set Page/Section/Block/Widgets Colour in Opacity ","1. Be able to set Page/Section/Block 's background, Colour Palette Widget 's Colour, Button Widget's Text & Background in opacity as per design
+2. Be bale to se the transparency / opacity via the opacity bar blow the hue bar as per design 
+3. Be able to see Hex code (8 digital) simultaneously updated, given the configuration against the opacity bar, hue bar, and colour swatch altogether
+4. If the target background has been set with opacity, users can see the content through it given the opacity % from behind/front layers
+","Scenario: User sets opacity for Page/Section/Block and Widgets  
+    Given the user is editing the Page/Section/Block or Widget  
+    When the user adjusts the opacity using the opacity bar below the hue bar  
+    Then the Page/Section/Block background, Colour Palette Widget's Colour, and Button Widget's Text & Background should reflect the opacity setting as per the design  
+    And the Hex code (8 digital) should be updated simultaneously with the opacity and hue bar configuration  
+    And if the background has opacity set, the content behind the background should be visible based on the opacity percentage from the front and back layers  ","Brand Management","Scenario: Set the opacity of a widget's color  
+Given I am on the page editor with a page/section/block/widget selected  
+When I navigate to the color settings for the selected page/section/block/widget  
+And I adjust the opacity slider or input a specific opacity value  
+Then the color of the selected page/section/block/widget should update to reflect the chosen opacity level  
+And the changes should be visible in the preview or editor view.","chatcmpl-E1u38C6C6yuz6zaYMSKrDCc8Pp144","success",0.12314749999999998
+"210","PB - As a User, I want to see a new landing page","1. Be able to see just empty Sections with no ""Blocks""","Scenario: User views a new landing page with empty Sections  
+    Given the user is in Page Builder  
+    When the user creates a new landing page  
+    Then the page should display empty Sections  
+    And there should be no Blocks inside the Sections  ","Brand Management","Scenario: Display a new landing page to the user  
+Given the user navigates to the website's homepage  
+When the user accesses the website after the new landing page has been deployed  
+Then the user should see the updated landing page with the new design and content  
+And the page should load without errors  
+And all links and buttons on the landing page should function correctly.","chatcmpl-E1u39IeEibwUblpXX2OLriH9Id37Q","success",0.12314749999999998
+"249","PB - As a User, I want to report Edit Page action in the usage reporting","1. Be able to see Simple Page reporting on Edit action
+2. User Usage Report
+3. Custom Page Usage Report
+4. Be able to search and export the Report on Edit action
+5. To note: the searching rules and displaying will be natively handled","Scenario: User can see Edit Page action in usage reporting  
+    Given the user is in the Usage Reporting section  
+    When the user views the usage reports  
+    Then the Edit action for Simple Page should be visible in the User Usage Report  
+    And the Edit action for Simple Page should be visible in the Custom Page Usage Report  
+    And the user should be able to search for and export the Edit Page action report  
+    And the searching rules and display should be handled natively  ","Brand Management","Scenario: Reporting Edit Page action in usage reporting  
+Given a user is logged into the application  
+And the user navigates to a specific page they have access to  
+When the user performs an Edit Page action  
+Then the Edit Page action is recorded in the usage reporting system  
+And the recorded data includes the user ID, page ID, timestamp, and action type ""Edit Page"".","chatcmpl-E1u3AdwSkqv7XlkjbONpV9Sq9DWys","success",0.12314749999999998
+"247","PB - As a User, I want to single-select resource from resource module overlay","1. Be able to *single-select resources only* to save the select from the overlay and then upload to designated area in Page Builder:  Image type resource for background of ,Page/Section/Block,Image, video, -or audio- type resource for Widgets: Image/Video/-Audio-
+2. Be able to see the tooltips on exit button from top right corner (Currently in Database resource lookup overlay, the tooltips explains user flows of Database Records, which should be amend to be Simple Pages
+3. Tooltip message: ""Close overlay. No selections will be added."" 
+","Scenario: User selects a resource and sees tooltip on exit button  
+    Given the user is in the resource module overlay  
+    When the user selects a single resource for the designated area in Page Builder  
+    Then the selected resource should be saved and uploaded to the designated area (Image for background or Image/Video/Audio for Widgets)  
+    And when the user hovers over the exit button in the top right corner  
+    Then the tooltip should display the message ""Close overlay. No selections will be added.""  
+    And the tooltip message should explain the user flows of Simple Pages instead of Database Records  ","Brand Management","Scenario: Single-select a resource from the resource module overlay  
+Given the user is on the resource module overlay  
+And the overlay displays a list of available resources  
+When the user clicks on a single resource from the list  
+Then the selected resource is highlighted or marked as selected  
+And no other resource is selected  
+And the selection is saved or reflected in the system.","chatcmpl-E1u3Cbqiqe4dOHyboDonf0Mj2qG7Q","success",0.12314749999999998
+"169","PB - (Misc UX) As a User, I want to go back to Resource Lookup overlay after clicking to go to Resource Preview in Page Builder","1. When User clicks on the close icon in the Info Preview overlay, instead of closing both Info and Resource pages, take *the  user back to the Resources view they were on, ie the specific folder or search / filtered view.* 
+2. This reflects the behaviour in the Resources module itself when the Info overlay is closed","Scenario: Closing Info Preview Overlay Returns User to Previous Resources View
+Given the user is viewing the Info Preview overlay in the Resources module
+And they accessed it from a specific folder, search result, or filtered view
+When the user clicks on the close (X) icon in the Info Preview overlay
+Then only the Info Preview overlay should close
+And the user should be returned to the exact Resources view they were previously on
+And this behavior should match the existing Resources module behavior when closing the Info overlay","Brand Management","Scenario: Navigate back to Resource Lookup overlay from Resource Preview in Page Builder  
+Given I am on the Resource Lookup overlay in Page Builder  
+And I have clicked on a resource to open the Resource Preview  
+When I click the ""Back"" button or designated navigation option in the Resource Preview  
+Then I should be taken back to the Resource Lookup overlay  
+And the Resource Lookup overlay should display the same state as before I navigated to the Resource Preview (e.g., search results, filters, and scroll position remain unchanged).","chatcmpl-E1u3DDfvy3Unze0F59xLxbsEqvJIB","success",0.12314749999999998
+"200","PB - As a User, I want to edit and save a Smart Page with template after it's loaded","1. Be able to continue editing and saving the Smart Page with loaded page template
+2.Current “template“ and “thumbnails” design are dummy/mock ones, once the real templates are final we will import them with the task: ","Scenario: User edits and saves a Smart Page with a loaded template  
+    Given the user has selected and loaded a page template in Smart Page Builder  
+    When the user starts editing the Smart Page  
+    Then the user should be able to continue editing the page with the loaded template  
+    And the user should be able to save the changes to the Smart Page  
+    And the current template and thumbnail designs are mock templates  
+    When the real templates are finalized  
+    Then the real templates should be imported and displayed in the Smart Page Builder as part of the import process","Brand Management","Scenario: Edit and save a Smart Page with a template after it's loaded  
+Given a Smart Page with a template is loaded in the editor  
+When the user makes changes to the content or layout of the Smart Page  
+And the user clicks the ""Save"" button  
+Then the changes to the Smart Page are saved successfully  
+And a confirmation message is displayed to the user indicating the save was successful.","chatcmpl-E1u3EJnEnTuXkpGolD0bQvzpzD7EK","success",0.12314749999999998
+"194","BP - (Misc) As a User, I want to Replace resources via Resource Lookup from Nav Panel","1. Be able to still see and click on the button “Replace“ to select another Resource via Resource Lookup from Nav Panel in Page Builder, after selecting a Resource successfully, as per design
+2. Lookup feature:Page background
+3. should ONLY update tooltips: “Select an image from your Resourcecustomsingular area“ for this *Replace* button (previous tooltips on Select button remain the same) to the areas:Page background
+4.should ONLY update tooltips: “Select a video from your Resourcecustomsingular area“ for this *Replace* button (previous tooltips on Select button remain the same) to the areas: Video Widget","Scenario: User can replace resources in Page Builder using Resource Lookup  
+    Given the user is in Page Builder and viewing a Page  
+    When the user clicks the ""Replace"" button for a resource in the Nav Panel  
+    Then the user should be able to select another resource via Resource Lookup  
+    And the tooltip for the ""Replace"" button should update to ""Select an image from your Resource custom singular area"" when replacing a page background  
+    And the tooltip for the ""Replace"" button should update to ""Select a video from your Resource custom singular area"" when replacing a video widget  
+    And the tooltip for the ""Select"" button remains the same as before  
+    And the resource is updated with the newly selected resource after confirming via the Resource Lookup  
+    And the ""Replace"" button should behave as per design after selecting a new resource  ","Brand Management","Scenario: Replace resources using Resource Lookup from Navigation Panel  
+Given the user is logged into the application and is on the main dashboard  
+And the Navigation Panel is visible on the screen  
+And the user has access to the Resource Lookup feature  
+When the user selects the Resource Lookup option from the Navigation Panel  
+And searches for a specific resource to replace  
+And selects the desired replacement resource from the search results  
+And confirms the replacement action  
+Then the original resource is replaced with the selected resource  
+And the updated resource is reflected in the system  
+And the user receives a confirmation message indicating the replacement was successful.","chatcmpl-E1u3GM7N1C4sABvWIM1NG43mj8wyL","success",0.12314749999999998
+"161","As a User, I want to have an MCP setting for Session Based Digest under development-use only","1. Be able to have an MCP setting: ""Session Based Digest of Markup Comments"" under Development-use Only 
+2. Be able to enable / disable the MCP setting above","Scenario: Configure ‘Session Based Digest of Markup Comments’ MCP Setting
+Given the admin navigates to MCP > Platform Settings > Development-use Only
+When the admin sees the ‘Session Based Digest of Markup Comments’ setting
+Then the admin should be able to enable or disable the setting
+And enabling the setting should activate session-based digests for Markup Comments
+And disabling the setting should deactivate the feature","Brand Management","Scenario: Enable MCP setting for Session Based Digest under development-use only
+
+Given the user is logged into the system with appropriate developer permissions  
+And the MCP settings page is accessible  
+And the ""Session Based Digest"" option is currently disabled  
+
+When the user navigates to the MCP settings page  
+And the user enables the ""Session Based Digest"" option  
+And the user confirms that this setting is for development-use only  
+
+Then the ""Session Based Digest"" setting should be successfully enabled  
+And a notification should indicate that this setting is restricted to development-use only  
+And the system should log the change for auditing purposes.","chatcmpl-E1u3HMuJglgaBsXQRa50yq3hY0QV9","success",0.12314749999999998
+"259","PB - As a Admin User, I want to update the permission in the Admin - Group(include user as group) for individual pages in the module, incl. Simple Pages","1. Be able to update permissions in Admin module for individual pages, incl. Simple Pages
+2. Be able to use the data loaded in the Filters will follow the setup in Admin - Filters  
+3. Be able to see Simple Page permission configuration in native design
+4. AC: could include the default permission rules","Scenario: Admin user updates permissions for individual pages including Simple Pages  
+    Given the Admin user is in the Admin > Group section  
+    When the Admin user selects an individual page, including a Simple Page  
+    Then the Admin user should be able to update the permissions for the selected page  
+    And the Admin user should be able to apply filters that follow the setup in Admin > Filters  
+    When the Admin user views the permission configuration  
+    Then the Simple Page permissions should be displayed in the native design  
+    And the default permission rules should be applied as per the configuration  ","Brand Management","Scenario: Admin updates permissions for a group on individual pages in a module
+
+Given I am logged in as an Admin User  
+And I navigate to the Admin - Group management section  
+And a group with users is already created  
+And I am on the permissions settings for a specific module  
+
+When I select an individual page within the module  
+And I update the permissions for the group (e.g., Read, Write, or No Access)  
+And I save the changes  
+
+Then the updated permissions should be successfully applied to the group for the selected page  
+And a confirmation message should be displayed indicating the permissions were updated successfully  
+And the group members should have the updated access level for the selected page.","chatcmpl-E1u3IuS8StLPssGvm1CFSCSjiryjz","success",0.12314749999999998
+"330","[Ask AI Alpha] As a user I want to copy the answer to my clipboard","1. Copy icon appears in Answer field when answer is complete
+2. Hover text: 'Click to copy this answer to your clipboard.'
+3. When clicked a success snackbar confirms “Copied to clipboard” ","Scenario: Copying the Answer from the Answer Field
+Given the AI has completed generating an answer
+When the answer is displayed in the Answer field
+Then a Copy icon should appear within the Answer field
+And Given the user hovers over the Copy icon
+Then a tooltip should appear with the text:
+""Click to copy this answer to your clipboard.""
+And Given the user clicks the Copy icon
+Then the answer should be copied to the clipboard
+And a success snackbar should appear with the message:
+""Copied to clipboard""","Marketing Operations Platform","Scenario: Copying the answer to the clipboard
+
+Given the user has received an answer from AI Alpha  
+When the user clicks the ""Copy to Clipboard"" button  
+Then the answer is copied to the user's clipboard  
+And a confirmation message, such as ""Answer copied to clipboard,"" is displayed.","chatcmpl-E1u3KVrIsHOqzG6hr236jqzvEARQM","success",0.12314749999999998
+"303","PB - As a User, I want to configure both Block and Image Widget properties","1. Be able to see and configure the new widget settings from Nav (combining previously defined Block and Widget's settings) for each widgets:
+2. *Image:*
+3. Image URL input & resource lookup","Scenario: Configuring Image Widget Settings from Navigation
+Given the user is in the application
+And the navigation menu contains a section for widget settings
+When the user selects the ""Image"" widget from the navigation menu
+Then the widget settings panel should display the combined settings of Block and Widget
+And Given the user is viewing the ""Image"" widget settings
+When they enter an Image URL in the provided field
+Then the Image widget should update to display the image from the entered URL
+And Given the user wants to look up an image resource
+When they access the resource lookup option
+Then they should be able to browse and select an image resource
+And the selected image should be applied to the Image widget","Marketing Operations Platform","Scenario: Configure properties for Block and Image Widgets  
+Given the user is logged into the application and is on the widget configuration page  
+When the user selects the Block Widget  
+And the user configures the Block Widget properties (e.g., title, background color, font size)  
+And the user selects the Image Widget  
+And the user configures the Image Widget properties (e.g., image source, alt text, dimensions)  
+Then the Block Widget properties should be saved and displayed as configured  
+And the Image Widget properties should be saved and displayed as configured","chatcmpl-E1u3Nby6fp1M0z3sD1XmAY0RxOWyp","success",0.12314749999999998
+"346","PB - As a User, I want to configure both Block and Colour Palette Widget properties","1. Be able to see and configure the new widget settings from Nav (combining previously defined Block and Widget's settings) for each widgets:
+2. Colour Palette:
+3. Colour","Scenario: Configuring Colour Palette for Widgets from Navigation Panel
+Given the user is in the Page Builder
+And the Navigation Panel is open
+When the user selects a Widget
+Then the Widget Settings should display options combining Block and Widget settings
+And Given the user is in the Colour Palette settings
+When they select a Colour
+Then the chosen Colour should be applied to the selected Widget","Marketing Operations Platform","Scenario: Configure Block and Colour Palette Widget Properties  
+Given the user is logged into the application and is on the widget configuration page  
+When the user selects the Block Widget  
+And the user configures the Block Widget properties (e.g., size, alignment, border)  
+And the user selects the Colour Palette Widget  
+And the user configures the Colour Palette Widget properties (e.g., primary color, secondary color, gradient)  
+Then the Block Widget properties should be updated and saved successfully  
+And the Colour Palette Widget properties should be updated and saved successfully  
+And the changes should reflect immediately on the preview or live page.","chatcmpl-E1u3OXJhuk98FVFsnRjAS9vRSfAlV","success",0.12314749999999998
+"373","PB - As a User, I want to delete pages via Nav - BE","1. Be able to click on setting button of a simple page from Nav as per and click on Delete
+2. Be able to see the deletion popup (Page deletion and sub-page deletion )as per 
+3. Be able to click on yes or no to proceed the deletion or not","Scenario: Deleting a Simple Page from the Navigation Panel
+Given the user is in the Page Builder's editing mode
+And the Navigation Panel displays a list of pages
+When the user clicks on the settings button of a simple page in the Navigation Panel
+And selects the ""Delete"" option
+Then a confirmation popup appears, indicating that the page and any sub-pages will be deleted
+And the popup provides ""Yes"" and ""No"" options to confirm or cancel the deletion
+When the user clicks ""Yes""
+Then the selected page and all its sub-pages are deleted from the Navigation Panel
+And the Navigation Panel updates to reflect the deletion
+When the user clicks ""No""
+Then the deletion is canceled
+And the page and its sub-pages remain unchanged in the Navigation Panel","Marketing Operations Platform","Scenario: Deleting a page via navigation  
+Given I am logged into the application and have access to the navigation menu  
+And there is an existing page that I have permission to delete  
+When I navigate to the page management section via the navigation menu  
+And I select the page I want to delete  
+And I confirm the deletion action  
+Then the page should be successfully deleted  
+And the page should no longer appear in the list of available pages  
+And I should see a confirmation message indicating the page was deleted successfully.","chatcmpl-E1u3PHghttw6vqYmIPNFz9OnjnSO4","success",0.12314749999999998
+"276","As a user, I want to be able to close the record","1. Record can be closed by clicking the {{X }} ghost button on the right hand of the header AND the Close button in the footer.
+2. When in Edit and Create mode and changes have been made, when record is closed a dialog is displayed warning of the unsaved changes 
+3. Warning message: Change to ib-ui/dist/DialogNew and Change message (see comment from Eva)","Scenario: Closing a Record and Handling Unsaved Changes Warning
+Given the user is in Edit or Create mode
+And the user has made changes to the record
+When the user clicks the (X) ghost button in the header OR the Close button in the footer
+Then a dialog should be displayed warning the user about unsaved changes
+And the warning message should be updated as per ib-ui/dist/DialogNew
+When the user confirms the action, the record should close
+But if the user cancels, the record should remain open","Marketing Operations Platform","Scenario: Closing a record successfully  
+Given I am logged into the system and viewing a record  
+When I click on the ""Close Record"" button  
+Then the record should be marked as closed and no further edits should be allowed","chatcmpl-E1u3RYlRi7t6SS8m6GTTF9FUcEfB3","success",0.12314749999999998
+"307","3-1. As a User, I want to resize Image Widget by dragging image itself when creating/editing a Page","1. Be able to see dotted line of the Image and bounding box for the entire Widget with a default 8px paddings as per design, after dragging an Image Widget into a Section
+2. Be able to always see the Image Widget’s outer bounding box border line as per design, whenever the Image has been re-sized
+3. Be able to click on all eight dots to change the size of the Image within the 'Block'","Scenario: Displaying Image Widget Boundaries and Resizing Controls
+Given the user drags an Image Widget into a Section
+When the widget is placed
+Then a dotted line should appear around the Image
+And a bounding box should be visible for the entire widget with a default 8px padding as per design
+And Given the Image Widget is displayed
+When the user resizes the image
+Then the outer bounding box border should always remain visible as per design
+And Given the Image Widget is displayed with a bounding box
+When the user clicks on any of the eight dots on the bounding box
+Then they should be able to resize the Image within the 'Block' accordingly","Marketing Operations Platform","Scenario: Resize Image Widget by dragging the image itself when creating/editing a Page  
+Given I am on the Page Editor screen  
+And an Image Widget is added to the page  
+When I click and hold the edge or corner of the image  
+And I drag the edge or corner to resize the image  
+Then the Image Widget resizes proportionally or as per the drag direction  
+And the new size of the Image Widget is updated on the page.","chatcmpl-E1u3SETftSIQBFNngQVAeoKZHT285","success",0.12314749999999998
+"324","[Ask AI Alpha] As a user I want to choose to search whole platform or current location (UI + pendo)","1.  ‘Limit to current view’ checkbox field appears under question field
+2. This is always enabled by default when panel is opened","Scenario: Displaying and Enforcing Default State of ‘Limit to Current View’ Checkbox
+Given the user has opened the ‘Ask AI’ side panel
+When the panel is displayed
+Then a ‘Limit to current view’ checkbox should appear under the question field
+And the checkbox should be enabled by default","Marketing Operations Platform","Scenario: User chooses to search the whole platform or current location
+
+Given the user is on the search interface of the platform  
+And the search interface displays options to search the whole platform or the current location  
+When the user selects the ""whole platform"" option  
+And enters a search query  
+Then the system performs a search across the entire platform  
+And displays the relevant results from all locations  
+
+Scenario: User chooses to search the current location  
+
+Given the user is on the search interface of the platform  
+And the search interface displays options to search the whole platform or the current location  
+When the user selects the ""current location"" option  
+And enters a search query  
+Then the system performs a search within the current location only  
+And displays the relevant results specific to that location","chatcmpl-E1u3TOlrhMcye5kZpog5I7kzGeQrx","success",0.12314749999999998
+"358","Related (V3) - As a user I want to open View Related Items for Folder/Record/Databases (New Page ticket). [Design Ticket #3]","1. When source item is a not a Resource (ie, is a *Folder*, or a *Database*, or a *Record*), this ‘View’ Related page will open when that source item’s Action or Icon is selected
+2. Title of page is ‘Related - {{itemname}}’","Scenario: Opening the 'Related' page for non-resource items
+Given a user is viewing a source item that is not a resource (e.g., a Folder, Database, or Record)
+When the user selects the action or icon associated with viewing related items for that source
+Then a new 'View' Related page opens
+And the title of the page is 'Related - {{itemname}}'","Marketing Operations Platform","Scenario: Open View Related Items for Folder/Record/Databases  
+
+Given the user is logged into the system and is on the main dashboard  
+And the user has access to a Folder, Record, or Database with related items  
+When the user selects the option to ""View Related Items"" for a specific Folder, Record, or Database  
+Then a new page should open displaying the related items for the selected Folder, Record, or Database  
+And the related items should be categorized and displayed in an organized manner  
+And the user should have the ability to navigate back to the previous page.","chatcmpl-E1u3V50tr11Ui4C9RtmMTIo4EsMhA","success",0.12314749999999998
+"289","PB - As a User, I want to see Page Category being selected by default when viewing a Page as it's been assign to one","1. By default the Page Category Name itself is displayed as per 
+2. Be able to see the pages under are loaded to the left side from Nav when viewing a Page","Scenario: Display Page Category Name and Load Pages in Navigation
+Given the user is viewing a Page
+When the page loads
+Then the Page Category Name should be displayed by default as per design
+And the pages under the selected Page Category should be loaded and displayed in the left-side navigation","Marketing Operations Platform","Scenario: Default Page Category is selected when viewing a Page
+
+Given a Page has a specific category assigned to it  
+When I view the Page  
+Then the assigned Page Category should be selected by default","chatcmpl-E1u3XAgc8W3ArPtLUITXtKAir5EQe","success",0.12314749999999998
+"335","PB - As a User, I want to create a Drag & Drop Page (as a standalone Page) from Nav","1. Be able to create a Drag & Drop Page from Nav via the creation button at the bottom or the action button 'Page' from kebab icon (this action is only for standalone or parent page) as per under ‘All Pages' or specific Page Category in Page Builder","Scenario: Creating a Drag & Drop Page from Navigation in Page Builder
+Given the user is in the Page Builder under ‘All Pages’ or a specific Page Category
+When they want to create a Drag & Drop Page
+Then they should see the creation button at the bottom of the Nav Panel
+And Given the user clicks the creation button
+Then they should be able to start creating a Drag & Drop Page
+And Given the user is interacting with a standalone or parent page
+When they click the kebab menu icon (⋮) and select the ‘Page’ action
+Then they should also be able to create a Drag & Drop Page","Marketing Operations Platform","Scenario: User creates a Drag & Drop Page from the navigation menu
+
+Given the user is logged into the application and is on the main dashboard  
+When the user navigates to the navigation menu  
+And selects the option to create a new page  
+And chooses the ""Drag & Drop Page"" option from the page type list  
+And provides the required details (e.g., page name, description)  
+And clicks the ""Create"" button  
+Then a new standalone Drag & Drop Page is created  
+And the user is redirected to the newly created Drag & Drop Page for further customization.","chatcmpl-E1u3Y1S9LeBCwj3X2DdGbhLeNYDZr","success",0.12314749999999998
+"393","[Bulk SBT] As a user when I toggle next I want the tab to stay engaged (ie. Markup or Response) ","1. When a user in on the Bulk review page and opens an individual request, then this will open to the Response tab for that request, as it does directly to the single request from the Approval List
+2. If however the user selects the Markup or Version/Revision tab, and clicks either the right/next toggle, or the ‘Next’ footer button (if on a completed request), then when the next request in the list opens the last engaged tab also applies to this new request
+3. Once user returns to the list, and clicks into another item then the behaviour re-sets to open Response by default","Scenario: Maintain Active Tab Selection Across Requests in Bulk Review
+Given a user is on the Bulk Review page
+When the user opens an individual request
+Then the system should default to displaying the 'Response' tab for that request
+When the user selects the 'Markup' or 'Versions/Revisions' tab
+And the user navigates to the next request using the right/next toggle or the 'Next' footer button (if on a completed request)
+Then the system should display the same tab ('Markup' or 'Versions/Revisions') for the new request
+When the user returns to the Bulk Review list
+And the user opens another individual request from the list
+Then the system should reset to display the 'Response' tab by default for that request","Marketing Operations Platform","Scenario: Tab remains engaged when toggling next in Bulk SBT
+
+Given I am on the Bulk SBT interface  
+And I have selected either the ""Markup"" or ""Response"" tab  
+When I toggle to the next item  
+Then the previously selected tab (""Markup"" or ""Response"") should remain engaged","chatcmpl-E1u3ZYKcxbG7UKQ3AXqZ5tKtLghlx","success",0.12314749999999998
+"317","PB - (Misc) As a User, I want to set auto-play as default or not for Video Widgets when viewing a Smart Page","1. Be able to set added Video Widget auto-playing on Viewing via the button as per 
+2.By default, the auto-play button is unchecked, meaning Videos won’t be auto-played on viewing by default","Scenario: Configuring Auto-Play for Video Widget
+Given the user has added a Video Widget
+When they open the Video Widget settings
+Then an Auto-Play button should be available
+And Given the Video Widget is newly added
+When the user has not changed the auto-play setting
+Then the auto-play button should be unchecked by default
+And the video should not auto-play when viewed
+And Given the user enables the auto-play button
+When they view the Video Widget
+Then the video should start playing automatically","Marketing Operations Platform","Scenario: Set auto-play as default for Video Widgets on a Smart Page  
+Given I am a User viewing a Smart Page with Video Widgets  
+And I have access to the settings for the Video Widgets  
+When I choose to enable auto-play as the default setting for the Video Widgets  
+Then the Video Widgets on the Smart Page should automatically play when the page is loaded  
+
+Scenario: Disable auto-play as default for Video Widgets on a Smart Page  
+Given I am a User viewing a Smart Page with Video Widgets  
+And I have access to the settings for the Video Widgets  
+When I choose to disable auto-play as the default setting for the Video Widgets  
+Then the Video Widgets on the Smart Page should not automatically play when the page is loaded","chatcmpl-E1u3aUiZAPZTYJyfGwqIH6DFgactJ","success",0.12314749999999998
+"347","PB - As a User, I want to add Widgets directly to a Section","1. Be able to drag Widgets from Nav to Section directly in Page Builder on Create/Edit mode","Scenario: Dragging Widgets from Navigation Panel to a Section in Page Builder
+Given the user is in Create or Edit mode in Page Builder
+And the Navigation Panel is open
+When the user drags a Widget from the Navigation Panel to a Section
+Then the Widget should be added to the selected Section successfully
+
+
+
+
+
+
+","Marketing Operations Platform","Scenario: Add a Widget to a Section  
+Given I am logged into the application and viewing a specific Section  
+When I select the option to add a Widget  
+And I choose a Widget from the available list  
+And I confirm my selection  
+Then the selected Widget is added to the Section  
+And I see the Widget displayed within the Section  
+And a confirmation message is shown indicating the Widget was successfully added.","chatcmpl-E1u3cRNDKro1qOKv9mFmyCu5NxEXV","success",0.12314749999999998
+"403","BP - As a User, I want to choose the best quality of single selected Image resource via Resource Lookup to appear as original file as a background image in the target area (download linkage)","1. Be able to single select an Image resource via Resource Lookup overlay and proceed to Choose Image Quality popup afterwards
+2. Be able to see the Image Quality options popup in Page Builder as per ","Scenario: Selecting an Image Resource and Choosing Image Quality in Page Builder
+Given the user is editing a page in Page Builder
+When the user opens the Resource Lookup overlay
+And the user selects a single image resource
+Then the system displays the ""Choose Image Quality"" popup
+And the user can select the desired image quality option from the popup
+And the selected image with the chosen quality is inserted into the page","Marketing Operations Platform","Scenario: User selects the best quality image for background via Resource Lookup
+
+Given the user is on the Resource Lookup page  
+And the user has uploaded or has access to multiple image resources  
+And the system has analyzed and categorized the images by quality  
+
+When the user selects a single image resource from the list  
+And the user confirms the selection for use as a background image  
+
+Then the system should display the selected image in the target area as the background  
+And the image should appear in its original file quality  
+And the system should provide a download link for the selected image.","chatcmpl-E1u3dar9tCpVhys7OV4xIdqv7DMVc","success",0.12314749999999998
+"291","PB - As a User, I want to assign / re-assign an existing parent / standalone page to an existing Page Category","1. Be able to assign or re-assign (aka. update to attach to another Page Category) *a standalone Page* or *Parent including sub-pages together* to an existing Page Category via the Assign Page Category button as per","Scenario: Assign or Re-Assign a Page or Parent with Sub-Pages to a Page Category
+Given the user is on the Assign Page Category interface
+When the user selects a standalone Page or a Parent Page (including all sub-pages) to be assigned or re-assigned to an existing Page Category
+And the user confirms the action
+Then the selected Page or Parent Page with sub-pages should be assigned to the chosen Page Category
+And the Page(s) should now appear under the newly assigned Page Category in the navigation","Marketing Operations Platform","Scenario: Assign an existing standalone page to an existing Page Category  
+Given I am logged into the system and have access to the page management interface  
+And there is an existing standalone page that is not currently assigned to any Page Category  
+And there is an existing Page Category available in the system  
+When I select the standalone page  
+And I choose the option to assign it to a Page Category  
+And I select the desired Page Category from the list  
+And I confirm the assignment  
+Then the standalone page should be successfully assigned to the selected Page Category  
+And the page should now appear under the selected Page Category in the system.  
+
+---
+
+Scenario: Re-assign an existing parent page to a different Page Category  
+Given I am logged into the system and have access to the page management interface  
+And there is an existing parent page currently assigned to a Page Category  
+And there is another existing Page Category available in the system  
+When I select the parent page  
+And I choose the option to re-assign it to a different Page Category  
+And I select the new Page Category from the list  
+And I confirm the re-assignment  
+Then the parent page should be successfully re-assigned to the new Page Category  
+And the page should no longer appear under the old Page Category  
+And the page should now appear under the new Page Category in the system.","chatcmpl-E1u3f6lVBldl67SixJ16cpp3xvjLG","success",0.12314749999999998
+"280","As a user, I want to see the database name and record name in the header","1. Replace with ib-ui Overlay component (Change in Typography, buttons? etc) (Note: this will affect other usage of OverlayHeader)
+2. Display Database name (Database Name is clickable)
+3. Display Record Name
+4. Truncates (see design)with tooltip to display value","Scenario: Update Overlay Component to Use ib-ui Overlay and Display Database & Record Information
+Given the user is viewing a record in an overlay
+When the ib-ui Overlay component is used
+Then the typography and button styles should be updated according to the new design
+And the overlay header should display the database name
+And the database name should be clickable
+And the overlay header should display the record name
+And if the database name or record name is too long, it should be truncated with a tooltip displaying the full value","Marketing Operations Platform","Scenario: Display database name and record name in the header  
+Given I am logged into the application  
+And I have selected a specific database  
+And I have opened a specific record within that database  
+When I view the header of the application  
+Then I should see the name of the selected database displayed in the header  
+And I should see the name of the selected record displayed in the header.","chatcmpl-E1u3hrg4MszqlYShhJ8wY4iAlpFF7","success",0.12314749999999998
+"298","PB - (Misc) As a User, I want to be informed why the Page cannot be saved in Page Builder if it's beyond the set Page limit in MCP","1. When the user is in Page Builder already and the set D&D page limit in MCP has been reached:
+2. Be able to see a warning snack bar with message “Page limit of {&number set as page limit in MCP} reached.“ *in Page Builder after clicking on:*
+3. Save button on the top bar","Scenario: Display Warning Snackbar When D&D Page Limit is Reached in Page Builder
+Given the user is in Page Builder
+And the Drag & Drop (D&D) page limit set in MCP has been reached
+When the user clicks on the ""Save"" button in the top bar
+Then a warning snackbar should be displayed with the message:
+“Page limit of {&number set as page limit in MCP} reached.”","Marketing Operations Platform","Scenario: Display error message when Page cannot be saved due to exceeding the set Page limit in MCP  
+Given the user is editing a Page in Page Builder  
+And the Page limit is set in MCP (e.g., 50 pages)  
+And the user attempts to save a Page that exceeds the set Page limit  
+When the user clicks the ""Save"" button  
+Then an error message is displayed informing the user that the Page cannot be saved because it exceeds the set Page limit in MCP  
+And the Page is not saved.","chatcmpl-E1u3iVbNACass1oM0cOGthjSgCKy5","success",0.12314749999999998
+"309","3-2. As a User, I want to reposition Image Widget by dragging image itself when create/editing a Page","1. Be able to see dotted line of the Image and bounding box for the entire Widget with a default 8px paddings as per design, after dragging an Image Widget into a Section
+2. Be able to always see the Image Widget’s outer bounding box border line as per design, whenever the Image has been re-sized","Scenario: Displaying Image Widget Boundaries and Maintaining Bounding Box on Resize
+Given the user drags an Image Widget into a Section
+When the widget is placed
+Then a dotted line should appear around the Image
+And a bounding box should be visible for the entire widget with a default 8px padding as per design
+And Given the Image Widget is displayed
+When the user resizes the Image
+Then the outer bounding box border should always remain visible as per design","Marketing Operations Platform","Scenario: Reposition Image Widget by dragging the image itself while creating/editing a Page  
+Given I am on the Page creation or editing interface  
+And an Image Widget is already added to the Page  
+When I click and hold on the image within the Image Widget  
+And I drag the image to a new position on the Page  
+And I release the mouse button to drop the image  
+Then the Image Widget is repositioned to the new location on the Page  
+And the new position is saved automatically or upon saving the Page","chatcmpl-E1u3j89Jl92vtpohaJBBdRsQaFVOT","success",0.12314749999999998
+"340","PB - As a User, I want to edit and save a Smart Page with template after it's loaded","1. Be able to continue editing and saving the Smart Page with loaded page template
+2. Current “template“ and “thumbnails” design are dummy/mock ones, once the real templates are final we will import them with the task: ","Scenario: Editing and Saving a Smart Page with a Loaded Page Template
+Given the user has selected a Page Template in the V3 Page Builder
+When the template is loaded into the Smart Page editor
+Then the user should be able to edit the content and layout of the page
+And Given the user has made changes to the Smart Page
+When they click Save
+Then the changes should be successfully saved
+And Given the current template and thumbnails are dummy/mock versions
+Then they should be replaced with final templates once they are imported in a future task","Marketing Operations Platform","Scenario: Edit and save a Smart Page with a template after it's loaded  
+Given a Smart Page with a template is loaded in the editor  
+When the user makes changes to the content or layout of the Smart Page  
+And the user clicks the ""Save"" button  
+Then the changes to the Smart Page are saved successfully  
+And a confirmation message is displayed to the user indicating the save was successful.","chatcmpl-E1u3k4lsSbE1iaED2f5ArO0JYzdxF","success",0.12314749999999998
+"353","PB - As a User, I want to see a new landing page","1. Be able to see just empty Sections with no ""Blocks""","Scenario: Viewing Empty Sections Without Blocks
+Given the user is in Page Builder
+And the Page is in Create or Edit mode
+When the user adds a new Section
+Then the Section should be visible as an empty container
+And it should not contain any Blocks by default
+And the user should have the option to drag Widgets into the empty Section","Marketing Operations Platform","Scenario: Display a new landing page to the user  
+Given the user navigates to the website's homepage  
+When the user accesses the website after the new landing page has been deployed  
+Then the user should see the updated landing page with the new design and content.","chatcmpl-E1u3lYnzbL6RgR8MzXpmDPuO2A3Dw","success",0.12314749999999998
+"379","PB - As a User, I want to be able to download the resources added to the page, if I have permission to do so - Video widget","1. Be able to *ONLY* see the download button as per to download the added resources on Editing, Previewing & Viewing of Simple Page *by hovering on Widgets*:
+2. Video resource from Video Widget","Scenario: Display Download Button on Hover Over Video Widget in Simple Page
+Given a user is viewing, previewing, or editing a Simple Page containing a Video Widget
+When the user hovers over the Video Widget
+Then a download button should appear on the Video Widget
+And clicking the download button should initiate the download of the video resource associated with the Video Widget","Marketing Operations Platform","Scenario: Download video resource with permission  
+Given the user is logged into the system  
+And the user has permission to download resources  
+And the page contains a video widget with a downloadable resource  
+When the user clicks on the ""Download"" button on the video widget  
+Then the video resource should start downloading successfully  
+And the user should see a confirmation message indicating the download has started.  
+
+Scenario: Attempt to download video resource without permission  
+Given the user is logged into the system  
+And the user does not have permission to download resources  
+And the page contains a video widget with a downloadable resource  
+When the user clicks on the ""Download"" button on the video widget  
+Then the video resource should not start downloading  
+And the user should see an error message indicating they do not have permission to download the resource.","chatcmpl-E1u3njzTZVOMPY6sobPREz4ij01rU","success",0.12314749999999998
+"372","PB - As a User, I want to re-order pages within the same parent/root via Nav - FE integration","1. Be able to re-order Pages via drag-and-drop from Nav Panel during editing
+2. Sub-pages will be moved all together with Page if it contains any
+3. After drag-and-drop of Pages, Sub-pages will be *collapsed* under Page from Nav Panel","Scenario: Reordering Pages via Drag-and-Drop in Navigation Panel during Editing
+Given the user is in editing mode within the Page Builder
+And the Navigation Panel displays a list of pages, some of which contain sub-pages
+When the user drags a page to a new position within the Navigation Panel
+Then the system moves the selected page to the new position
+And if the moved page contains sub-pages, all associated sub-pages move along with it
+And after the drag-and-drop action, any sub-pages under the moved page are collapsed in the Navigation Panel","Marketing Operations Platform","Scenario: Re-order pages within the same parent/root via navigation interface
+
+Given I am logged into the application  
+And I am on the navigation interface  
+And I can see a list of pages under the same parent/root  
+
+When I drag and drop a page to a new position within the same parent/root  
+
+Then the page order is updated in the navigation interface  
+And the new order is saved successfully  
+And I see a confirmation message indicating the re-ordering was successful.","chatcmpl-E1u3o4Ptfovbu4CChjX64k9DwnDl0","success",0.12314749999999998
+"385","PB - As a User, I want to re-order pages within the same parent/root via Nav - FE UI component","1. Be able to re-order Pages via drag-and-drop from Nav Panel during editing
+2. Sub-pages will be moved all together with Page if it contains any
+3. After drag-and-drop of Pages, Sub-pages will be *collapsed* under Page from Nav Panel","Scenario: Reordering Pages and Sub-Pages via Drag-and-Drop in Navigation Panel
+Given a user is in editing mode within the Page Builder
+When the user drags a page that contains sub-pages to a new position in the Navigation Panel
+Then the page, along with all its sub-pages, should move together to the new position
+And after the move, the sub-pages should be collapsed under the parent page in the Navigation Panel
+And the updated page order and hierarchy should be saved and persist across editing and viewing modes until changed again by the user","Marketing Operations Platform","Scenario: Re-order pages within the same parent/root via Navigation UI component  
+Given I am logged into the application and viewing the Navigation UI component  
+And I have a parent/root with multiple pages listed under it  
+When I drag and drop a page to a new position within the same parent/root  
+Then the page is successfully moved to the new position  
+And the updated order of pages is reflected in the Navigation UI component  
+And the new order is saved persistently in the system.","chatcmpl-E1u3pJcXYgqvCa2sMW72oC3F0quen","success",0.12314749999999998
+"311","2-3. As a User, I want to Undo & Redo resizing & repositioning","1. Be able to still click on Undo & Redo from top bar to go back & forward the actions on:
+2. Resizing the Image by dragging the dots
+3. Resizing the Image by changing the ratio","Scenario: Undo & Redo Actions for Image Resizing
+Given the user resizes the Image by dragging the dots
+When they click the Undo button from the top bar
+Then the Image should revert to its previous size
+And Given the user has undone the resizing action
+When they click the Redo button from the top bar
+Then the Image should return to the resized state
+And Given the user resizes the Image by changing the ratio
+When they click the Undo button from the top bar
+Then the Image should revert to its previous ratio
+And Given the user has undone the ratio change
+When they click the Redo button from the top bar
+Then the Image should return to the resized ratio state","Marketing Operations Platform","Scenario: Undo resizing of an element  
+Given a user has resized an element on the screen  
+When the user clicks the ""Undo"" button  
+Then the element returns to its original size before the resize  
+
+---
+
+Scenario: Redo resizing of an element  
+Given a user has undone a resize action  
+When the user clicks the ""Redo"" button  
+Then the element returns to the resized state  
+
+---
+
+Scenario: Undo repositioning of an element  
+Given a user has moved an element to a new position on the screen  
+When the user clicks the ""Undo"" button  
+Then the element returns to its original position before the move  
+
+---
+
+Scenario: Redo repositioning of an element  
+Given a user has undone a repositioning action  
+When the user clicks the ""Redo"" button  
+Then the element returns to the new position it was moved to before the undo  
+
+---
+
+Scenario: Undo multiple actions  
+Given a user has resized and repositioned an element  
+When the user clicks the ""Undo"" button multiple times  
+Then the element reverts to its previous states step by step, first undoing the repositioning and then the resizing  
+
+---
+
+Scenario: Redo multiple actions  
+Given a user has undone multiple actions (resizing and repositioning)  
+When the user clicks the ""Redo"" button multiple times  
+Then the element re-applies the undone actions step by step, first redoing the resizing and then the repositioning","chatcmpl-E1u3r3J1YGEytLbDLuLlm30Mi8Mb6","success",0.12314749999999998
+"315","[Ask AI Alpha] As a user, I want the Q&A system not to include any deleted documents ","1. Deleted resources should be excluded from being a source for any questions/answers","Scenario: Excluding Deleted Resources from Questions and Answers
+Given a resource has been deleted
+When a question or answer attempts to reference the deleted resource as a source
+Then the deleted resource should not be available as a source
+And the question or answer should not display or retrieve information from the deleted resource","Marketing Operations Platform","Scenario: Exclude deleted documents from Q&A system results  
+Given the Q&A system has access to a database of documents  
+And some documents in the database have been marked as deleted  
+When I ask a question to the Q&A system  
+Then the system should only provide answers based on non-deleted documents  
+And no information from deleted documents should be included in the response.","chatcmpl-E1u3tmYMGu9X3oktVtJe85L6lyXOd","success",0.12314749999999998
+"290","PB - As a User, I want to un-assign a Page Category from an existing parent / standalone page","1. Be able to un-assign (aka. update a Page to be removed from a Page Category) *a standalone Page* or *Parent including sub-pages together* from an existing Page Category via the Assign Page Category button as per ","Scenario: Un-assign a Page or Parent with Sub-Pages from a Page Category
+Given the user is on the Assign Page Category interface
+When the user selects a standalone Page or a Parent Page (including all sub-pages) to be removed from an existing Page Category
+And the user confirms the action
+Then the selected Page or Parent Page with sub-pages should be unassigned from the Page Category
+And the Page(s) should no longer appear under the previously assigned Page Category in the navigation","Marketing Operations Platform","Scenario: Un-assign a Page Category from an existing parent/standalone page  
+Given the user is logged into the system and navigates to the page management section  
+And the user has selected an existing parent or standalone page with an assigned category  
+When the user clicks on the ""Edit"" or ""Manage Categories"" option for the selected page  
+And the user removes the assigned category by clicking the ""Un-assign"" or equivalent button  
+And confirms the action in the confirmation prompt  
+Then the category should no longer be associated with the selected page  
+And the system should display a success message confirming the category has been un-assigned  
+And the page should reflect the updated status with no assigned category.","chatcmpl-E1u3uY75sa9IgDMfDqtehPXtUVxbX","success",0.12314749999999998
+"492","[GDA] - As a user, I want to be able to click Submit & Next (single view) and have validation checks occurs","1. On Submit of single request, the below validation checks occur:
+2. If comment is mandatory
+3. If response is unfilled","Scenario: Validate Mandatory Comment and Response Before Submitting a Single Request
+Given the user is submitting a single request response
+When they click Submit
+Then the system should check if a comment is mandatory
+And if the comment field is empty, display a validation message
+And the system should check if a response has been provided
+And if the response is unfilled, display a validation message preventing submission","Marketing Compliance","Scenario: Validate form submission and navigation to the next view
+
+Given I am on a single view form with all required fields displayed  
+And I have filled out some or all of the fields on the form  
+
+When I click the ""Submit & Next"" button  
+Then the system should perform validation checks on the form  
+And if all required fields are correctly filled, the form should be submitted successfully  
+And I should be navigated to the next view  
+And a confirmation message should be displayed indicating successful submission  
+
+When I click the ""Submit & Next"" button  
+And there are validation errors (e.g., missing required fields or invalid input)  
+Then the system should display error messages next to the fields with issues  
+And I should remain on the current view until all errors are resolved.","chatcmpl-E1u3w9VmiQIgR5bfRp2OQFtYrQ3yF","success",0.12314749999999998
+"473","PB - As a User, I want to set Page/Section/Block/Widgets Colour in Opacity ","1. Be able to set Page/Section/Block 's background, Colour Palette Widget 's Colour, Button Widget's Text & Background in opacity as per design
+2. Be bale to se the transparency / opacity via the opacity bar blow the hue bar as per ","Scenario: Set and Adjust Opacity for Page/Section/Block Background, Color Palette Widget, and Button Widget
+Given the user is editing a Page, Section, or Block
+And the user has access to the Color Palette Widget and Button Widget settings
+When the user sets the background color, text color, or button background
+Then they should be able to adjust the transparency/opacity using the opacity bar below the hue bar as per the design
+And the selected opacity level should be applied accordingly
+
+
+
+
+
+
+","Marketing Compliance","Scenario: Set the opacity of a widget's color  
+Given I am on the page editor with a page/section/block/widget selected  
+When I navigate to the color settings for the selected page/section/block/widget  
+And I adjust the opacity slider or input a specific opacity value  
+Then the color of the selected page/section/block/widget should update to reflect the chosen opacity level  
+And the changes should be visible in real-time on the editor preview.","chatcmpl-E1u3yfiBAazfHqQYMkU0VpOBCz1ZU","success",0.12314749999999998
+"476","As a User, I want to filter Image Resources that flagged with Unknown faces","1. Be able to filter resources with “Unknown People“ condition from resource filter panel if they ever include any Unknown faces in Facial Recognition as per 
+2. Be able to always see “Unknown People“ condition below “People” as per (the position of “Unknown People“ is closely blow “People“)","Scenario: Filter Resources by 'Unknown People' in Resource Filter Panel
+Given the user is in the Resource Filter Panel
+When the resource contains Unknown faces detected by Facial Recognition
+Then the user should be able to filter resources using the ""Unknown People"" condition
+And the ""Unknown People"" filter option should always be positioned directly below the ""People"" filter in the panel","Marketing Compliance","Scenario: Filter image resources flagged with unknown faces  
+Given the user is logged into the system and is on the image resources page  
+When the user selects the filter option for ""Unknown Faces""  
+Then only image resources flagged with unknown faces are displayed on the page","chatcmpl-E1u3zZe9fnvOdqKiBeAfR5zmYYzhQ","success",0.12314749999999998
+"499","As a user I want to run a stats report for database tool and see files from multi upload field represented each on their own row (excluding in Duplicable sections)","1. Where multiple files exist in a multiple upload field each one is represented on its own row
+2. File names are expanded into separate rows","Scenario: Display Multiple Files in Separate Rows for a Multi-Upload Field
+Given a Multi-Upload field contains multiple files
+When the user views the uploaded files
+Then each file should be represented on its own row
+And the file names should be expanded into separate rows for clear visibility","Marketing Compliance","Scenario: Generate a stats report with files from multi-upload field represented on individual rows
+
+Given I am a user with access to the database tool  
+And there are files uploaded in the multi-upload field (excluding files in duplicable sections)  
+And I have navigated to the stats report generation page  
+
+When I run the stats report  
+
+Then the report should display each file from the multi-upload field on its own row  
+And files from duplicable sections should not be included in the report  
+And the report should be formatted correctly with all relevant data displayed.","chatcmpl-E1u4095M7Eljzo2h33MHWjLQXBGI7","success",0.12314749999999998
+"485","FR - As a User, I want to filter Image Resource by tagged faces (with names) from Search - Filter - People","1. Be able to see the new filter section: People from Resource Search Filter panel as per 
+2. Be able to input names","Scenario: Use 'People' Filter in Resource Search Panel
+Given the user is in the Resource Search Filter panel
+When they view the filter options
+Then a new filter section labeled ""People"" should be visible as per the design
+And the user should be able to input names into the filter field
+
+
+
+
+
+
+","Marketing Compliance","Scenario: Filter image resources by tagged faces with names
+
+Given I am on the Search page  
+And I have navigated to the Filter section  
+And there are images in the system with tagged faces (with names)  
+
+When I select the ""People"" filter  
+And I choose a specific name from the list of tagged faces  
+
+Then I should see only the images that contain the selected tagged face with the chosen name  
+And no other images should be displayed.","chatcmpl-E1u4268vIaIOItKFUbwpOvAaF7CAN","success",0.12314749999999998
+"495","As a user I want to see time to complete for requests in Workflow Dashboards (UPDATE) including Reviewed Status Requests","1. For Item List when either ‘All Workflows’ or a specific Workflow is selected ","Scenario: Display Items Based on Workflow Selection
+Given the user is on the Item List page
+When they select either ‘All Workflows’ or a specific Workflow from the filter
+Then the item list should update to display only the items that match the selected workflow criteria
+
+
+
+
+
+
+","Marketing Compliance","Scenario: Display time to complete for requests, including Reviewed Status Requests, in Workflow Dashboards
+
+Given I am a user logged into the Workflow Dashboard  
+And there are requests in the dashboard with various statuses, including ""Reviewed""  
+When I view the requests in the Workflow Dashboard  
+Then I should see the ""time to complete"" displayed for all requests, including those with the ""Reviewed"" status  
+And the ""time to complete"" should accurately reflect the duration from request creation to completion or review.","chatcmpl-E1u43kLrJrKytdPdymOcBJQKWFCSv","success",0.12314749999999998
+"434","As a User, I want to see ""Closed Caption"" only when file format is enabled as Video from Filter Panel in Resource module","1. Filtering Options - General Options - Closed Captions will be by default invisible and will be visible only when the File Format is enabled with 'Video,' 'Audio,' or 'Video and Audio.' in the below scenarios:
+2. Only Audio +or+ Video is selected","Scenario: Conditional Visibility of Closed Captions Filter Based on File Format Selection
+Given I am on the Filtering Options interface under General Options
+When I select 'Audio', 'Video', or 'Video and Audio' as the File Format
+Then the Closed Captions filter should become visible
+And I should be able to interact with the Closed Captions filter
+When I select any other File Format
+Then the Closed Captions filter should be hidden","Marketing Compliance","Scenario: Display ""Closed Caption"" option only when Video file format is selected in the Filter Panel
+
+Given I am on the Resource module page  
+And the Filter Panel is visible  
+And no file format is selected or a non-Video file format is selected in the Filter Panel  
+
+When I look at the available options in the Filter Panel  
+
+Then I should not see the ""Closed Caption"" option  
+
+---
+
+Scenario: Display ""Closed Caption"" option when Video file format is selected in the Filter Panel  
+
+Given I am on the Resource module page  
+And the Filter Panel is visible  
+
+When I select ""Video"" as the file format in the Filter Panel  
+
+Then I should see the ""Closed Caption"" option displayed in the Filter Panel","chatcmpl-E1u44jaZsSx7RNlYKIVGeOPVsEAX5","success",0.12314749999999998
+"452","As a user I want to see 'Review Request' bulk action in action dropdown in footer","1. When one item’s checkbox is selected, the Bulk Action footer bar displays ","Scenario: Display Bulk Action Footer When One Item is Selected
+Given the user is on the items list page
+And there are multiple items displayed with checkboxes
+When the user selects a single item's checkbox
+Then the Bulk Action footer bar should be displayed","Marketing Compliance","Scenario: Display 'Review Request' bulk action in the footer dropdown
+
+Given I am logged into the application  
+And I am on a page with a list of items that support bulk actions  
+And there are selectable items in the list  
+
+When I select one or more items from the list  
+And I open the action dropdown in the footer  
+
+Then I should see the 'Review Request' option available in the dropdown menu","chatcmpl-E1u47dZKvvq7ukVhrUKCIWnJkwyT8","success",0.12314749999999998
+"439","BP - As a User, I want to single select resources from Resource Lookup with unchangeable filter based on file type in Page Builder","1. Be able to see and select resources into Page Builder via Resource Lookup with unchangeable filter applied with results by default, depending on the target page area:
+2. Page/Section/Block background: Filtering Options > General Options > File Format will be *locked* with only *Image* enabled","Scenario: Resource Lookup with Unchangeable Image Filter for Background Selection in Page Builder
+Given I am using the Resource Lookup overlay within the Page Builder
+When I attempt to select a resource for a Page, Section, or Block background
+Then the Filtering Options should display
+And the General Options > File Format filter should be locked with only 'Image' enabled
+And the search results should display only image resources
+And I should be able to select an image resource from these results
+And the selected image should be applied as the background to the chosen Page, Section, or Block","Marketing Compliance","Scenario: Single select resources from Resource Lookup with an unchangeable filter based on file type in Page Builder  
+
+Given I am on the Page Builder interface  
+And the Resource Lookup is available with a predefined, unchangeable filter based on file type  
+When I open the Resource Lookup  
+And I select a single resource from the filtered list  
+Then the selected resource is displayed in the Page Builder  
+And I cannot modify the predefined file type filter in the Resource Lookup.","chatcmpl-E1u48GLzES3DbTKilAsiE7Kqxsc9x","success",0.12314749999999998
+"432","PB - As a User, I want to see Nav panel when creating a Simple Page(BE)","1. Be able to see the new tab ""Pages"" from Right Side Panel when creating a Simple Page (By default, it's opened, compared to ""Builder"" tab) as per 
+2. Be able to see all the saved Simple pages against current user’s permission, from the tab of the Right Side Panel as per 
+3. By default, in oder of *Last Updated* as the same in v2 index list","Scenario: Display ""Pages"" Tab in Right Side Panel During Simple Page Creation with Ordered List of Accessible Pages
+Given I am creating a new Simple Page
+When I view the Right Side Panel
+Then the ""Pages"" tab should be visible and open by default
+And the ""Pages"" tab should list all saved Simple Pages that I have permission to access
+And the list of pages should be ordered by the ""Last Updated"" date, consistent with the ordering in the version 2 index list","Marketing Compliance","Scenario: Display Navigation Panel when creating a Simple Page  
+
+Given the user is logged into the application  
+And the user is on the ""Create Simple Page"" backend interface  
+When the user starts creating a new Simple Page  
+Then the navigation panel should be visible on the interface  
+And the navigation panel should display relevant options for page creation.","chatcmpl-E1u4AU2IF5yYkWGdwj2FXyw19bWO9","success",0.12314749999999998
+"437","BP - As a User, I want the single selected Image resource via Resource Lookup to appear in Image Widget (preview linkage)","1. Be able to see the latest single-selected image resource from overlay in target areas:
+2. Image Widgets
+3. Be able to see the selected and added image resource by its preview link","Scenario: Display Selected Image Resource in Image Widget with Preview Link
+Given I am using the resource selection overlay
+When I single-select an image resource
+And I add it to an Image Widget on the page
+Then the selected image should be displayed within the Image Widget
+And the image should be accessible through its preview link","Marketing Compliance","Scenario: Display selected image resource in the Image Widget
+
+Given the user is on the Resource Lookup page  
+And the user has access to a list of image resources  
+And the Image Widget is visible on the interface  
+
+When the user selects a single image resource from the Resource Lookup  
+Then the selected image resource should appear in the Image Widget as a preview  
+And the Image Widget should update to display the correct image without errors.","chatcmpl-E1u4Bsbn5SqYcpWaD6ByhylGZbB30","success",0.12314749999999998
+"472","PB - As a User, I want to report on Resource downloaded (Original) separately than added in Smart Page for Resource Module (Usage)","1. Be able to track Resource Usage Reporting- Resource download action that happens in Smart Pages for previously uploaded Resource (Original size type of Resource, aka “Best“ quality) via Resource Lookup","Scenario: Track Resource Usage Reporting for Resource Download in Smart Pages via Resource Lookup
+Given the user is on a Smart Page
+And a previously uploaded resource is available via Resource Lookup
+When the user downloads the resource in its Original size (""Best"" quality)
+Then the action should be tracked in the Resource Usage Reporting","Marketing Compliance","Scenario: Report on Resource Downloaded Separately from Resources Added in Smart Page
+
+Given the user has access to the Resource Module in the system  
+And the user has downloaded a resource (Original)  
+And the user has added a resource to the Smart Page (Usage)  
+
+When the user generates a report for resource activities  
+
+Then the report should display the downloaded resources (Original) separately from the resources added to the Smart Page (Usage)  
+And the report should clearly differentiate between the two categories with appropriate labels or sections.","chatcmpl-E1u4CNc6gtRtbOfW6ga8q6y7ZMO1O","success",0.12314749999999998
+"482","As a User, I want to control Daily Digest trigger of New Replies in Admin/My Account","1. Be able to see New Replies setting for daily digest email in Admin - Alert (Markup)
+2. Be able to turn on and apply only to *daily, never*
+3. *By default, digest frequency: Never*","Scenario: Configure 'New Replies' Setting for Daily Digest Email in Admin - Alert
+Given the user is in Admin > Alert (Markup) settings
+When they view the New Replies setting for the daily digest email
+Then the setting should be visible
+And the user should be able to set it to 'Daily' or 'Never'
+And the default digest frequency should be set to 'Never'","Marketing Compliance","Scenario: Enable Daily Digest Trigger for New Replies
+
+Given the user is logged into their account  
+And the user is on the ""Admin/My Account"" settings page  
+And the ""Daily Digest"" option for new replies is currently disabled  
+
+When the user enables the ""Daily Digest"" trigger for new replies  
+And clicks the ""Save"" button  
+
+Then the system saves the updated settings  
+And the ""Daily Digest"" trigger for new replies is enabled  
+And the user sees a confirmation message that the settings have been successfully updated.","chatcmpl-E1u4EJlWd5lJkJANcAHKjPoaDHMst","success",0.12314749999999998
