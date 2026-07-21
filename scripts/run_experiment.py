@@ -103,37 +103,39 @@ def cost_from_usage(prompt_tokens: int, completion_tokens: int) -> float:
     return (prompt_tokens * 2.5 / 1_000_000.0) + (completion_tokens * 10.0 / 1_000_000.0)
 
 
-def make_messages(text: str, prompt_profile: str):
-    if prompt_profile == "pilot":
-        system = (
-            "You are a QA expert. Generate a BDD scenario for this User Story.\n"
-            "User Story: {user_story}\n\n"
-            "Use the following format:\n"
-            "Scenario: [Scenario name]\n"
-            "Given [precondition]\n"
-            "When [action]\n"
-            "Then [expected result]\n\n"
-            "Make sure to:\n"
-            "1. Use clear and specific steps.\n"
-            "2. Include all necessary preconditions.\n"
-            "3. Describe the main action clearly.\n"
-            "4. Specify concrete expected results.\n"
-            "5. Use business language.\n"
-            "6. Do not include any explanations or multiple scenarios.\n"
-            "7. Focus on the most important happy path scenario.\n"
-        )
-        return [
-            {"role": "system", "content": system},
-            {"role": "user", "content": f"User Story: {text}"},
-        ]
+BDD_SYSTEM_PROMPT = """You are a QA expert. Generate a BDD scenario for this User Story.
 
-    system = (
-        "You are a QA expert. Generate a BDD scenario for this User Story.\n"
-        "Use the following format:\nScenario: [Scenario name]\nGiven [precondition]\nWhen [action]\nThen [expected result]\n"
-    )
+Use the following format:
+Scenario: [Scenario name]
+Given [precondition]
+When [action]
+Then [expected result]
+
+Make sure to:
+1. Use clear and specific steps.
+2. Include all necessary preconditions.
+3. Describe the main action clearly.
+4. Specify concrete expected results.
+5. Use business language.
+6. Do not include any explanations or multiple scenarios.
+7. Focus on the most important happy path scenario.
+
+--- EXAMPLE ---
+User Story: PB - As a User, I want to re-order pages within the same parent/root via Nav - FE UI component
+
+Scenario: Reordering Pages and Sub-Pages via Drag-and-Drop in Navigation Panel
+Given a user is in editing mode within the Page Builder
+When the user drags a page that contains sub-pages to a new position in the Navigation Panel
+Then the page, along with all its sub-pages, should move together to the new position
+And after the move, the sub-pages should be collapsed under the parent page in the Navigation Panel
+And the updated page order and hierarchy should be saved and persist across editing and viewing modes until changed again by the user"""
+
+
+def make_messages(text: str, prompt_profile: str):
+    del prompt_profile  # pilot and full share the same BDD prompt
     return [
-        {"role": "system", "content": system},
-        {"role": "user", "content": text},
+        {"role": "system", "content": BDD_SYSTEM_PROMPT},
+        {"role": "user", "content": f"User Story: {text}"},
     ]
 
 
