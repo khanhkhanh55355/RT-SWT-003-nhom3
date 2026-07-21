@@ -1,10 +1,20 @@
 import os
-import pandas as pd
-import numpy as np
+
 import matplotlib.pyplot as plt
-from scipy.stats import wilcoxon, binomtest
-from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
+import pandas as pd
+from dotenv import load_dotenv
+from openai import OpenAI
+from scipy.stats import binomtest, wilcoxon
 from sklearn.metrics.pairwise import cosine_similarity
+
+load_dotenv()
+EMBEDDING_MODEL = os.getenv("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
+
+
+def get_embeddings(client: OpenAI, texts: list[str]) -> np.ndarray:
+    response = client.embeddings.create(input=texts, model=EMBEDDING_MODEL)
+    return np.array([item.embedding for item in response.data])
 
 # ===== Paths =====
 OUTPUT_PATH = "../results/pilot_llm_output.csv"
@@ -24,20 +34,20 @@ df = df_output.merge(df_gt, left_on="id", right_on="ID", how="inner")
 print(f"Merged rows: {len(df)}")
 print(df[["id", "text", "User Story", "llm_output", "Manual Scenario"]].head())
 
-# ===== RQ1: Cosine Similarity =====
+# ===== RQ1: Cosine Similarity (OpenAI embeddings) =====
 expert = df["Manual Scenario"].fillna("").astype(str).tolist()
 generated = df["llm_output"].fillna("").astype(str).tolist()
 
-vectorizer = TfidfVectorizer()
-vectors = vectorizer.fit_transform(expert + generated)
-
-expert_vecs = vectors[:len(expert)]
-generated_vecs = vectors[len(expert):]
+client = OpenAI()
+expert_vecs = get_embeddings(client, expert)
+generated_vecs = get_embeddings(client, generated)
 
 cosine_scores = []
 for i in range(len(df)):
-    score = cosine_similarity(expert_vecs[i], generated_vecs[i])[0][0]
+    score = cosine_similarity([expert_vecs[i]], [generated_vecs[i]])[0][0]
     cosine_scores.append(score)
+
+print(f"Embedding model: {EMBEDDING_MODEL}")
 
 df["cosine_similarity"] = cosine_scores
 

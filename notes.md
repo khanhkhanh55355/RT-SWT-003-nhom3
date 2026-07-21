@@ -13,19 +13,20 @@
 | Temperature | `0` |
 | Script chạy batch | `scripts/run_experiment.py` |
 | Script tính metric | `scripts/compute_metric.py` |
+| Embedding cosine (MS) | `text-embedding-3-small` (hoặc `text-embedding-3-large` qua `OPENAI_EMBEDDING_MODEL`) |
 
 ## Pilot [MỚI T6]
 
 - [x] Tạo `data/pilot_sample.csv` (10–20% N, ghi seed ở trên)
 - [ ] Annotate `data/pilot_ground_truth.csv` + IAA
-- [ ] Chạy `scripts/test_api.py` (gate E3)
-- [ ] Chạy experiment pilot → `results/pilot_llm_output.csv`
+- [x] Chạy `scripts/test_api.py` (gate E3)
+- [x] Chạy experiment pilot → `results/pilot_llm_output.csv`
 - [ ] Phân tích → `results/pilot_analysis.ipynb`
 
 ## Full run [MỚI T7–T8]
 
 - [ ] Annotate `data/full_ground_truth.csv`
-- [ ] Chạy full experiment → `results/full_llm_output.csv`
+- [x] Chạy full experiment → `results/full_llm_output.csv` (LR — `scripts/run_full.py`)
 - [ ] Phân tích → `results/full_analysis.ipynb`
 - [ ] Tổng hợp → `results/summary.csv`
 - [ ] Vẽ `figures/fig1_distribution.png`, `figures/fig2_comparison.png`
@@ -34,7 +35,27 @@
 
 | Ngày | Mô tả lỗi | Cách xử lý |
 |------|-----------|------------|
-| | | |
+| 2026-07-21 | Full run simulated cũ (121 dòng fake) | Xóa log cũ, chạy lại bằng API thật |
+
+## Full Run Log [LR]
+
+**Ngày:** 2026-07-21
+
+### Cấu hình (giống pilot)
+- Dataset: `data/sampled_100.csv` (N=100)
+- Model: `gpt-4o-2024-11-20`, temperature=0
+- Prompt profile: `pilot`
+- Checkpoint interval: 50
+
+### Kết quả
+- Output: `results/full_llm_output.csv` — 100/100 success
+- Log: `results/full_api_log.txt`, `results/full_api_log.jsonl`
+- Tổng chi phí API: ~$0.12
+- Script: `scripts/run_full.py`
+
+### Ghi chú cho MS (cosine similarity)
+- Embedding: `text-embedding-3-small` (đổi sang `text-embedding-3-large` qua `OPENAI_EMBEDDING_MODEL` trong `.env`)
+- Prompt BDD: có few-shot example trong `scripts/run_experiment.py`
 
 ## Data Preparation Log [DG — Hồ Ngọc Bảo Trân]
 
