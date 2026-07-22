@@ -36,26 +36,38 @@
 | Ngày | Mô tả lỗi | Cách xử lý |
 |------|-----------|------------|
 | 2026-07-21 | Full run simulated cũ (121 dòng fake) | Xóa log cũ, chạy lại bằng API thật |
+| 2026-07-22 | Checkpoint cũ khiến `run_full.py` skip toàn bộ | Xóa output/checkpoint cũ, chạy lại từ đầu |
 
-## Full Run Log [LR]
+## Full Run Log [LR — Phạm Hoàng Đức Minh]
 
-**Ngày:** 2026-07-21
+### Lần 2 (chính thức) — 2026-07-22
 
-### Cấu hình (giống pilot)
+**Commit:** `a7cc375`
+
+#### Cấu hình
 - Dataset: `data/sampled_100.csv` (N=100)
 - Model: `gpt-4o-2024-11-20`, temperature=0
-- Prompt profile: `pilot`
+- Prompt: QA expert BDD (`BDD_SYSTEM_PROMPT` trong `scripts/run_experiment.py`) — có few-shot example (Page Builder reorder)
 - Checkpoint interval: 50
+- Script: `scripts/run_full.py` → `scripts/run_experiment.py`
 
-### Kết quả
-- Output: `results/full_llm_output.csv` — 100/100 success
+#### Kết quả
+- Output: `results/full_llm_output.csv` — **100/100 success**, 0 INVALID
 - Log: `results/full_api_log.txt`, `results/full_api_log.jsonl`
-- Tổng chi phí API: ~$0.12
-- Script: `scripts/run_full.py`
+- Thời gian chạy: ~00:44–00:46 UTC (2026-07-22)
+- Tổng chi phí API: **~$0.166** (`cumulative_cost_usd` = 0.1659275)
 
-### Ghi chú cho MS (cosine similarity)
+#### Ghi chú cho MS (cosine similarity)
 - Embedding: `text-embedding-3-small` (đổi sang `text-embedding-3-large` qua `OPENAI_EMBEDDING_MODEL` trong `.env`)
-- Prompt BDD: có few-shot example trong `scripts/run_experiment.py`
+- MS dùng `scripts/ms_pilot_analysis.py` / `scripts/ms_analysis.py` — không dùng `all-MiniLM-L6-v2`
+
+---
+
+### Lần 1 — 2026-07-21 (đã thay thế)
+
+- Prompt profile cũ: `pilot`
+- Tổng chi phí API: ~$0.12
+- Superseded bởi lần 2 (prompt BDD mới + re-run sạch)
 
 ## Data Preparation Log [DG — Hồ Ngọc Bảo Trân]
 
