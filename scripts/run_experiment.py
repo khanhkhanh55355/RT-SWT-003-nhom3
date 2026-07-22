@@ -128,7 +128,8 @@ Given a user is in editing mode within the Page Builder
 When the user drags a page that contains sub-pages to a new position in the Navigation Panel
 Then the page, along with all its sub-pages, should move together to the new position
 And after the move, the sub-pages should be collapsed under the parent page in the Navigation Panel
-And the updated page order and hierarchy should be saved and persist across editing and viewing modes until changed again by the user"""
+And the updated page order and hierarchy should be saved and persist across editing and viewing modes until changed again by the user
+--- END EXAMPLE ---"""
 
 
 def make_messages(text: str, prompt_profile: str):
