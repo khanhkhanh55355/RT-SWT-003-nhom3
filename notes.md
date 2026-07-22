@@ -40,6 +40,20 @@
 
 ## Full Run Log [LR — Phạm Hoàng Đức Minh]
 
+### Lần 3 — 2026-07-22 (prompt Gherkin strict v2)
+
+#### Cấu hình
+- Prompt: executable BDD Gherkin, 10 rules + few-shot example (re-order pages)
+- User message: `User Story:\n{text}`
+- Pilot: N=20 → `results/pilot_llm_output.csv`
+- Full: N=100 → `results/full_llm_output.csv`
+
+#### Kết quả
+- Pilot: **20/20 success**, chi phí ~$0.03
+- Full: **100/100 success**, chi phí ~$0.15
+
+---
+
 ### Lần 2 (chính thức) — 2026-07-22
 
 **Commit:** `a7cc375`

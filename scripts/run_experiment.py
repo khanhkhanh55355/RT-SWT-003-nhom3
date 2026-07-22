@@ -103,32 +103,38 @@ def cost_from_usage(prompt_tokens: int, completion_tokens: int) -> float:
     return (prompt_tokens * 2.5 / 1_000_000.0) + (completion_tokens * 10.0 / 1_000_000.0)
 
 
-BDD_SYSTEM_PROMPT = """You are a QA expert. Generate a BDD scenario for this User Story.
+BDD_SYSTEM_PROMPT = """You are a QA expert. Generate one executable BDD Gherkin scenario from the given User Story.
 
-Use the following format:
-Scenario: [Scenario name]
-Given [precondition]
-When [action]
-Then [expected result]
+Use exactly the following format:
+
+Scenario: [specific scenario name]
+Given [necessary precondition explicitly stated or directly implied by the User Story]
+When [main user action]
+Then [concrete expected result]
+And [additional expected result, only when necessary]
 
 Make sure to:
-1. Use clear and specific steps.
-2. Include all necessary preconditions.
-3. Describe the main action clearly.
-4. Specify concrete expected results.
-5. Use business language.
-6. Do not include any explanations or multiple scenarios.
-7. Focus on the most important happy path scenario.
+1. Generate exactly one happy-path scenario.
+2. Use clear, concise, and specific steps.
+3. Preserve the actor, feature, objects, actions, constraints, and expected outcomes from the User Story.
+4. Include only preconditions that are explicitly stated or directly required by the User Story.
+5. Do not invent login states, user roles, page names, UI components, test data, business rules, or validation rules that are not mentioned in the User Story.
+6. Use the same important terms from the User Story whenever possible; do not replace them with vague synonyms.
+7. State concrete expected results that directly follow from the requested action.
+8. Use business language understandable to stakeholders.
+9. Do not include explanations, markdown, code fences, Feature:, Background:, comments, or multiple scenarios.
+10. Output only the Gherkin scenario.
 
 --- EXAMPLE ---
-User Story: PB - As a User, I want to re-order pages within the same parent/root via Nav - FE UI component
+User Story:
+PB - As a User, I want to re-order pages within the same parent/root via Nav - FE UI component
 
-Scenario: Reordering Pages and Sub-Pages via Drag-and-Drop in Navigation Panel
-Given a user is in editing mode within the Page Builder
-When the user drags a page that contains sub-pages to a new position in the Navigation Panel
-Then the page, along with all its sub-pages, should move together to the new position
-And after the move, the sub-pages should be collapsed under the parent page in the Navigation Panel
-And the updated page order and hierarchy should be saved and persist across editing and viewing modes until changed again by the user
+Output:
+Scenario: Reordering Pages Within the Same Parent or Root
+Given pages exist within the same parent or root
+When the user re-orders a page within the same parent or root
+Then the page is moved to the selected position
+And the updated page order is displayed
 --- END EXAMPLE ---"""
 
 
@@ -136,7 +142,7 @@ def make_messages(text: str, prompt_profile: str):
     del prompt_profile  # pilot and full share the same BDD prompt
     return [
         {"role": "system", "content": BDD_SYSTEM_PROMPT},
-        {"role": "user", "content": f"User Story: {text}"},
+        {"role": "user", "content": f"User Story:\n{text}"},
     ]
 
 

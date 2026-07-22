@@ -1,135 +1,99 @@
 "id","domain","text","llm_output","response_id","status","cumulative_cost_usd"
-"385","Marketing Operations Platform","PB - As a User, I want to re-order pages within the same parent/root via Nav - FE UI component","Scenario: Reordering Pages Within the Same Parent via Drag-and-Drop in Navigation Panel  
-Given a user is in editing mode within the Page Builder  
-And the Navigation Panel is open and displaying pages under the same parent  
-When the user drags a page to a new position within the same parent in the Navigation Panel  
-Then the page should move to the new position  
-And the updated page order should be saved and persist across editing and viewing modes until changed again by the user","chatcmpl-E4GqrGNCcgy0YaH2EipYMzfEsMFXi","success",0.033465
+"385","Marketing Operations Platform","PB - As a User, I want to re-order pages within the same parent/root via Nav - FE UI component","Scenario: Reordering Pages Within the Same Parent or Root  
+Given pages exist within the same parent or root  
+When the user re-orders a page within the same parent or root  
+Then the page is moved to the selected position  
+And the updated page order is displayed","chatcmpl-E4OJD2EsTbTWefL7s9DPkhHddbrI0","success",0.030015
 "210","Brand Management","PB - As a User, I want to see a new landing page","Scenario: Viewing the New Landing Page  
-Given a user navigates to the website's homepage  
-When the user accesses the website after the new landing page has been deployed  
-Then the user should see the new landing page with updated design and content  
-And the page should load without errors or delays  
-And all interactive elements on the landing page should function as intended.","chatcmpl-E4GqsubiHdDZpXXgaamAqD4SqU54p","success",0.033465
-"335","Marketing Operations Platform","PB - As a User, I want to create a Drag & Drop Page (as a standalone Page) from Nav","Scenario: Creating a Standalone Page via Drag-and-Drop in Navigation Panel  
-Given a user is in editing mode within the Page Builder  
-When the user drags a new page element from the component library and drops it into the Navigation Panel outside of any existing page hierarchy  
-Then the new page should be created as a standalone page in the Navigation Panel  
-And the new page should appear at the bottom of the navigation list  
-And the new page should be saved and persist across editing and viewing modes until changed again by the user","chatcmpl-E4Gqumg4YTq40fFjlnrZtkIc3nP1b","success",0.033465
-"208","Brand Management","PB - As a User, I want to only select & see the combo of Widget and Block (bounding box experience) in Page Builder","Scenario: Selecting and Viewing Widget and Block Combo in Bounding Box  
-Given a user is in editing mode within the Page Builder  
-And the page contains multiple widgets and blocks  
-When the user clicks on a widget or block  
-Then the selected widget and its associated block should be highlighted together within a bounding box  
-And only the selected widget and block combo should be visually emphasized while other elements remain unselected  
-And the bounding box should clearly indicate the boundaries of the selected combo for editing purposes.","chatcmpl-E4GqwUipyS4c4OADY2uM53IyFJZXY","success",0.033465
+Given the user accesses the application  
+When the user navigates to the landing page  
+Then the new landing page is displayed  
+And the content of the new landing page is visible","chatcmpl-E4OJEd5Vg2L34ZDUqkO99dk7nmrk4","success",0.030015
+"335","Marketing Operations Platform","PB - As a User, I want to create a Drag & Drop Page (as a standalone Page) from Nav","Scenario: Creating a Drag & Drop Page as a Standalone Page  
+Given the user is on the Nav  
+When the user creates a Drag & Drop Page as a standalone Page  
+Then the Drag & Drop Page is created  
+And the new standalone Page is displayed in the Nav","chatcmpl-E4OJG4qHsTyz47FoGBCxkgRk4Muqz","success",0.030015
+"208","Brand Management","PB - As a User, I want to only select & see the combo of Widget and Block (bounding box experience) in Page Builder","Scenario: Selecting and Viewing a Widget and Block Combo in Page Builder  
+Given the user is in the Page Builder  
+When the user selects a combo of Widget and Block  
+Then only the selected Widget and Block combo is highlighted  
+And the bounding box experience is displayed for the selected combo","chatcmpl-E4OJHf4LnA4HkADmdt3Oh6aGfMPBn","success",0.030015
 "254","Brand Management","As a User, I want to access Reply action for New Replies in Daily Digest Email","Scenario: Accessing Reply Action for New Replies in Daily Digest Email  
-Given a user has received a Daily Digest Email containing new replies  
-When the user clicks on the ""Reply"" action link for a specific reply in the email  
-Then the user should be redirected to the reply interface on the platform  
-And the reply interface should be preloaded with the context of the specific reply  
-And the user should be able to type and send their response directly from the interface.","chatcmpl-E4GqxKHmGYfbUKYFtFrOgMMvwBpRE","success",0.033465
-"238","Brand Management","As a user I want to see 'Bulk Review' in bulk review page header (page name)","Scenario: Displaying 'Bulk Review' in the Bulk Review Page Header  
-Given the user navigates to the Bulk Review page  
-When the page loads successfully  
-Then the page header should display the text 'Bulk Review' prominently at the top of the page","chatcmpl-E4GqzdEgye3dXz1sWtgAnsLfuxbqe","success",0.033465
-"13","Digital Asset Management","As a user, I want to be able to see the GIF or Lottie File converted MP4 on the Markup Screen in Approvals so that I can markup the animation to get feedback and new revisions worked on","Scenario: Viewing Converted MP4 Animation on Markup Screen for Feedback  
-Given a user is on the Markup Screen in the Approvals section  
-And the system has successfully converted a GIF or Lottie File into an MP4 format  
-When the user opens the animation file on the Markup Screen  
-Then the MP4 animation should play seamlessly on the Markup Screen  
-And the user should be able to pause, play, and scrub through the animation timeline  
-And the user should be able to add markups directly on the animation for feedback purposes  
-And the markups should be saved and associated with the specific frame of the animation.","chatcmpl-E4Gr0t7PFABO7KTOEdpN7nGfHUAQQ","success",0.033465
+Given the user has received a Daily Digest Email with new replies  
+When the user clicks on the Reply action for a new reply in the email  
+Then the user is directed to the reply interface for that specific reply  
+And the reply interface is ready for the user to respond.","chatcmpl-E4OJImElP8lnRLjOprPLJxVc7vAZL","success",0.030015
+"238","Brand Management","As a user I want to see 'Bulk Review' in bulk review page header (page name)","Scenario: Displaying 'Bulk Review' in Bulk Review Page Header  
+Given the user is on the bulk review page  
+When the page loads  
+Then the header displays 'Bulk Review'","chatcmpl-E4OJJeCouTm46EHgXCGAuhegB8E1E","success",0.030015
+"13","Digital Asset Management","As a user, I want to be able to see the GIF or Lottie File converted MP4 on the Markup Screen in Approvals so that I can markup the animation to get feedback and new revisions worked on","Scenario: Viewing Converted MP4 on the Markup Screen in Approvals  
+Given a GIF or Lottie File has been converted to MP4  
+When the user opens the Markup Screen in Approvals  
+Then the converted MP4 is displayed on the Markup Screen  
+And the user can view the animation for markup and feedback purposes","chatcmpl-E4OJKGaoVwkQTAcBQqG5ZPQP3pNzS","success",0.030015
 "353","Marketing Operations Platform","PB - As a User, I want to see a new landing page","Scenario: Viewing the New Landing Page  
-Given a user navigates to the website's URL  
-When the user accesses the homepage  
-Then the new landing page should be displayed  
-And the landing page should include the updated design, content, and navigation elements as specified  
-And all links and interactive elements on the landing page should function correctly.","chatcmpl-E4Gr2ftEiCzBuiePcZmbh6E6sVCII","success",0.033465
+Given the user accesses the application  
+When the user navigates to the landing page  
+Then the new landing page is displayed  
+And the content of the new landing page is visible","chatcmpl-E4OJLpaA9pXu6Wyl5dkyXfIBK5nFC","success",0.030015
 "136","Digital Asset Management","As a User, I want to open current location for single / same folder Move","Scenario: Opening Current Location for Moving a Folder  
-Given a user is in the file management interface  
-And the user has selected a folder to move  
-When the user initiates the move action  
-Then the current location of the selected folder should open automatically  
-And the user should be able to select a new destination for the folder within the interface  
-And the folder should remain in its original location until the move is confirmed.","chatcmpl-E4Gr3sk0xgZJy3lueq6h3HVHqohch","success",0.033465
-"109","Digital Asset Management","As an Internal User, I want to have MCP(development use only) settings to enable/disable features per Epic for Drag & Drop Page MVP ","Scenario: Enabling and Disabling Features via MCP Settings for Drag & Drop Page MVP  
-Given an internal user has access to the MCP settings panel  
-When the user navigates to the settings for a specific Epic  
-And the user toggles a feature to enable or disable it  
-Then the selected feature should reflect the updated enabled or disabled state in the MCP settings panel  
-And the change should immediately apply to the Drag & Drop Page MVP functionality associated with that feature.","chatcmpl-E4Gr5Oc10J1Zvv2u3NK8Q5Jdge7H0","success",0.033465
-"141","Digital Asset Management","As a User, I want Surface Question/Answer/Rating back end data in weekly report / script","Scenario: Generating Weekly Report with Question/Answer/Rating Data  
-Given the backend system contains stored data for questions, answers, and ratings  
-And the user has access to the reporting script  
-When the user runs the weekly report script  
-Then the report should include all questions, answers, and ratings data from the past week  
-And the data should be organized by date and category  
-And the report should be generated in a readable format (e.g., CSV or PDF)  
-And the report should be available for download or email delivery to the user.","chatcmpl-E4Gr7hq3pjFM5jEnlqLp6Jh8c74vQ","success",0.033465
-"106","Digital Asset Management","As a User, I want to switch Page Categories when viewing a Page if there are multiple Page Categories","Scenario: Switching Page Categories While Viewing a Page  
-Given a user is viewing a page with multiple page categories available  
-When the user selects a different page category from the category dropdown menu  
-Then the content of the page should update to display the content associated with the selected category  
-And the selected category should remain highlighted in the dropdown menu  
-And the updated category selection should persist until the user changes it again.","chatcmpl-E4Gr8JeoXLhaz6ENVbdFNGHUoOVC0","success",0.033465
-"347","Marketing Operations Platform","PB - As a User, I want to add Widgets directly to a Section","Scenario: Adding a Widget to a Section in Page Builder  
-Given a user is in editing mode within the Page Builder  
-And the user has selected a specific section on the page  
-When the user drags a widget from the widget library and drops it into the selected section  
-Then the widget should appear within the selected section in the desired position  
-And the widget should be fully functional and editable within the section  
-And the changes should be saved and persist across editing and viewing modes until changed again by the user","chatcmpl-E4GrAru1cCULZrfSiJgK35a2eFWli","success",0.033465
-"234","Brand Management","BP - As a User, I want to single select resources from Resource Lookup with unchangeable filter based on file type in Page Builder","Scenario: Single Selecting a Resource from Resource Lookup with File Type Filter  
-Given a user is in editing mode within the Page Builder  
-And the Resource Lookup is pre-filtered to display only resources of a specific file type  
-When the user selects a single resource from the filtered list  
-Then the selected resource should be highlighted to indicate selection  
-And the selected resource should be associated with the current page in the Page Builder  
-And no other resources should be selectable at the same time","chatcmpl-E4GrBueeL4OrHrBkntDz0C7wqNgqc","success",0.033465
-"499","Marketing Compliance","As a user I want to run a stats report for database tool and see files from multi upload field represented each on their own row (excluding in Duplicable sections)","Scenario: Generating a Stats Report with Multi-Upload Field Files Represented Individually  
-Given a user has access to the database tool and is on the stats report generation page  
-And the database contains records with files uploaded in a multi-upload field  
-And the records do not include files within duplicable sections  
-When the user generates the stats report  
-Then each file from the multi-upload field should be displayed on its own row in the report  
-And no files from duplicable sections should be included in the report  
-And the report should accurately reflect the data from the database.","chatcmpl-E4GrDXBpb2aNkX8wPpdQ2Yinkw92B","success",0.033465
-"11","Digital Asset Management","As a user, I want to be able to preview the GIF or Lottie File converted MP4 on the Review Request screen in Approvals so that I can preview what the animation is when approving","Scenario: Previewing Converted MP4 Animation on Review Request Screen  
-Given a user is on the Review Request screen in Approvals  
-And the request contains a GIF or Lottie File converted to an MP4  
-When the user clicks the preview button for the animation  
-Then the MP4 animation should play in a preview window or embedded player  
-And the animation should display without errors or distortion  
-And the user should be able to close the preview and return to the Review Request screen without losing any progress.","chatcmpl-E4GrERi6uMn3PvvWvCdRSy6HJ1I0O","success",0.033465
-"280","Marketing Operations Platform","As a user, I want to see the database name and record name in the header","Scenario: Displaying Database Name and Record Name in the Header  
-Given a user is viewing a record in the application  
-When the record is loaded successfully  
-Then the header should display the database name  
-And the header should display the record name  
-And the database name and record name should be clearly visible and correctly aligned in the header.","chatcmpl-E4GrGnRZTuIA3tcQAPDWJmLFwHyzM","success",0.033465
-"298","Marketing Operations Platform","PB - (Misc) As a User, I want to be informed why the Page cannot be saved in Page Builder if it's beyond the set Page limit in MCP","Scenario: Displaying Error Message When Page Limit is Exceeded  
-Given a user is in editing mode within the Page Builder  
-And the total number of pages has already reached the set page limit in MCP  
-When the user attempts to save a new page  
-Then an error message should be displayed informing the user that the page cannot be saved because the page limit has been exceeded  
-And the page should not be saved or added to the Page Builder  
-And the user should remain in the editing mode to make necessary adjustments.","chatcmpl-E4GrHZcFN4heU2uwy58EoZpnQrsIK","success",0.033465
+Given a folder exists in the current location  
+When the user initiates a move action for the folder  
+Then the current location of the folder is opened  
+And the folder is ready to be moved to a new location within the same folder structure","chatcmpl-E4OJN1ANN0QyMqlilycYqHQnaTOmD","success",0.030015
+"109","Digital Asset Management","As an Internal User, I want to have MCP(development use only) settings to enable/disable features per Epic for Drag & Drop Page MVP ","Scenario: Enabling a Feature for Drag & Drop Page MVP via MCP Settings  
+Given MCP settings are available for development use only  
+When the internal user enables a feature for a specific Epic in the MCP settings  
+Then the feature is enabled for the specified Epic  
+And the updated setting is reflected in the MCP configuration","chatcmpl-E4OJOVVeSzNgLR1P3qYzhQMs6lz0J","success",0.030015
+"141","Digital Asset Management","As a User, I want Surface Question/Answer/Rating back end data in weekly report / script","Scenario: Generating a Weekly Report with Question/Answer/Rating Data  
+Given the back end contains Question/Answer/Rating data  
+When the user generates the weekly report  
+Then the report includes the Question/Answer/Rating data for the week  
+And the report is successfully generated and available for review","chatcmpl-E4OJPBbAP1cSQQCQuTlxU1xLADNBs","success",0.030015
+"106","Digital Asset Management","As a User, I want to switch Page Categories when viewing a Page if there are multiple Page Categories","Scenario: Switching Page Categories When Viewing a Page  
+Given a page with multiple page categories exists  
+When the user switches to a different page category  
+Then the content of the selected page category is displayed","chatcmpl-E4OJQKd20fEB1KOpSC415xUf4C605","success",0.030015
+"347","Marketing Operations Platform","PB - As a User, I want to add Widgets directly to a Section","Scenario: Adding a Widget to a Section  
+Given a section exists  
+When the user adds a widget to the section  
+Then the widget is added to the section  
+And the widget is displayed within the section","chatcmpl-E4OJSCRuZC3QS0AjJl7F12R2TMHKM","success",0.030015
+"234","Brand Management","BP - As a User, I want to single select resources from Resource Lookup with unchangeable filter based on file type in Page Builder","Scenario: Single Selecting a Resource from Resource Lookup
+Given the Resource Lookup is available with an unchangeable filter based on file type
+When the user selects a single resource from the Resource Lookup
+Then the selected resource is highlighted
+And the selected resource is displayed in the Page Builder","chatcmpl-E4OJTJW7b0a0yIcRhYxZqX2jsBOjD","success",0.030015
+"499","Marketing Compliance","As a user I want to run a stats report for database tool and see files from multi upload field represented each on their own row (excluding in Duplicable sections)","Scenario: Running a Stats Report with Files Represented on Separate Rows  
+Given the user has access to the database tool and a stats report feature  
+When the user runs a stats report  
+Then files from the multi-upload field are displayed, each on their own row  
+And files in duplicable sections are excluded from the report","chatcmpl-E4OJUeA7Rive1CDKI1yDYDOnbHowV","success",0.030015
+"11","Digital Asset Management","As a user, I want to be able to preview the GIF or Lottie File converted MP4 on the Review Request screen in Approvals so that I can preview what the animation is when approving","Scenario: Previewing Converted MP4 on the Review Request Screen  
+Given a GIF or Lottie File has been converted to MP4  
+When the user opens the Review Request screen in Approvals  
+Then the converted MP4 is displayed as a preview  
+And the user can view the animation before approving","chatcmpl-E4OJVD9UwHDjx89mHdykeoih6VnE8","success",0.030015
+"280","Marketing Operations Platform","As a user, I want to see the database name and record name in the header","Scenario: Display Database Name and Record Name in Header  
+Given the user is viewing a record in the application  
+When the record is displayed  
+Then the database name is shown in the header  
+And the record name is shown in the header","chatcmpl-E4OJW81Ozgk0SR9hoUYcgLlTU2v1y","success",0.030015
+"298","Marketing Operations Platform","PB - (Misc) As a User, I want to be informed why the Page cannot be saved in Page Builder if it's beyond the set Page limit in MCP","Scenario: Informing the User Why the Page Cannot Be Saved Due to Page Limit
+Given the user is attempting to save a Page in Page Builder
+When the Page exceeds the set Page limit in MCP
+Then the user is informed that the Page cannot be saved
+And the reason provided is that the Page exceeds the set Page limit in MCP","chatcmpl-E4OJXq2e3FiAeEaXh8tyOOyVhSfnP","success",0.030015
 "112","Digital Asset Management","As a User, I want to configure both Block and Video Widget properties","Scenario: Configuring Block and Video Widget Properties  
-Given a user is in editing mode on the page builder  
-And the user has added a Block or Video Widget to the page  
-When the user selects the widget and opens the properties panel  
-Then the user should be able to configure all available properties for the selected widget  
-And the changes made to the properties should be immediately reflected on the widget preview  
-And the configured properties should be saved when the user clicks the save or publish button.","chatcmpl-E4GrI6rdq6Egz0r4cqhUo9Z3xMM71","success",0.033465
-"19","Digital Asset Management","As a Database Manager, I want to allow end users to Add More child records ('Add More') - Handle maximum child records","Scenario: Adding Child Records Up to the Maximum Limit  
-Given a database manager has set a maximum limit for child records  
-And an end user is on the interface where child records can be added  
-And the current number of child records is below the maximum limit  
-When the end user clicks the ""Add More"" button  
-Then a new child record input field should appear  
-And the total number of child records should increase by one  
-And the ""Add More"" button should remain enabled if the maximum limit is not yet reached  
-And the system should prevent adding more child records once the maximum limit is reached.","chatcmpl-E4GrK3owzkiqVUljCHcDXqOzsktcK","success",0.033465
+Given a Block and a Video Widget are available for configuration  
+When the user configures the properties of the Block and the Video Widget  
+Then the Block properties are updated as configured  
+And the Video Widget properties are updated as configured","chatcmpl-E4OJYeygTawPsSaozAsF0GxoitYk2","success",0.030015
+"19","Digital Asset Management","As a Database Manager, I want to allow end users to Add More child records ('Add More') - Handle maximum child records","Scenario: Adding More Child Records Up to the Maximum Limit  
+Given the end user is on the interface to manage child records  
+When the end user clicks on 'Add More' to add a child record  
+Then a new child record is added successfully  
+And the user is prevented from adding more child records if the maximum limit is reached","chatcmpl-E4OJZiIlY2q3PrErQcgTH7ys5tCXS","success",0.030015
