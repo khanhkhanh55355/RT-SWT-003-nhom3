@@ -10,7 +10,7 @@ Given a user is in editing mode within the Page Builder
 When the user drags a page that contains sub-pages to a new position in the Navigation Panel
 Then the page, along with all its sub-pages, should move together to the new position
 And after the move, the sub-pages should be collapsed under the parent page in the Navigation Panel
-And the updated page order and hierarchy should be saved and persist across editing and viewing modes until changed again by the user",0.4297143732589531,PASS
+And the updated page order and hierarchy should be saved and persist across editing and viewing modes until changed again by the user",0.7548869830731042,PASS
 210,Brand Management,"PB - As a User, I want to see a new landing page","Scenario: User views the new landing page  
 Given the user is not logged in  
 When the user navigates to the website's homepage  
@@ -18,7 +18,7 @@ Then the user sees the new landing page with updated design, branding, and conte
     Given the user is in Page Builder  
     When the user creates a new landing page  
     Then the page should display empty Sections  
-    And there should be no Blocks inside the Sections  ",0.4507487187812411,PASS
+    And there should be no Blocks inside the Sections  ",0.6454153487775884,PASS
 335,Marketing Operations Platform,"PB - As a User, I want to create a Drag & Drop Page (as a standalone Page) from Nav","Scenario: User creates a Drag & Drop Page from the navigation menu  
 Given the user is logged into the application and is on the main dashboard  
 When the user clicks on the ""Create New Page"" option in the navigation menu  
@@ -35,7 +35,7 @@ And Given the user clicks the creation button
 Then they should be able to start creating a Drag & Drop Page
 And Given the user is interacting with a standalone or parent page
 When they click the kebab menu icon (⋮) and select the ‘Page’ action
-Then they should also be able to create a Drag & Drop Page",0.49583025528701485,PASS
+Then they should also be able to create a Drag & Drop Page",0.8021070491636908,PASS
 208,Brand Management,"PB - As a User, I want to only select & see the combo of Widget and Block (bounding box experience) in Page Builder","Scenario: User selects and views a combo of Widget and Block in Page Builder  
 Given the user is logged into the Page Builder application  
 And the user is on the Page Builder interface  
@@ -48,7 +48,7 @@ And the rest of the interface remains unchanged",chatcmpl-DvbAlJKxNVm6IZebURZFXa
     When the user selects the Widget
     Then the entire bounding box of the Widget and Block should be highlighted
     And the selection experience should match the previous Block bounding box behavior
-    And the user should only be able to navigate up to the Section",0.6014949188634058,PASS
+    And the user should only be able to navigate up to the Section",0.8140281348826319,PASS
 254,Brand Management,"As a User, I want to access Reply action for New Replies in Daily Digest Email","Scenario: Access Reply Action for New Replies in Daily Digest Email  
 Given the user has received the Daily Digest Email with new replies  
 When the user clicks on the ""Reply"" action link for a specific reply in the email  
@@ -57,14 +57,14 @@ Then the user is redirected to the reply interface for that specific reply in th
     When the user clicks on the ""Reply"" action as per the design  
     Then the user should be redirected to the Reply page in a new tab  
     And the applicable comment should be highlighted and ready to reply to  
-    And the text box should be active and ready for the user to type a response",0.712918673227411,PASS
+    And the text box should be active and ready for the user to type a response",0.8354366580859135,PASS
 238,Brand Management,As a user I want to see 'Bulk Review' in bulk review page header (page name),"Scenario: Display 'Bulk Review' in the bulk review page header  
 Given the user is on the bulk review page  
 When the page loads successfully  
 Then the header should display the text 'Bulk Review'",chatcmpl-DvbAofmr9LbIU9wdnswmHfEz3lu9I,success,0.023145,238,Brand Management,As a user I want to see 'Bulk Review' in bulk review page header (page name),"Scenario: Show correct page name in Bulk Review header  
     Given the user navigates to the Bulk Review page  
     When the page loads  
-    Then the page header should display the title ""Bulk Review""  ",0.8795254064292948,PASS
+    Then the page header should display the title ""Bulk Review""  ",0.8860669269456144,PASS
 13,Digital Asset Management,"As a user, I want to be able to see the GIF or Lottie File converted MP4 on the Markup Screen in Approvals so that I can markup the animation to get feedback and new revisions worked on","Scenario: View converted MP4 on Markup Screen for feedback  
 Given the user has uploaded a GIF or Lottie File  
 And the file has been successfully converted to MP4  
@@ -77,7 +77,7 @@ And the user can interact with markup tools to provide feedback.",chatcmpl-DvbAp
   And navigate to the Version/Revision screen
   Then The file should have been converted to MP4
   And The controls should be hidden
-  And The MP4 should autoplay",0.4717518683278593,PASS
+  And The MP4 should autoplay",0.721293908574054,PASS
 353,Marketing Operations Platform,"PB - As a User, I want to see a new landing page","Scenario: User views the new landing page  
 Given the user is not logged in  
 When the user navigates to the website's homepage  
@@ -87,7 +87,7 @@ And the Page is in Create or Edit mode
 When the user adds a new Section
 Then the Section should be visible as an empty container
 And it should not contain any Blocks by default
-And the user should have the option to drag Widgets into the empty Section",0.2573189488897936,PASS
+And the user should have the option to drag Widgets into the empty Section",0.39135949762439937,PASS
 136,Digital Asset Management,"As a User, I want to open current location for single / same folder Move","Scenario: Open current location for moving a single folder  
 Given the user is logged into the system and is on the file management interface  
 And the user has selected a single folder to move  
@@ -98,7 +98,7 @@ When the user moves a single resource
 Then the current location should be loaded as opened in the V3 folder tree branch
 And if the user lacks permission to items earlier in that tree, the top-level view should open instead
 When the user performs a bulk move of resources from the same folder
-Then the current location should be loaded as opened in the V3 folder tree branch",0.5419656725279255,PASS
+Then the current location should be loaded as opened in the V3 folder tree branch",0.6532945381660924,PASS
 109,Digital Asset Management,"As an Internal User, I want to have MCP(development use only) settings to enable/disable features per Epic for Drag & Drop Page MVP ","Scenario: Enable a feature for Drag & Drop Page MVP using MCP settings  
 Given I am an Internal User with access to the MCP settings  
 And the MCP settings page is accessible  
@@ -117,7 +117,7 @@ And the changes are saved successfully in the MCP settings",chatcmpl-DvbAslbMSsS
 
     When the user enables or disables any of the above settings  
     Then the relevant features should be activated or deactivated based on the settings chosen  
-",0.5060490938648625,PASS
+",0.7909062123728283,PASS
 141,Digital Asset Management,"As a User, I want Surface Question/Answer/Rating back end data in weekly report / script","Scenario: Generate a weekly report with Question/Answer/Rating data  
 Given the backend system has stored Question/Answer/Rating data  
 And the user has access to the reporting tool  
@@ -139,7 +139,7 @@ dev003
 dev027
 dev026
 rtstest
-macsprod",0.27133603140489654,PASS
+macsprod",0.5054924508219127,PASS
 106,Digital Asset Management,"As a User, I want to switch Page Categories when viewing a Page if there are multiple Page Categories","Scenario: Switching Page Categories when viewing a Page  
 Given I am viewing a Page with multiple Page Categories  
 When I select a different Page Category from the category menu  
@@ -150,7 +150,7 @@ Then the content of the Page updates to display information relevant to the sele
     When the user opens the Page Category dropdown in the navigation  
     Then the available Page Categories, including ""All Pages,"" should be displayed  
     When the user selects a different Page Category from the dropdown  
-    Then the Pages under the selected category should be loaded in the navigation panel  ",0.5546837351602114,PASS
+    Then the Pages under the selected category should be loaded in the navigation panel  ",0.7564906981158701,PASS
 347,Marketing Operations Platform,"PB - As a User, I want to add Widgets directly to a Section","Scenario: Adding a Widget to a Section  
 Given I am logged into the application  
 And I am on the page displaying available Sections  
@@ -170,7 +170,7 @@ Then the Widget should be added to the selected Section successfully
 
 
 
-",0.4952914393953438,PASS
+",0.7694324928368449,PASS
 234,Brand Management,"BP - As a User, I want to single select resources from Resource Lookup with unchangeable filter based on file type in Page Builder","Scenario: Single select a resource from Resource Lookup with a fixed file type filter  
 Given I am on the Page Builder interface  
 And the Resource Lookup is displayed with a fixed filter for a specific file type  
@@ -184,7 +184,7 @@ And the selection respects the unchangeable file type filter",chatcmpl-DvbAxCPXA
     And it should only allow selecting ""Image"" file types  
     And the filtered results should be displayed by default based on the target page area  
     When the user selects an image resource  
-    Then it should be added to the designated area in Page Builder  ",0.48274211680449297,PASS
+    Then it should be added to the designated area in Page Builder  ",0.7577479210650501,PASS
 499,Marketing Compliance,As a user I want to run a stats report for database tool and see files from multi upload field represented each on their own row (excluding in Duplicable sections),"Scenario: Generate stats report with files from multi-upload field represented on separate rows  
 Given the user has access to the database tool  
 And the user has uploaded multiple files in the multi-upload field  
@@ -195,7 +195,7 @@ And no files from Duplicable sections should be included in the report.",chatcmp
 Given a Multi-Upload field contains multiple files
 When the user views the uploaded files
 Then each file should be represented on its own row
-And the file names should be expanded into separate rows for clear visibility",0.6314629053538454,PASS
+And the file names should be expanded into separate rows for clear visibility",0.7256448950717616,PASS
 11,Digital Asset Management,"As a user, I want to be able to preview the GIF or Lottie File converted MP4 on the Review Request screen in Approvals so that I can preview what the animation is when approving","Scenario: Preview converted MP4 animation on Review Request screen  
 Given the user is on the Review Request screen in Approvals  
 And the Review Request contains a converted MP4 file from a GIF or Lottie File  
@@ -207,7 +207,7 @@ And the user should be able to view the animation without downloading the file."
   And I click on edit/new version 
   Then The file should have converted to MP4
   And The controls should be hidden
-  And The MP4 should autoplay",0.4943797999444793,PASS
+  And The MP4 should autoplay",0.7539293372475889,PASS
 280,Marketing Operations Platform,"As a user, I want to see the database name and record name in the header","Scenario: Display database name and record name in the header  
 Given the user is logged into the application  
 And the user has selected a database  
@@ -221,7 +221,7 @@ Then the typography and button styles should be updated according to the new des
 And the overlay header should display the database name
 And the database name should be clickable
 And the overlay header should display the record name
-And if the database name or record name is too long, it should be truncated with a tooltip displaying the full value",0.5689488288988145,PASS
+And if the database name or record name is too long, it should be truncated with a tooltip displaying the full value",0.6406923428524589,PASS
 298,Marketing Operations Platform,"PB - (Misc) As a User, I want to be informed why the Page cannot be saved in Page Builder if it's beyond the set Page limit in MCP","Scenario: Display error message when Page exceeds set Page limit in MCP  
 Given the user is editing a Page in Page Builder  
 And the set Page limit in MCP has been exceeded  
@@ -232,7 +232,7 @@ Given the user is in Page Builder
 And the Drag & Drop (D&D) page limit set in MCP has been reached
 When the user clicks on the ""Save"" button in the top bar
 Then a warning snackbar should be displayed with the message:
-“Page limit of {&number set as page limit in MCP} reached.”",0.6025793568434817,PASS
+“Page limit of {&number set as page limit in MCP} reached.”",0.7453142229030825,PASS
 112,Digital Asset Management,"As a User, I want to configure both Block and Video Widget properties","Scenario: Configure properties for Block and Video Widgets  
 Given the user is logged into the application and is on the widget configuration page  
 When the user selects a Block Widget and updates its properties (e.g., title, background color)  
@@ -245,7 +245,7 @@ And the updated properties for the Video Widget should be saved and displayed co
     And the settings should include previously defined Block and Video Widget properties  
     When the user modifies any settings in the panel  
     Then the changes should be applied to the selected widget in real time  
-    And the settings should persist when the page is saved  ",0.555859111505608,PASS
+    And the settings should persist when the page is saved  ",0.8192395696715842,PASS
 19,Digital Asset Management,"As a Database Manager, I want to allow end users to Add More child records ('Add More') - Handle maximum child records","Scenario: Adding child records up to the maximum allowed limit  
 Given the user is logged into the system as a Database Manager  
 And the user is on the ""Add More Child Records"" page  
@@ -263,4 +263,4 @@ And a confirmation message ""Child record added successfully"" is displayed.",ch
       Then I can enable 'Allow User to Add More'
       When I disable 'Allow User to skip…’ on the last record
       Then 'Allow User to Add More' is disabled
-      And if I hover over the setting I see the text 'The max 30 {{Records}} has been added here. Remove any of the above to allow users to add more.'",0.3316772192139657,PASS
+      And if I hover over the setting I see the text 'The max 30 {{Records}} has been added here. Remove any of the above to allow users to add more.'",0.6629792466293015,PASS
