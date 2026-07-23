@@ -1,21 +1,14 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-We evaluated GPT-4o zero-shot Gherkin generation from user stories on $N{=}100$ pairs sampled from the Rathnayake et al.~\cite{rathnayake2026llm} industrial corpus across four IntelligenceBank domains, using pre-registered automated metrics and one-tailed statistical tests.
+We evaluated how well GPT-4o can generate Gherkin BDD scenarios from user stories in a zero-shot setting. We tested it on 100 user story--scenario pairs sampled from the industrial dataset published by Rathnayake et al.\ (2026), covering four IntelligenceBank domains. We used pre-registered automated metrics and one-tailed statistical tests to assess performance.
 
-We investigated whether the median cosine similarity between generated and expert-written scenarios exceeds 0.85 when measured with OpenAI \texttt{text-embedding-3-large} embeddings (RQ1).
-Results show that the semantic similarity threshold was not achieved on the full sample (median$=0.7742$, $p \approx 1.000$, Cliff's $\delta=-0.70$): zero-shot GPT-4o outputs remain semantically divergent from expert references under this metric, even when they read plausibly on the surface.
+For \textbf{RQ1}, we asked whether the generated scenarios are \emph{semantically close} to expert-written scenarios---specifically, whether the \textbf{median cosine similarity} exceeds \textbf{0.85}, measured with OpenAI \texttt{text-embedding-3-large} embeddings. The results did \textbf{not} meet this threshold (median $=0.7742$, $p \approx 1.000$, Cliff's $\delta=-0.70$). In other words, even when the output sounds reasonable, it often differs in meaning from the expert reference under this metric.
 
-We investigated whether the proportion of generated scenarios that parse as executable Gherkin exceeds 80\% (RQ2).
-Results show that the executable syntax threshold was achieved (rate$=100.00\%$, $p=2.04\times10^{-10}$, Cohen's $h=0.93$), confirming that GPT-4o consistently produces structurally valid BDD scenarios under our parser-based definition.
+For \textbf{RQ2}, we asked whether the generated scenarios are \emph{syntactically executable} Gherkin more than \textbf{80\%} of the time. Here, GPT-4o performed very strongly: \textbf{100\%} of generated scenarios were executable ($p=2.04 \times 10^{-10}$, Cohen's $h=0.93$). This shows the model can reliably produce structurally valid Given--When--Then scenarios.
 
-Overall, GPT-4o \emph{failed} RQ1 but \emph{passed} RQ2: generated scenarios are syntactically usable yet semantically misaligned with expert references at the pre-defined similarity gate.
-Practitioners should treat model output as a draft requiring human review against domain-specific acceptance criteria.
+Overall, GPT-4o \textbf{passed RQ2 but failed RQ1}: it consistently produces Gherkin that parses and runs, but the content is not consistently aligned with expert-written scenarios under the predefined semantic similarity threshold. Practically, this means teams can treat the model output as a solid \emph{starting draft}, but it still needs human review to confirm correctness, completeness, and alignment with domain expectations.
 
-This is the first study to evaluate GPT-4o zero-shot Gherkin generation using automated metrics with statistical significance testing and fixed, pre-registered thresholds on a replicated industrial sample.
-Our open replication package at \url{https://github.com/khanhkhanh55355/RT-SWT-003-nhom3} documents the full pipeline from sampling through API logging to hypothesis testing.
+As far as we know, no prior work has put GPT-4o’s zero-shot Gherkin generation through this kind of end-to-end, repeatable check: automated metrics paired with statistical significance tests and judged against fixed, pre-registered thresholds on a replicated industrial sample. To make the study easy to verify and rerun, we also provide a public replication package (\url{https://github.com/khanhkhanh55355/RT-SWT-003-nhom3}) that captures the whole workflow—from sampling and API logging to the final hypothesis tests.
 
-Future work should pursue three concrete directions.
-First, evaluate \textbf{few-shot} and \textbf{chain-of-thought} prompting on the same $N{=}100$ dataset and thresholds to determine whether in-context guidance improves semantic alignment without eroding syntax compliance.
-Second, extend evaluation beyond single happy-path scenarios to \textbf{multi-step flows}, negative paths, and boundary conditions that better reflect real backlog complexity.
-Third, investigate \textbf{domain-specific fine-tuning} for Gherkin generation to assess whether semantic similarity can reach the 0.85 threshold while preserving the high executable syntax rate observed here.
+Looking ahead, three follow-up directions seem most promising. First, test \textbf{few-shot} and \textbf{chain-of-thought} prompting under the same dataset and acceptance thresholds to see whether semantic alignment improves without sacrificing syntactic executability. Second, move beyond a single happy-path scenario by adding \textbf{multi-step flows}, negative paths, and boundary cases. Third, explore \textbf{domain-specific fine-tuning} to bring semantic similarity closer to the 0.85 target while preserving the strong executable-syntax performance.
