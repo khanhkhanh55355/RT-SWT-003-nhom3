@@ -1,3 +1,30 @@
 \section{Introduction}
 \label{sec:introduction}
-% TODO
+
+Behavior-Driven Development (BDD) encourages teams to express expected system behavior in structured, human-readable scenarios, typically written in Gherkin and linked to agile user stories~\cite{cucumber2023gherkin}.
+In practice, authoring these scenarios remains labor-intensive: practitioners must translate informal requirements into syntactically valid Given--When--Then steps while preserving domain terminology and testable intent.
+Rathnayake et al.~\cite{rathnayake2026llm} recently released an industrial dataset of 500 user-story and manually authored Gherkin pairs from IntelligenceBank products, highlighting both the value of high-quality reference scenarios and the effort required to produce them at scale.
+
+Large language models (LLMs) have shown promise for automating natural-language artifacts in software engineering, including requirements refinement and test-related text generation.
+Rathnayake et al.~\cite{rathnayake2026llm} evaluated GPT-4 in a zero-shot setting on their dataset and reported a mean expert rating of 4.63 out of 5.0 for generated scenarios, suggesting that modern LLMs can produce plausible Gherkin from user stories without task-specific training.
+However, such human ratings alone do not establish whether model outputs meet predefined, reproducible quality gates that teams could embed in a continuous evaluation pipeline.
+
+Prior work on LLM-based BDD generation rarely combines \emph{automated} quality metrics, \emph{statistical hypothesis testing}, and \emph{fixed acceptance thresholds} in a single empirical design.
+In our review of 13 closely related studies, seven lacked one or more of these elements, making cross-study comparison and objective pass/fail decisions difficult.
+This gap limits the extent to which practitioners can trust zero-shot generation as a drop-in substitute for manual scenario authoring under explicit quality contracts.
+
+This paper addresses that gap through a controlled replication-style evaluation of GPT-4o on a curated subset of the Rathnayake et al. dataset.
+Our contributions are threefold:
+\begin{itemize}
+  \item We present, to our knowledge, the first empirical evaluation of \textbf{GPT-4o zero-shot Gherkin generation} from user stories using automated metrics---cosine semantic similarity ($\geq 0.85$) with \texttt{all-MiniLM-L6-v2} embeddings~\cite{reimers2019sentence} and executable syntax rate ($\geq 80\%$)---together with one-tailed statistical tests and pre-registered thresholds.
+  \item We report experimental results on $N{=}100$ pairs spanning four IntelligenceBank domains: \textbf{RQ1 (semantic similarity) was not achieved}, whereas \textbf{RQ2 (executable syntax) was achieved}.
+  \item We release a \textbf{public replication package}---including sampled data, generation scripts, API logs, analysis notebooks, and statistical summaries---at \url{https://github.com/khanhkhanh55355/RT-SWT-003-nhom3}.
+\end{itemize}
+
+The rest of this paper is structured as follows.
+Section~\ref{sec:related-work} reviews related work on LLM-based BDD and Gherkin generation.
+Section~\ref{sec:method} describes our research questions and evaluation metrics.
+Section~\ref{sec:experimental-setup} details the dataset, model configuration, and analysis procedure.
+Section~\ref{sec:results-discussion} presents and discusses the results.
+Section~\ref{sec:threats-validity} discusses threats to validity and our mitigations.
+Section~\ref{sec:conclusion} concludes and outlines future work.

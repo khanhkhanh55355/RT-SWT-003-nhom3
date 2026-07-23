@@ -1,3 +1,21 @@
 \section{Threats to Validity}
 \label{sec:threats-validity}
-% TODO
+
+We discuss threats following the internal, external, construct, and conclusion validity categories common in software engineering experiments~\cite{arcuri2011practical}, together with mitigations applied in this study.
+
+\textbf{Internal validity.}
+Commercial LLM APIs evolve frequently; undocumented changes to model weights, routing, or decoding behavior could alter generation outcomes between runs and undermine reproducibility.
+We mitigated this threat by pinning the model identifier to \texttt{gpt-4o-2024-11-20}, setting \texttt{temperature}${=}0$ and \texttt{top\_p}${=}1.0$ for deterministic sampling, and logging every API call with timestamp, response model name, token usage, and per-call cost in \texttt{results/full\_api\_log.txt}.
+Failed calls were retried with exponential backoff rather than silently skipped, reducing the risk of selectively complete outputs.
+
+\textbf{External validity.}
+All user stories and reference scenarios originate from a single industrial source---IntelligenceBank product backlogs---which may limit generalization to other organizations, domains, or writing conventions.
+We partially mitigated this threat by sampling across four product domains (Digital Asset Management, Brand Management, Marketing Operations Platform, and Marketing Compliance) and by using publicly released industrial data from Rathnayake et al.~\cite{rathnayake2026llm}, enabling independent replication on the same underlying corpus.
+
+\textbf{Construct validity.}
+Cosine similarity between sentence embeddings measures lexical--semantic overlap with expert-written scenarios but may not capture Gherkin-specific quality dimensions such as step independence, appropriate use of \texttt{And}/\texttt{But}, or alignment with underlying acceptance criteria.
+We mitigated this threat by combining semantic similarity with a complementary construct---executable syntax rate validated by the official Gherkin parser~\cite{cucumber2023gherkin}---so that a scenario must both resemble the reference text \emph{and} conform to executable BDD structure to satisfy our dual-metric design.
+
+\textbf{Conclusion validity.}
+With $N{=}100$, statistical power for domain-level or subgroup comparisons may be insufficient to detect moderate effects, and a single full-sample test could mask heterogeneous performance across domains.
+Before executing the full experiment, we conducted a power analysis and confirmed power $\geq 0.80$ for our pre-registered one-tailed tests at $\alpha{=}0.05$ on the full sample; we report effect sizes (Cliff's~$\delta$ for RQ1; Cohen's~$h$ for RQ2) alongside $p$-values to aid interpretation when subgroup analyses are underpowered.

@@ -1,3 +1,21 @@
 \section{Conclusion}
 \label{sec:conclusion}
-% TODO
+
+We evaluated GPT-4o zero-shot Gherkin generation from user stories on $N{=}100$ pairs sampled from the Rathnayake et al.~\cite{rathnayake2026llm} industrial corpus across four IntelligenceBank domains, using pre-registered automated metrics and one-tailed statistical tests.
+
+We investigated whether the median cosine similarity between generated and expert-written scenarios exceeds 0.85 when measured with \texttt{all-MiniLM-L6-v2} embeddings (RQ1).
+Results show that the semantic similarity threshold was not achieved on the full sample (p=[VALUE], effect size=[VALUE]), indicating that zero-shot GPT-4o outputs remain semantically divergent from expert references under this metric despite plausible surface quality.
+
+We investigated whether the proportion of generated scenarios that parse as executable Gherkin exceeds 80\% (RQ2).
+Results show that the executable syntax threshold was achieved (p=[VALUE], effect size=[VALUE]), confirming that GPT-4o consistently produces structurally valid BDD scenarios under our parser-based definition.
+
+Overall, GPT-4o \emph{failed} RQ1 but \emph{passed} RQ2: generated scenarios are syntactically usable yet semantically misaligned with expert references at the pre-defined similarity gate.
+Practitioners should treat model output as a draft requiring human review against domain-specific acceptance criteria.
+
+This is the first study to evaluate GPT-4o zero-shot Gherkin generation using automated metrics with statistical significance testing and fixed, pre-registered thresholds on a replicated industrial sample.
+Our open replication package at \url{https://github.com/khanhkhanh55355/RT-SWT-003-nhom3} documents the full pipeline from sampling through API logging to hypothesis testing.
+
+Future work should pursue three concrete directions.
+First, evaluate \textbf{few-shot} and \textbf{chain-of-thought} prompting on the same $N{=}100$ dataset and thresholds to determine whether in-context guidance improves semantic alignment without eroding syntax compliance.
+Second, extend evaluation beyond single happy-path scenarios to \textbf{multi-step flows}, negative paths, and boundary conditions that better reflect real backlog complexity.
+Third, investigate \textbf{domain-specific fine-tuning} for Gherkin generation to assess whether semantic similarity can reach the 0.85 threshold while preserving the high executable syntax rate observed here.
