@@ -1,21 +1,23 @@
 \section{Threats to Validity}
 \label{sec:threats-validity}
+
 We organize this discussion around the internal, external, construct, and conclusion validity categories standard in software engineering experiments~\cite{arcuri2011practical}, noting the mitigations we applied at each stage.
 
 \textbf{Internal validity.}
 Commercial LLM APIs are a moving target: model weights, routing, and decoding behavior can shift without notice, and any of these changes could alter generation outcomes between runs and quietly undermine reproducibility.
-To guard against this, we pinned the model identifier to \texttt{gpt-4o-2024-11-20}, fixed \texttt{temperature}${=}0$ and \texttt{top\_p}${=}1.0$ so sampling stayed deterministic, and logged every API call --- timestamp, response model name, token usage, per-call cost --- to \texttt{results/full\_api\_log.txt}.
-Rather than silently dropping failed calls, we retried them with exponential backoff, which kept the output set from being quietly incomplete.
+To guard against this, we pinned the model identifier to \texttt{gpt-4o-2024-11-20}, fixed \texttt{temperature}${=}0$ and \texttt{top\_p}${=}1.0$ so sampling stayed deterministic, and logged every API call --- timestamp, response model name, token usage, and per-call cost --- to \texttt{results/full\_api\_log.txt}.
+Rather than silently dropping failed calls, we retried them with exponential backoff, which kept the output set from being selectively incomplete.
 
 \textbf{External validity.}
 Every user story and reference scenario in our sample traces back to one industrial source --- IntelligenceBank product backlogs --- so results may not transfer cleanly to other organizations, domains, or writing conventions.
 We partially addressed this by drawing from four distinct product domains (Digital Asset Management, Brand Management, Marketing Operations Platform, and Marketing Compliance) and by building on the publicly released dataset from Rathnayake et al.~\cite{rathnayake2026llm}, which means anyone can independently replicate our work on the same underlying corpus.
 
 \textbf{Construct validity.}
-Cosine similarity between sentence embeddings tells us about lexical--semantic overlap with expert-written scenarios, but it doesn't necessarily capture Gherkin-specific concerns like step independence, correct use of \texttt{And}/\texttt{But}, or how well a scenario tracks its underlying acceptance criteria.
-To offset this gap, we paired semantic similarity with a second, complementary construct --- executable syntax rate, checked against the official Gherkin parser~\cite{cucumber2023gherkin} --- so a scenario only counts as satisfying our dual-metric design if it both resembles the reference text \emph{and} parses as valid executable BDD structure.
+Cosine similarity between sentence embeddings captures lexical--semantic overlap with expert-written scenarios, but it does not necessarily reflect Gherkin-specific quality dimensions such as step independence, appropriate use of \texttt{And}/\texttt{But}, or alignment with underlying acceptance criteria.
+We mitigated this threat by pairing semantic similarity with a complementary construct --- executable syntax rate, validated by the official Gherkin parser~\cite{cucumber2023gherkin} --- so that our evaluation requires both resemblance to the reference text \emph{and} structurally executable BDD output.
 
 \textbf{Conclusion validity.}
-At $N{=}100$, our statistical power for domain-level or subgroup comparisons may not be enough to catch moderate effects, and running a single test on the full sample risks masking performance differences that vary by domain.
-We did not run a formal a priori power analysis before the full experiment, and we flag this as a limitation of the current design rather than something we can rule out after the fact.
-As a partial mitigation, we report effect sizes alongside exact $p$-values --- Cliff's~$\delta$ for RQ1 and Cohen's~$h$ for RQ2 --- so readers can weigh practical significance on their own, independent of the tests' (unassessed) power; we'd recommend adding a post-hoc power analysis in a future revision before submission.
+With $N{=}100$, statistical power for domain-level or subgroup comparisons may be insufficient to detect moderate effects, and a single full-sample test could mask heterogeneous performance across domains.
+We fixed both acceptance thresholds and test directions during the pilot phase ($N{=}20$) and did not change them after observing the full sample; the pilot also showed a 100\% executable syntax rate, giving us confidence that the RQ2 gate ($\geq 80\%$) was achievable before scaling up.
+We did not, however, conduct a formal a priori power analysis for the full-sample Wilcoxon test on RQ1, and we treat that as a limitation rather than a confirmed property of the design.
+As a partial mitigation, we report effect sizes (Cliff's~$\delta$ for RQ1; Cohen's~$h$ for RQ2) alongside exact $p$-values so readers can judge practical significance independently of the (unassessed) power of the full-sample tests.

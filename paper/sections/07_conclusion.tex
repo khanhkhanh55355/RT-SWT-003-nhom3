@@ -4,7 +4,7 @@
 We evaluated GPT-4o zero-shot Gherkin generation from user stories on $N{=}100$ pairs sampled from the Rathnayake et al.~\cite{rathnayake2026llm} industrial corpus across four IntelligenceBank domains, using pre-registered automated metrics and one-tailed statistical tests.
 
 We investigated whether the median cosine similarity between generated and expert-written scenarios exceeds 0.85 when measured with OpenAI \texttt{text-embedding-3-large} embeddings (RQ1).
-Results show that the semantic similarity threshold was not achieved on the full sample (median$=0.7742$, $p \approx 1.000$, Cliff's $\delta=-0.70$), indicating that zero-shot GPT-4o outputs remain semantically divergent from expert references under this metric despite plausible surface quality.
+Results show that the semantic similarity threshold was not achieved on the full sample (median$=0.7742$, $p \approx 1.000$, Cliff's $\delta=-0.70$): zero-shot GPT-4o outputs remain semantically divergent from expert references under this metric, even when they read plausibly on the surface.
 
 We investigated whether the proportion of generated scenarios that parse as executable Gherkin exceeds 80\% (RQ2).
 Results show that the executable syntax threshold was achieved (rate$=100.00\%$, $p=2.04\times10^{-10}$, Cohen's $h=0.93$), confirming that GPT-4o consistently produces structurally valid BDD scenarios under our parser-based definition.
