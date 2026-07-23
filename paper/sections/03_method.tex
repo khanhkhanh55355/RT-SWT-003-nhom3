@@ -50,7 +50,7 @@ We evaluate the generated Gherkin scenarios along two independent dimensions: se
 Both the LLM-generated scenario and the corresponding QA-expert (ground-truth) scenario are embedded using OpenAI's \texttt{text-embedding-3-large} model~\cite{openai2024embeddings} via the OpenAI Embeddings API, producing vectors $v_{\text{llm}}$ and $v_{\text{gt}}$.
 The similarity score for each pair is $\text{score} = \cos(v_{\text{llm}}, v_{\text{gt}})$, computed with scikit-learn's \texttt{cosine\_similarity}.
 The pre-registered success threshold is $\geq 0.85$.
-An earlier project draft considered \texttt{sentence-transformers} (\texttt{all-MiniLM-L6-v2}, Reimers and Gurevych~\cite{reimers2019sentence}) for this metric; this was superseded before the pilot phase in favor of OpenAI embeddings (\texttt{text-embedding-3-small} for the pilot, \texttt{text-embedding-3-large} for the full run), and \texttt{all-MiniLM-L6-v2} was not used to produce any reported result in Section~\ref{sec:results-discussion}.
+An earlier project draft considered \texttt{sentence-transformers} (\texttt{all-MiniLM-L6-v2}, Reimers and Gurevych~\cite{reimers2019sentence}) for this metric; this was superseded before the pilot phase in favor of OpenAI embeddings (\texttt{text-embedding-3-small} for the pilot, \texttt{text-embedding-3-large} for the full run), and \texttt{all-MiniLM-L6-v2} was not used to produce any reported result in Section~\ref{sec:results}.
 
 \textbf{Metric 2: Executable Syntax Rate.}
 Each generated scenario is parsed with the official Gherkin parser, \texttt{gherkin-official} v28.0.0~\cite{cucumber2023gherkin}, via its Python \texttt{gherkin.parser.Parser} class.

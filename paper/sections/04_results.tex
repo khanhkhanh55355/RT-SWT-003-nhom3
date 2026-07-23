@@ -1,0 +1,64 @@
+\section{Results}
+\label{sec:results}
+
+All results are computed on the full evaluation set ($N{=}100$), stratified across four domains (Digital Asset Management, Brand Management, Marketing Operations Platform, Marketing Compliance).
+Table~\ref{tab:results} summarizes both research questions.
+
+\subsection{RQ1: Cosine Semantic Similarity}
+\label{sec:rq1-results}
+
+Table~\ref{tab:results} presents cosine similarity scores for all 100 scenarios, computed against \texttt{text-embedding-3-large} embeddings (Section~\ref{sec:metrics}).
+The median cosine similarity is $\text{Mdn} = 0.7742$, with interquartile range $\text{IQR} = [0.7165, 0.8337]$ ($\text{IQR width} = 0.1172$).
+%
+% [NOTE TO AUTHORS: min/max are not currently reproducible from the repository -- full_analysis.ipynb
+%  did not persist a per-row metric file when this section was drafted. A code cell that saves
+%  results/full_metric_output.csv (mirroring results/pilot_metric_output.csv) has been added to the
+%  notebook; re-run it (requires an OpenAI API key) and fill in the exact min/max below before submission.]
+%
+Minimum and maximum scores are [VALUE\_MIN] and [VALUE\_MAX].
+Figure~\ref{fig:dist} shows the full distribution against the pre-registered threshold of 0.85; the bulk of the distribution sits below the threshold line, with only a minority of scenarios exceeding it.
+
+The one-tailed, one-sample Wilcoxon signed-rank test of $\text{score}_i - 0.85$ yields $W = 315.0$, $p = 0.999999999999985$ ($p \approx 1.000$), computed on $n=100$ paired differences.
+Cliff's $\delta$ (one-sample, threshold-comparison form) is $\delta = -0.70$, a \emph{large} negative effect, indicating that scenarios below the 0.85 threshold outnumber those above it by a wide margin ($\approx 85$ below vs.\ $\approx 15$ above, given $\delta = (n_{>} - n_{<})/n$).
+
+Because the observed median (0.7742) does not meet the pre-registered threshold and the test direction opposes $H_1$, we \textbf{fail to reject $H_0$}.
+GPT-4o zero-shot does \emph{not} achieve a median cosine similarity $\geq 0.85$ against expert-written Gherkin scenarios.
+
+\subsection{RQ2: Executable Syntax Rate}
+\label{sec:rq2-results}
+
+Of 100 generated scenarios, 100 passed the \texttt{gherkin-official} v28.0.0 parser (rate $= 100.00\%$, exact 95\% one-sided CI $[0.9705, 1.0000]$).
+Figure~\ref{fig:syntax} shows the PASS/FAIL breakdown against the pre-registered 80\% threshold.
+
+The one-tailed exact binomial test against $p_0 = 0.80$ yields $p = 2.0370359763344954 \times 10^{-10}$ ($p \approx 2.04 \times 10^{-10}$), with Cohen's $h = 0.9273$, a \emph{large} effect.
+
+Because the observed rate (100.00\%) exceeds the pre-registered threshold and $p < 0.05$, we \textbf{reject $H_0$}.
+GPT-4o achieves an executable syntax rate $\geq 80\%$.
+
+\begin{table}[t]
+\centering
+\caption{Summary of statistical results for RQ1 and RQ2 ($N{=}100$).}
+\label{tab:results}
+\begin{tabular}{lccccc}
+\toprule
+RQ & Threshold & Metric value & $p$-value & Effect size & Decision \\
+\midrule
+RQ1 & $\geq 0.85$ & 0.7742 (Mdn) & $\approx 1.000$ & $\delta = -0.70$ & Not Achieved \\
+RQ2 & $\geq 80\%$ & 100.00\% & $2.04\times10^{-10}$ & $h = 0.93$ & Achieved \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{../figures/fig1_cosine_distribution.png}
+\caption{Distribution of cosine similarity scores across 100 generated scenarios (violin/box plot), against the pre-registered threshold of 0.85.}
+\label{fig:dist}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{../figures/fig2_syntax_rate.png}
+\caption{Executable syntax PASS/FAIL counts ($N{=}100$) against the pre-registered 80\% threshold.}
+\label{fig:syntax}
+\end{figure}

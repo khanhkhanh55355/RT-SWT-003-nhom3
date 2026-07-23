@@ -7,6 +7,13 @@ Rathnayake et al.~\cite{rathnayake2026llm} recently released an industrial datas
 
 Large language models (LLMs) have shown promise for automating natural-language artifacts in software engineering, including requirements refinement and test-related text generation.
 Rathnayake et al.~\cite{rathnayake2026llm} evaluated GPT-4 in a zero-shot setting on their dataset and reported a mean expert rating of 4.63 out of 5.0 for generated scenarios, suggesting that modern LLMs can produce plausible Gherkin from user stories without task-specific training.
+%
+% [NOTE TO AUTHORS: the arXiv abstract for this source (arXiv:2603.04729) states "Claude 3 produces
+%  scenarios rated highest by both human experts and LLM-based evaluators", not GPT-4 -- this does not
+%  necessarily contradict a 4.63/5.0 GPT-4 score (Claude 3 could simply have scored even higher), but
+%  the exact number, model, and evaluation protocol should be verified against the full PDF before
+%  this paper goes out, since it is currently unverified from this repository.]
+%
 However, such human ratings alone do not establish whether model outputs meet predefined, reproducible quality gates that teams could embed in a continuous evaluation pipeline.
 
 Prior work on LLM-based BDD generation rarely combines \emph{automated} quality metrics, \emph{statistical hypothesis testing}, and \emph{fixed acceptance thresholds} in a single empirical design.
@@ -16,7 +23,7 @@ This gap limits the extent to which practitioners can trust zero-shot generation
 This paper addresses that gap through a controlled replication-style evaluation of GPT-4o on a curated subset of the Rathnayake et al. dataset.
 Our contributions are threefold:
 \begin{itemize}
-  \item We present, to our knowledge, the first empirical evaluation of \textbf{GPT-4o zero-shot Gherkin generation} from user stories using automated metrics---cosine semantic similarity ($\geq 0.85$) with \texttt{all-MiniLM-L6-v2} embeddings~\cite{reimers2019sentence} and executable syntax rate ($\geq 80\%$)---together with one-tailed statistical tests and pre-registered thresholds.
+  \item We present, to our knowledge, the first empirical evaluation of \textbf{GPT-4o zero-shot Gherkin generation} from user stories using automated metrics---cosine semantic similarity ($\geq 0.85$) with OpenAI \texttt{text-embedding-3-large} embeddings~\cite{openai2024embeddings} and executable syntax rate ($\geq 80\%$)---together with one-tailed statistical tests and pre-registered thresholds.
   \item We report experimental results on $N{=}100$ pairs spanning four IntelligenceBank domains: \textbf{RQ1 (semantic similarity) was not achieved}, whereas \textbf{RQ2 (executable syntax) was achieved}.
   \item We release a \textbf{public replication package}---including sampled data, generation scripts, API logs, analysis notebooks, and statistical summaries---at \url{https://github.com/khanhkhanh55355/RT-SWT-003-nhom3}.
 \end{itemize}
@@ -25,6 +32,6 @@ The rest of this paper is structured as follows.
 Section~\ref{sec:related-work} reviews related work on LLM-based BDD and Gherkin generation.
 Section~\ref{sec:method} describes our research questions and evaluation metrics.
 Section~\ref{sec:experimental-setup} details the dataset, model configuration, and analysis procedure.
-Section~\ref{sec:results-discussion} presents and discusses the results.
+Section~\ref{sec:results} presents the results, and Section~\ref{sec:discussion} discusses their implications.
 Section~\ref{sec:threats-validity} discusses threats to validity and our mitigations.
 Section~\ref{sec:conclusion} concludes and outlines future work.
