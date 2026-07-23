@@ -25,7 +25,7 @@
 
 ## Full run [MỚI T7–T8]
 
-- [ ] Annotate `data/full_ground_truth.csv`
+- [x] Annotate `data/full_ground_truth.csv`
 - [x] Chạy full experiment → `results/full_llm_output.csv` (LR — `scripts/run_full.py`)
 - [ ] Phân tích → `results/full_analysis.ipynb`
 - [ ] Tổng hợp → `results/summary.csv`
