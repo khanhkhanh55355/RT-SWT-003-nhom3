@@ -1,3 +1,17 @@
 \section{Research Method}
 \label{sec:method}
-% TODO
+
+\subsection{Dataset}
+\label{sec:method-dataset}
+
+We built our evaluation sample from the industrial corpus released by Rathnayake, Shahin, and Abaei (2026) at RMIT University~\cite{rathnayake2026llm}, publicly available at \url{https://github.com/amilarathnayake1/LLM-BDDGeneration}.
+The original dataset comprises 500 paired user stories and manually authored Gherkin scenarios drawn from four IntelligenceBank software products, organized into four domains: Digital Asset Management (150 pairs), Brand Management (125), Marketing Operations Platform (150), and Marketing Compliance (75)~\cite{rathnayake2026llm}.
+
+Following Rathnayake et al., we retained only pairs that satisfy two quality filters: Connextra-style user stories (``As a \ldots, I want \ldots, So that \ldots'') and Gherkin scenarios containing explicit Given/When/Then structure.
+This filtering yielded 348 valid pairs suitable for automated evaluation.
+
+From the filtered pool, we drew a stratified random sample proportional to domain representation, using random seed~42, resulting in a working dataset of $N{=}100$ pairs stored as \texttt{data/sampled\_100.csv}.
+Expert reference scenarios are provided in the \texttt{Manual Scenario} column; Rathnayake et al.\ report that these were written by QA developers and validated by six BDD experts with more than ten years of experience~\cite{rathnayake2026llm}.
+In our experiments, \texttt{Manual Scenario} serves as the ground-truth Gherkin against which generated outputs are compared.
+
+% §3.2 — Evaluation Metrics (to be added by co-author)
