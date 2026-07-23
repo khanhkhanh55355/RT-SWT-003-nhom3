@@ -3,11 +3,11 @@
 
 We evaluated GPT-4o zero-shot Gherkin generation from user stories on $N{=}100$ pairs sampled from the Rathnayake et al.~\cite{rathnayake2026llm} industrial corpus across four IntelligenceBank domains, using pre-registered automated metrics and one-tailed statistical tests.
 
-We investigated whether the median cosine similarity between generated and expert-written scenarios exceeds 0.85 when measured with \texttt{all-MiniLM-L6-v2} embeddings (RQ1).
-Results show that the semantic similarity threshold was not achieved on the full sample (p=[VALUE], effect size=[VALUE]), indicating that zero-shot GPT-4o outputs remain semantically divergent from expert references under this metric despite plausible surface quality.
+We investigated whether the median cosine similarity between generated and expert-written scenarios exceeds 0.85 when measured with OpenAI \texttt{text-embedding-3-large} embeddings (RQ1).
+Results show that the semantic similarity threshold was not achieved on the full sample (median$=0.7742$, $p \approx 1.000$, Cliff's $\delta=-0.70$), indicating that zero-shot GPT-4o outputs remain semantically divergent from expert references under this metric despite plausible surface quality.
 
 We investigated whether the proportion of generated scenarios that parse as executable Gherkin exceeds 80\% (RQ2).
-Results show that the executable syntax threshold was achieved (p=[VALUE], effect size=[VALUE]), confirming that GPT-4o consistently produces structurally valid BDD scenarios under our parser-based definition.
+Results show that the executable syntax threshold was achieved (rate$=100.00\%$, $p=2.04\times10^{-10}$, Cohen's $h=0.93$), confirming that GPT-4o consistently produces structurally valid BDD scenarios under our parser-based definition.
 
 Overall, GPT-4o \emph{failed} RQ1 but \emph{passed} RQ2: generated scenarios are syntactically usable yet semantically misaligned with expert references at the pre-defined similarity gate.
 Practitioners should treat model output as a draft requiring human review against domain-specific acceptance criteria.

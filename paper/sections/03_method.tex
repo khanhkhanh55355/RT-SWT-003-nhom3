@@ -41,4 +41,37 @@ An empty response was recorded in \texttt{results/full\_api\_log.txt} and retrie
 
 Our replication package, including datasets, prompts, scripts, and raw results, is publicly available at: \url{https://github.com/khanhkhanh55355/RT-SWT-003-nhom3}.
 
-% §3.2 — Evaluation Metrics (to be added by co-author)
+\subsection{Evaluation Metrics}
+\label{sec:metrics}
+
+We evaluate the generated Gherkin scenarios along two independent dimensions: semantic alignment with expert-written scenarios, and syntactic executability.
+
+\textbf{Metric 1: Cosine Semantic Similarity.}
+Both the LLM-generated scenario and the corresponding QA-expert (ground-truth) scenario are embedded using OpenAI's \texttt{text-embedding-3-large} model~\cite{openai2024embeddings} via the OpenAI Embeddings API, producing vectors $v_{\text{llm}}$ and $v_{\text{gt}}$.
+The similarity score for each pair is $\text{score} = \cos(v_{\text{llm}}, v_{\text{gt}})$, computed with scikit-learn's \texttt{cosine\_similarity}.
+The pre-registered success threshold is $\geq 0.85$.
+An earlier project draft considered \texttt{sentence-transformers} (\texttt{all-MiniLM-L6-v2}, Reimers and Gurevych~\cite{reimers2019sentence}) for this metric; this was superseded before the pilot phase in favor of OpenAI embeddings (\texttt{text-embedding-3-small} for the pilot, \texttt{text-embedding-3-large} for the full run), and \texttt{all-MiniLM-L6-v2} was not used to produce any reported result in Section~\ref{sec:results-discussion}.
+
+\textbf{Metric 2: Executable Syntax Rate.}
+Each generated scenario is parsed with the official Gherkin parser, \texttt{gherkin-official} v28.0.0~\cite{cucumber2023gherkin}, via its Python \texttt{gherkin.parser.Parser} class.
+Because the parser requires a \texttt{Feature:} header, a synthetic \texttt{"Feature: Generated scenario"} header is prepended only when the raw LLM output does not already start with one; parsing is otherwise performed on the unmodified model output.
+A scenario is scored PASS (1) if it parses without error and FAIL (0) otherwise.
+The pre-registered success threshold is an executable rate $\geq 80\%$.
+
+\subsection{Statistical Analysis}
+\label{sec:stats}
+
+Both thresholds (0.85 for cosine similarity, 0.80 for executable rate) and both test directions were fixed during the pilot phase ($N{=}20$) and were not altered after the full-scale data ($N{=}100$) were observed.
+
+\textbf{RQ1 --- Cosine Semantic Similarity.}
+We test $H_0: \text{median cosine similarity} \leq 0.85$ against $H_1: \text{median cosine similarity} > 0.85$ using a one-sample, one-tailed Wilcoxon signed-rank test (\texttt{alternative="greater"}, \texttt{zero\_method="wilcox"})~\cite{wilcoxon1945} applied to the signed differences $\text{score}_i - 0.85$ for $i = 1, \dots, 100$.
+$H_0$ is rejected only if both the observed median $\geq 0.85$ \emph{and} $p < 0.05$.
+Effect size is reported as Cliff's $\delta$, computed here in its one-sample / threshold-comparison form, $\delta = \frac{|\{i : \text{score}_i > 0.85\}| - |\{i : \text{score}_i < 0.85\}|}{n}$~\cite{arcuri2011practical}.
+
+\textbf{RQ2 --- Executable Syntax Rate.}
+We test $H_0: \text{executable rate} \leq 0.80$ against $H_1: \text{executable rate} > 0.80$ using a one-tailed exact binomial test (\texttt{scipy.stats.binomtest}, \texttt{alternative="greater"}, $p_0=0.80$)~\cite{arcuri2011practical}.
+$H_0$ is rejected only if the observed rate $\geq 0.80$ \emph{and} $p < 0.05$.
+Effect size is reported as Cohen's $h$, $h = 2\arcsin\sqrt{\hat{p}} - 2\arcsin\sqrt{0.80}$.
+The 95\% confidence interval is the exact (Clopper--Pearson) one-sided interval consistent with the one-tailed test direction, as returned by \texttt{BinomTestResult.proportion\_ci(0.95, method="exact")}.
+
+A post-hoc power analysis was not performed for either test on the full sample; this is noted as a limitation rather than assumed (see Section~\ref{sec:threats-validity}).
