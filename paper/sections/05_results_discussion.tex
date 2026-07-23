@@ -1,3 +1,110 @@
 \section{Results and Discussion}
 \label{sec:results-discussion}
-% TODO
+
+All results are computed on the full evaluation set ($N{=}100$), stratified across four domains (Digital Asset Management, Brand Management, Marketing Operations Platform, Marketing Compliance).
+Table~\ref{tab:results} summarizes both research questions.
+
+\subsection{RQ1: Cosine Semantic Similarity}
+\label{sec:rq1-results}
+
+Table~\ref{tab:results} presents cosine similarity scores for all 100 scenarios, computed against \texttt{text-embedding-3-large} embeddings (Section~\ref{sec:metrics}).
+The median cosine similarity is $\text{Mdn} = 0.7742$, with interquartile range $\text{IQR} = [0.7165, 0.8337]$ ($\text{IQR width} = 0.1172$).
+%
+% [NOTE TO AUTHORS: min/max are not currently reproducible from the repository -- full_analysis.ipynb
+%  did not persist a per-row metric file when this section was drafted. A code cell that saves
+%  results/full_metric_output.csv (mirroring results/pilot_metric_output.csv) has been added to the
+%  notebook; re-run it (requires an OpenAI API key) and fill in the exact min/max below before submission.]
+%
+Minimum and maximum scores are [VALUE\_MIN] and [VALUE\_MAX].
+Figure~\ref{fig:dist} shows the full distribution against the pre-registered threshold of 0.85; the bulk of the distribution sits below the threshold line, with only a minority of scenarios exceeding it.
+
+The one-tailed, one-sample Wilcoxon signed-rank test of $\text{score}_i - 0.85$ yields $W = 315.0$, $p = 0.999999999999985$ ($p \approx 1.000$), computed on $n=100$ paired differences.
+Cliff's $\delta$ (one-sample, threshold-comparison form) is $\delta = -0.70$, a \emph{large} negative effect, indicating that scenarios below the 0.85 threshold outnumber those above it by a wide margin ($\approx 85$ below vs.\ $\approx 15$ above, given $\delta = (n_{>} - n_{<})/n$).
+
+Because the observed median (0.7742) does not meet the pre-registered threshold and the test direction opposes $H_1$, we \textbf{fail to reject $H_0$}.
+GPT-4o zero-shot does \emph{not} achieve a median cosine similarity $\geq 0.85$ against expert-written Gherkin scenarios.
+
+\subsection{RQ2: Executable Syntax Rate}
+\label{sec:rq2-results}
+
+Of 100 generated scenarios, 100 passed the \texttt{gherkin-official} v28.0.0 parser (rate $= 100.00\%$, exact 95\% one-sided CI $[0.9705, 1.0000]$).
+Figure~\ref{fig:syntax} shows the PASS/FAIL breakdown against the pre-registered 80\% threshold.
+
+The one-tailed exact binomial test against $p_0 = 0.80$ yields $p = 2.0370359763344954 \times 10^{-10}$ ($p \approx 2.04 \times 10^{-10}$), with Cohen's $h = 0.9273$, a \emph{large} effect.
+
+Because the observed rate (100.00\%) exceeds the pre-registered threshold and $p < 0.05$, we \textbf{reject $H_0$}.
+GPT-4o achieves an executable syntax rate $\geq 80\%$.
+
+\begin{table}[t]
+\centering
+\caption{Summary of statistical results for RQ1 and RQ2 ($N{=}100$).}
+\label{tab:results}
+\begin{tabular}{lccccc}
+\toprule
+RQ & Threshold & Metric value & $p$-value & Effect size & Decision \\
+\midrule
+RQ1 & $\geq 0.85$ & 0.7742 (Mdn) & $\approx 1.000$ & $\delta = -0.70$ & Not Achieved \\
+RQ2 & $\geq 80\%$ & 100.00\% & $2.04\times10^{-10}$ & $h = 0.93$ & Achieved \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{../figures/fig1_cosine_distribution.png}
+\caption{Distribution of cosine similarity scores across 100 generated scenarios (violin/box plot), against the pre-registered threshold of 0.85.}
+\label{fig:dist}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{../figures/fig2_syntax_rate.png}
+\caption{Executable syntax PASS/FAIL counts ($N{=}100$) against the pre-registered 80\% threshold.}
+\label{fig:syntax}
+\end{figure}
+
+\subsection{Interpretation of Findings}
+\label{sec:interpretation}
+
+Our results suggest that zero-shot prompting without domain context is insufficient to match expert-level Gherkin semantics.
+
+\textbf{Why RQ1 failed.}
+A post-hoc, corpus-level check of the full $N{=}100$ set (mean token-level Jaccard overlap between GT and LLM scenario text $= 0.33$; range $[0.15, 0.75]$) indicates that the two writing styles share roughly one-third of their vocabulary on average.
+Qualitatively, GPT-4o frequently re-scopes or reframes the requirement rather than paraphrasing the QA developer's exact scenario: e.g., for ID~109 the ground truth describes viewing a specific settings section, while the model's scenario is framed around enabling/disabling features for the same story; for ID~5 the ground truth centers on \emph{previewing} an uploaded file, while the model's scenario centers on \emph{uploading and converting} it.
+This is consistent with divergent interpretation of the same user story rather than a surface-level wording difference, which cosine similarity---an embedding-level proxy for semantic relatedness---penalizes even when both scenarios are individually reasonable.
+
+Two caveats on the error-pattern side are worth stating precisely, because they run counter to what is commonly assumed about LLM-generated Gherkin: on this dataset, \emph{none} of the 100 outputs were missing a Given, When, or Then step, and \emph{none} contained more than one \texttt{Scenario:} block.
+The generic failure modes of ``missing step'' or ``extra scenario'' reported elsewhere in the literature were not observed here---the low RQ1 score is a semantic-alignment issue, not a structural-completeness issue.
+We do note that model outputs are on average $\sim$19\% longer than the corresponding ground truth (mean length ratio $= 1.19$), suggesting GPT-4o tends toward more elaborated step sequences than the QA-authored references.
+
+Together, these observations suggest cosine similarity may not fully capture Gherkin-specific quality: a scenario can be structurally valid, internally coherent, and still score low simply because it interprets the underlying requirement differently from the human author.
+
+\textbf{Why RQ2 passed.}
+GPT-4o reliably generates syntactically valid Gherkin (100/100, Section~\ref{sec:rq2-results}) even when semantic quality falls below threshold.
+Syntax compliance and semantic fidelity are evidently decoupled: the model has clearly internalized the \emph{form} of Given/When/Then scenarios from pretraining and/or the system prompt, but form alone does not guarantee that the generated scenario tests the same behavior a domain expert would test.
+
+\subsection{Comparison with Prior Work}
+\label{sec:prior-work}
+
+Rathnayake et al.~\cite{rathnayake2026llm}---the source of the underlying User Story/Requirements/Manual Scenario dataset used in this study---report a comparative human/LLM evaluation of scenario quality across models.
+%
+% [NOTE TO AUTHORS: a "GPT-4 zero-shot 4.63/5.0 human evaluation" figure was supplied in an earlier
+%  drafting request but could not be verified from the arXiv abstract (arXiv:2603.04729): the abstract
+%  states "Claude 3 produces scenarios rated highest by both human experts and LLM-based evaluators",
+%  not GPT-4. Do NOT cite the 4.63/5.0 figure for GPT-4 without checking the exact number, model, and
+%  evaluation protocol against the full PDF -- as currently understood, GPT-4 was not the top-rated
+%  model in the source paper's own human evaluation.]
+%
+If Rathnayake et al.\ found another model to be rated highest under holistic human judgment, our automated, reference-based results and their human-rated results describe two different dimensions of quality: a model can be judged favorably in an open-ended holistic rating while still diverging from one specific reference scenario under an embedding-similarity metric, since human raters may credit a scenario as ``good'' even when it interprets the story differently from a specific reference.
+Our results---syntax reliable, semantic alignment below the pre-registered 0.85 threshold---support the need for quantitative, reference-based metrics as a complement to holistic human scoring, since the two can diverge in exactly the way we observe here.
+
+\subsection{Implications}
+\label{sec:implications}
+
+\textbf{For practitioners.}
+GPT-4o can generate a syntax-correct Gherkin scaffold reliably, but the semantic content requires human review before use as a final test scenario.
+Current zero-shot generation is better suited to producing an initial draft that a QA engineer edits for intent, than to producing final, ready-to-execute scenarios without review.
+
+\textbf{For researchers.}
+Cosine similarity against a single reference scenario may be an insufficient stand-alone metric, since a requirement can admit multiple valid test interpretations; composite metrics (e.g., combining semantic similarity with structural/coverage checks, or scoring against multiple acceptable references) are worth investigating.
+Future work should also calibrate the 0.85 threshold itself against human expert judgments rather than treating it as fixed a priori across datasets.
