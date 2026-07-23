@@ -14,4 +14,31 @@ From the filtered pool, we drew a stratified random sample proportional to domai
 Expert reference scenarios are provided in the \texttt{Manual Scenario} column; Rathnayake et al.\ report that these were written by QA developers and validated by six BDD experts with more than ten years of experience~\cite{rathnayake2026llm}.
 In our experiments, \texttt{Manual Scenario} serves as the ground-truth Gherkin against which generated outputs are compared.
 
+\subsection{Experimental Setup}
+\label{sec:experimental-setup}
+
+Khánh executed the generation experiment by calling the GPT-4o API once for each of the 100 sampled user stories.
+We used the pinned model version \texttt{gpt-4o-2024-11-20} with temperature set to~0, $top\_p{=}1.0$, and a maximum completion length of 512 tokens.
+The generation strategy was zero-shot: no examples were supplied to the model at inference time.
+
+Our prompt was adapted from Figure~2 of Rathnayake et al.~\cite{rathnayake2026llm}:
+\begin{lstlisting}
+You are a QA expert. Generate a BDD scenario for this User Story.
+User Story: <user_story>
+Use the following format:
+Scenario: [Scenario name]
+Given [precondition]
+When [action]
+Then [expected result]
+Make sure to: 1. Use clear and specific steps. 2. Include all necessary preconditions.
+3. Describe the main action clearly. 4. Specify concrete expected results.
+5. Use business language. 6. Do not include explanations or multiple scenarios.
+7. Focus on the most important happy path scenario.
+\end{lstlisting}
+
+The execution pipeline loaded \texttt{data/sampled\_100.csv}, submitted each user story to the GPT-4o API, stripped non-Gherkin text from the returned response, and saved the generated scenarios to \texttt{results/full\_llm\_output.csv}.
+An empty response was recorded in \texttt{results/full\_api\_log.txt} and retried once rather than being silently discarded.
+
+Our replication package, including datasets, prompts, scripts, and raw results, is publicly available at: \url{https://github.com/khanhkhanh55355/RT-SWT-003-nhom3}.
+
 % §3.2 — Evaluation Metrics (to be added by co-author)
